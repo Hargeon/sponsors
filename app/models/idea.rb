@@ -1,5 +1,5 @@
 class Idea < ApplicationRecord
   validates :name, length: { minimum: 4 }
-  validates :plan, plan: true
-  validates :description, description: true
+  validates :plan, size: true
+  validates :description, size: true
 end
