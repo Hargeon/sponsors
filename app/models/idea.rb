@@ -8,5 +8,4 @@ class Idea < ApplicationRecord
   validates :name, length: { minimum: MINIMUM_LENGTH_OF_NAME }
   validates :plan, count_words: { minimum: COUNT_WORDS_OF_PLAN }
   validates :description, count_words: { minimum: COUNT_WORDS_OF_DESCRIPTION }
-  validates :industries, presence: true
 end
