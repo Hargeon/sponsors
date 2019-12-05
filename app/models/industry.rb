@@ -3,4 +3,5 @@ class Industry < ApplicationRecord
   has_many :ideas, through: :local_industries
 
   validates :name, presence: true
+  validates :name, uniqueness: true
 end

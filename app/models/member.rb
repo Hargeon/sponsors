@@ -3,4 +3,5 @@ class Member < ApplicationRecord
   has_many :ideas, through: :local_members
 
   validates :name, presence: true
+  validates :name, uniqueness: true
 end
