@@ -1,0 +1,6 @@
+<% @ideas.each do |idea| %>
+  <p>
+    <%= link_to  idea.name, idea_path(idea) %>
+  </p>
+<% end %>
+<%= link_to  "New Idea", new_idea_path %>

@@ -1,0 +1,45 @@
+<%= @idea.errors.full_messages %>
+<%= form_for @idea do |f| %>
+  <p>
+    <%= f.label :name %> <br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :description %> <br>
+    <%= f.text_area :description %>
+  </p>
+
+  <%= f.fields_for :local_industries do |ff| %>
+    <p>
+      <%= ff.collection_select(:industry_id, Industry.all, :id, :name, {}, { multiple: true, allow_blank: false }) %>
+    </p>
+  <% end %>
+
+  <%= f.fields_for :local_districts do |ff| %>
+    <p>
+      <%= ff.collection_select(:district_id, District.all, :id, :name, {}, { multiple: true }) %>
+    </p>
+  <% end %>
+
+  <%= f.fields_for :local_members do |ff| %>
+    <p>
+      <%= ff.collection_select(:member_id, Member.all, :id, :name, {}, { multiple: true }) %>
+    </p>
+  <% end %>
+
+  <p>
+    <%= f.label :plan %> <br>
+    <%= f.text_area :plan %>
+  </p>
+
+  <%= f.fields_for :local_require_helps do |ff| %>
+    <p>
+      <%= ff.collection_select(:require_help_id, RequireHelp.all, :id, :name, {}, { multiple: true }) %>
+    </p>
+  <% end %>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
