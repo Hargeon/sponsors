@@ -4,6 +4,7 @@ class IdeaCreateService
     district = local_information['local_districts']
     member = local_information['local_members']
     require_help = local_information['local_require_helps']
+
     Idea.transaction do
       idea.save!
       industry.each { |index| idea.local_industries.create!(industry_id: index) }
@@ -11,6 +12,7 @@ class IdeaCreateService
       member.each { |index| idea.local_members.create!(member_id: index) }
       require_help.each { |index| idea.local_require_helps.create!(require_help_id: index) }
     end
+
     true
   rescue ActiveRecord::RecordInvalid
     false

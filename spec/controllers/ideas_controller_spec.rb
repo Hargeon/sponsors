@@ -42,7 +42,7 @@ RSpec.describe IdeasController, type: :controller do
     end
     let(:idea) { Idea.first }
 
-    before(:each) do
+    before do
       post :create, params: idea_params
     end
 
@@ -51,7 +51,7 @@ RSpec.describe IdeasController, type: :controller do
     end
 
     it 'adds to database' do
-      expect(Idea.all.size).to eq(1)
+      expect(Idea.count).to eq(1)
     end
 
     it 'has a correct name' do
@@ -67,19 +67,19 @@ RSpec.describe IdeasController, type: :controller do
     end
 
     it 'has an industry' do
-      expect(Idea.first.industries).to include(industry)
+      expect(idea.industries).to include(industry)
     end
 
     it 'has a member' do
-      expect(Idea.first.members).to include(member)
+      expect(idea.members).to include(member)
     end
 
     it 'has a  district' do
-      expect(Idea.first.districts).to include(district)
+      expect(idea.districts).to include(district)
     end
 
     it 'has a require help' do
-      expect(Idea.first.require_helps).to include(require_help)
+      expect(idea.require_helps).to include(require_help)
     end
   end
 end
