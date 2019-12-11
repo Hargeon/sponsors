@@ -1,4 +1,34 @@
 <h1>Show</h1>
 <%= @idea.name %> <br>
 <%= @idea.description %> <br>
+<%= @idea.plan %> <br>
+
+<dl>
+  <dt>Industries:</dt>
+  <% @idea.industries.each do |industry| %>
+    <dd><%= industry.name %></dd>
+  <% end %>
+</dl>
+
+<dl>
+  <dt>Districts:</dt>
+  <% @idea.districts.each do |district| %>
+    <dd><%= district.name %></dd>
+  <% end %>
+</dl>
+
+<dl>
+  <dt>Members:</dt>
+  <% @idea.members.each do |member| %>
+    <dd><%= member.name %></dd>
+  <% end %>
+</dl>
+
+<dl>
+  <dt>Need:</dt>
+  <% @idea.require_helps.each do |need| %>
+    <dd><%= need.name %></dd>
+  <% end %>
+</dl>
+
 <%= link_to  "Back", ideas_path %>
