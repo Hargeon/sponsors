@@ -1,10 +1,10 @@
 class IdeaCreateService
   def self.create?(idea, local_information)
+    industry = local_information['local_industries']
+    district = local_information['local_districts']
+    member = local_information['local_members']
+    require_help = local_information['local_require_helps']
     Idea.transaction do
-      industry = local_information['local_industries']
-      district = local_information['local_districts']
-      member = local_information['local_members']
-      require_help = local_information['local_require_helps']
       idea.save!
       industry.each { |index| idea.local_industries.create!(industry_id: index) }
       district.each { |index| idea.local_districts.create!(district_id: index) }

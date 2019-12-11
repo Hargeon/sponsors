@@ -33,62 +33,53 @@ RSpec.describe IdeasController, type: :controller do
     let(:require_help) { create(:require_help) }
     let(:idea_params) do
       {
-        idea: { name: name, description: description, plan: plan,
-                local_industries: [industry.id], local_districts: [district.id],
-                local_members: [member.id], local_require_helps: [require_help.id] }
+        idea: {
+          name: name, description: description, plan: plan,
+          local_industries: [industry.id], local_districts: [district.id],
+          local_members: [member.id], local_require_helps: [require_help.id]
+        }
       }
+    end
+    let(:idea) { Idea.first }
+
+    before(:each) do
+      post :create, params: idea_params
     end
 
     it 'has a 302 status code' do
-      post :create, params: idea_params
       expect(response.status).to eq(302)
     end
 
     it 'adds to database' do
-      post :create, params: idea_params
       expect(Idea.all.size).to eq(1)
     end
 
-    it 'compare name' do
-      post :create, params: idea_params
-      idea = Idea.first
+    it 'has a correct name' do
       expect(idea.name).to eq(name)
     end
 
-    it 'compare plan' do
-      post :create, params: idea_params
-      idea = Idea.first
+    it 'has a correct plan' do
       expect(idea.plan).to eq(plan)
     end
 
-    it 'compare description' do
-      post :create, params: idea_params
-      idea = Idea.first
+    it 'has a correct description' do
       expect(idea.description).to eq(description)
     end
 
-    it 'there is industry' do
-      post :create, params: idea_params
-      industries = Idea.first.industries
-      expect(industries).to include(industry)
+    it 'has an industry' do
+      expect(Idea.first.industries).to include(industry)
     end
 
-    it 'there is member' do
-      post :create, params: idea_params
-      members = Idea.first.members
-      expect(members).to include(member)
+    it 'has a member' do
+      expect(Idea.first.members).to include(member)
     end
 
-    it 'there is district' do
-      post :create, params: idea_params
-      districts = Idea.first.districts
-      expect(districts).to include(district)
+    it 'has a  district' do
+      expect(Idea.first.districts).to include(district)
     end
 
-    it 'there is require help' do
-      post :create, params: idea_params
-      require_helps = Idea.first.require_helps
-      expect(require_helps).to include(require_help)
+    it 'has a require help' do
+      expect(Idea.first.require_helps).to include(require_help)
     end
   end
 end
