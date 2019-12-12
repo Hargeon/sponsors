@@ -11,9 +11,28 @@ class IdeasController < ApplicationController
     @idea = Idea.new
   end
 
+  def edit
+    @idea = Idea.find(params[:id])
+  end
+
+  def update
+    @idea = Idea.find(params[:id])
+    if IdeaEditService.update?(@idea, local_information, member_params)
+      redirect_to idea_path(@idea)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    idea = Idea.find(params[:id])
+    idea.destroy
+    redirect_to ideas_path
+  end
+
   def create
     @idea = Idea.new(idea_params)
-    if IdeaCreateService.create?(@idea, local_information)
+    if IdeaCreateService.create?(@idea, local_information, member_params)
       redirect_to idea_path(@idea)
     else
       render :new
@@ -27,7 +46,10 @@ class IdeasController < ApplicationController
   end
 
   def local_information
-    params.require(:idea).permit(local_industries: [], local_districts: [],
-                                local_members: [], local_require_helps: [])
+    params.require(:idea).permit(local_industries: [], local_districts: [], local_require_helps: [])
+  end
+
+  def member_params
+    params.require(:idea).permit(members: [:amount, :member_id])
   end
 end

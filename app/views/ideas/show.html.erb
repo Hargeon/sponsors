@@ -1,4 +1,3 @@
-<h1>Show</h1>
 <%= @idea.name %> <br>
 <%= @idea.description %> <br>
 <%= @idea.plan %> <br>
@@ -19,8 +18,9 @@
 
 <dl>
   <dt>Members:</dt>
-  <% @idea.members.each do |member| %>
-    <dd><%= member.name %></dd>
+  <% @idea.local_members.each do |local_member| %>
+    <dd><%= Member.find(local_member.member_id).name %> 
+      <%= local_member.amount %></dd>
   <% end %>
 </dl>
 
