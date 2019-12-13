@@ -1,5 +1,17 @@
 <h1>Edit:</h1>
+
+<% if @idea.errors.any? %>
+  <ul>
+    <% @idea.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @idea do |f| %>
+
+  <%= render  "plain_information", form: f %>
+
   <p>
     <%= f.collection_select(:local_industries, Industry.all, :id, :name,
     { include_hidden: false, selected: @idea.industries.map(&:id) }, { multiple: true }) %>
@@ -28,3 +40,5 @@
     <%= f.submit %>
   </p>
 <% end %>
+
+<%= link_to  "Back", ideas_path %>

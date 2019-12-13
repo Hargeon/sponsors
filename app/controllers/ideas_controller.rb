@@ -17,7 +17,7 @@ class IdeasController < ApplicationController
 
   def update
     @idea = Idea.find(params[:id])
-    if IdeaEditService.update?(@idea, local_information, member_params)
+    if IdeaEditService.update?(@idea, local_information, member_params, idea_params)
       redirect_to idea_path(@idea)
     else
       render :edit

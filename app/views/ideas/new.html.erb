@@ -6,15 +6,8 @@
   </ul>
 <% end %>
 <%= form_for @idea do |f| %>
-  <p>
-    <%= f.label :name %> <br>
-    <%= f.text_field :name %>
-  </p>
 
-  <p>
-    <%= f.label :description %> <br>
-    <%= f.text_area :description %>
-  </p>
+  <%= render  "plain_information", form: f %>
 
   <p>
     <%= f.collection_select(:local_industries, Industry.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
@@ -32,13 +25,8 @@
   <% end %>
 
   <p>
-    <%= f.label :plan %> <br>
-    <%= f.text_area :plan %>
+    <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
   </p>
-
-    <p>
-      <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
-    </p>
 
   <p>
     <%= f.submit %>

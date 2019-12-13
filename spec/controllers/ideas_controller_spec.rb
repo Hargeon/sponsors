@@ -27,6 +27,7 @@ RSpec.describe IdeasController, type: :controller do
     let(:name) { 'Simple name' }
     let(:description) { 'one two three fout five six seven eight nine ten' }
     let(:plan) { 'one two three fout five six seven eight nine ten' }
+    let(:amount) { 2 }
     let(:industry) { create(:industry) }
     let(:district) { create(:district) }
     let(:member) { create(:member) }
@@ -36,7 +37,8 @@ RSpec.describe IdeasController, type: :controller do
         idea: {
           name: name, description: description, plan: plan,
           local_industries: [industry.id], local_districts: [district.id],
-          local_members: [member.id], local_require_helps: [require_help.id]
+          local_members: [member.id], local_require_helps: [require_help.id],
+          members: [amount: amount, member_id: member.id]
         }
       }
     end
