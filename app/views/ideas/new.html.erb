@@ -25,6 +25,10 @@
   <% end %>
 
   <p>
+    <%= render  "members" %>
+  </p>
+
+  <p>
     <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
   </p>
 

@@ -1,0 +1,9 @@
+<div id="members">
+  <% Member.all.each do |member| %>
+    <%= button_tag "#{member.name}", type: 'button', id: "member_#{member.id}", class: 'member' %>
+  <% end %>
+</div>
+
+<div id="text_fields">
+
+</div>
