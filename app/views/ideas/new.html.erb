@@ -10,25 +10,22 @@
   <%= render  "plain_information", form: f %>
 
   <p>
+    Industries: <br>
     <%= f.collection_select(:local_industries, Industry.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
   </p>
 
   <p>
+    Districts: <br>
     <%= f.collection_select(:local_districts, District.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
   </p>
 
-  <% Member.all.each do |member| %>
-    <p>
-      <%= member.name %> <%= text_field_tag "idea[members][][amount]", '0' %>
-      <%= hidden_field_tag "idea[members][][member_id]", "#{member.id}" %>
-    </p>
-  <% end %>
-
   <p>
+    Members: <br>
     <%= render  "members" %>
   </p>
 
   <p>
+    We need: <br>
     <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
   </p>
 

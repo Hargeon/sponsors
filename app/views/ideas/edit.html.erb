@@ -13,25 +13,24 @@
   <%= render  "plain_information", form: f %>
 
   <p>
+    Industries: <br>
     <%= f.collection_select(:local_industries, Industry.all, :id, :name,
     { include_hidden: false, selected: @idea.industries.map(&:id) }, { multiple: true }) %>
   </p>
 
   <p>
+    Districts: <br>
     <%= f.collection_select(:local_districts, District.all, :id, :name,
     { include_hidden: false , selected: @idea.districts.map(&:id) }, { multiple: true }) %>
   </p>
 
-  <% Member.all.each do |member| %>
-    <p>
-      <% local_member = @idea.local_members.find_by(member_id: member.id) %>
-      <% amount = local_member.nil? ? 0 : local_member.amount %>
-      <%= member.name %> <%= text_field_tag "idea[members][][amount]", "#{amount}" %>
-      <%= hidden_field_tag "idea[members][][member_id]", "#{member.id}" %>
-    </p>
-  <% end %>
+  <p>
+    Members: <br>
+    <%= render  "members" %>
+  </p>
 
   <p>
+    We need: <br>
     <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name,
     { include_hidden: false, selected: @idea.require_helps.map(&:id) }, { multiple: true }) %>
   </p>
