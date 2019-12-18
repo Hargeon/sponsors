@@ -5,6 +5,7 @@ class IdeaEditService
     require_helps = local_params['local_require_helps']
     members = member_params['members']
 
+    flag = true
     Idea.transaction do
       idea.update!(idea_params)
 
@@ -13,10 +14,13 @@ class IdeaEditService
       idea.require_helps.destroy_all
       idea.members.destroy_all
 
-      CreateAssociationsService.create(idea, industries, districts, require_helps, members)
+      flag = CreateAssociationsService.create(idea, industries, districts, require_helps, members)
+      unless flag
+        raise ActiveRecord::Rollback
+      end
     end
 
-    true
+    flag
   rescue ActiveRecord::RecordInvalid
     false
   end

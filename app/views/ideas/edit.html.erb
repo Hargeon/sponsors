@@ -1,12 +1,6 @@
 <h1>Edit:</h1>
 
-<% if @idea.errors.any? %>
-  <ul>
-    <% @idea.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render 'errors', idea: @idea %>
 
 <%= form_for @idea do |f| %>
 
@@ -26,7 +20,7 @@
 
   <p>
     Members: <br>
-    <%= render  "members" %>
+    <%= render  "members", idea: @idea %>
   </p>
 
   <p>

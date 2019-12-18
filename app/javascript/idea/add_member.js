@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load',function() {
+$(document).ready(function() {
   $('.member').bind('click', function () {
     let id = this.id.substr(this.id.length - 1);
     let name = this.innerText;

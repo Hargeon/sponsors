@@ -17,10 +17,11 @@ class IdeasController < ApplicationController
 
   def update
     @idea = Idea.find(params[:id])
-    if IdeaEditService.update?(@idea, local_information, member_params, idea_params)
+    if CheckAssociationsErrorsService.find_errors(@idea, local_information, member_params) && IdeaEditService.update?(@idea, local_information, member_params, idea_params)
       redirect_to idea_path(@idea)
     else
       render :edit
+      #redirect_to edit_idea_path(@idea)
     end
   end
 
@@ -32,7 +33,7 @@ class IdeasController < ApplicationController
 
   def create
     @idea = Idea.new(idea_params)
-    if IdeaCreateService.create?(@idea, local_information, member_params)
+    if CheckAssociationsErrorsService.find_errors(@idea, local_information, member_params) && IdeaCreateService.create?(@idea, local_information, member_params)
       redirect_to idea_path(@idea)
     else
       render :new

@@ -5,13 +5,17 @@ class IdeaCreateService
     require_helps = local_information['local_require_helps']
     members = member_params['members']
 
+    flag = true
     Idea.transaction do
       idea.save!
 
-      CreateAssociationsService.create(idea, industries, districts, require_helps, members)
+      flag = CreateAssociationsService.create(idea, industries, districts, require_helps, members)
+      unless flag
+        raise ActiveRecord::Rollback
+      end
     end
 
-    true
+    flag
   rescue ActiveRecord::RecordInvalid
     false
   end

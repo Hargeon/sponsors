@@ -2,7 +2,7 @@
   <p>
     <%= link_to  idea.name, idea_path(idea) %>
     <%= link_to  "Delete", idea_path(idea), method: :delete, data: { confirm: "Are you sure?" } %>
-    <%= link_to  "Edit", edit_idea_path(idea) %>
+    <%= link_to  "Edit", edit_idea_path(idea), class: 'edit_idea' %>
   </p>
 <% end %>
 <%= link_to  "New Idea", new_idea_path %>

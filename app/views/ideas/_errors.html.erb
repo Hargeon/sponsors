@@ -1,0 +1,18 @@
+<% if idea.errors.any? %>
+  <ul>
+    <% idea.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% idea.local_members.each do |member| %>
+  <% if member.errors.any? %>
+    <ul>
+      <% member.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
