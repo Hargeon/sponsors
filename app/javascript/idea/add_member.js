@@ -13,9 +13,9 @@ $(document).ready(function() {
 
 function add_p(id, name){
   p_start = `<p id=p_${id}>`;
-  str = p_start + name + " <input type='text' value='0' name='idea[members][][amount]'>";
+  str = p_start + name + " <input type='text' value='0' name='idea[local_members_attributes][][amount]'>";
   hiden_value = `value=${id}`;
-  str += "<input type='hidden' " + hiden_value + " name='idea[members][][member_id]'> </p>";
+  str += "<input type='hidden' " + hiden_value + " name='idea[local_members_attributes][][member_id]'> </p>";
   $('#text_fields').append(str);
 }
 

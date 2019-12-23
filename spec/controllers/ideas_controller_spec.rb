@@ -44,9 +44,10 @@ RSpec.describe IdeasController, type: :controller do
       {
         idea: {
           name: name, description: description, plan: plan,
-          local_industries: [industry.id], local_districts: [district.id],
-          local_members: [member.id], local_require_helps: [require_help.id],
-          members: [amount: amount, member_id: member.id]
+          local_industries_attributes: [{ industry_id: industry.id }],
+          local_districts_attributes: [{ district_id: district.id }],
+          local_require_helps_attributes: [{ require_help_id: require_help.id }],
+          local_members_attributes: [{ amount: amount, member_id: member.id }]
         }
       }
     end
@@ -106,9 +107,10 @@ RSpec.describe IdeasController, type: :controller do
           id: idea.id,
           idea: {
             name: new_name, description: new_description, plan: new_plan,
-            local_industries: [new_industry.id], local_districts: [new_district.id],
-            local_members: [new_member.id], local_require_helps: [new_require_help.id],
-            members: [amount: new_amount, member_id: new_member.id]
+            local_industries_attributes: [{ industry_id: new_industry.id }],
+            local_districts_attributes: [{ district_id: new_district.id }],
+            local_require_helps_attributes: [{ require_help_id: new_require_help.id }],
+            local_members_attributes: [{ amount: new_amount, member_id: new_member.id }]
           }
         }
       end

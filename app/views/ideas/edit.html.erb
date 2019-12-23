@@ -1,6 +1,6 @@
 <h1>Edit:</h1>
 
-<%= render 'errors', idea: @idea %>
+<%= render 'flash_errors' %>
 
 <%= form_for @idea do |f| %>
 
@@ -9,13 +9,15 @@
   <p>
     Industries: <br>
     <%= f.collection_select(:local_industries, Industry.all, :id, :name,
-    { include_hidden: false, selected: @idea.industries.map(&:id) }, { multiple: true }) %>
+    { include_hidden: false, selected: @idea.industries.map(&:id) },
+    { multiple: true, name: 'idea[local_industries_attributes][][industry_id]' }) %>
   </p>
 
   <p>
     Districts: <br>
     <%= f.collection_select(:local_districts, District.all, :id, :name,
-    { include_hidden: false , selected: @idea.districts.map(&:id) }, { multiple: true }) %>
+    { include_hidden: false , selected: @idea.districts.map(&:id) },
+    { multiple: true, name: 'idea[local_districts_attributes][][district_id]' }) %>
   </p>
 
   <p>
@@ -26,7 +28,8 @@
   <p>
     We need: <br>
     <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name,
-    { include_hidden: false, selected: @idea.require_helps.map(&:id) }, { multiple: true }) %>
+    { include_hidden: false, selected: @idea.require_helps.map(&:id) },
+    { multiple: true, name: 'idea[local_require_helps_attributes][][require_help_id]' }) %>
   </p>
 
   <p>

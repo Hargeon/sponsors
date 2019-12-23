@@ -6,12 +6,14 @@
 
   <p>
     Industries: <br>
-    <%= f.collection_select(:local_industries, Industry.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
+    <%= f.collection_select(:local_industries, Industry.all, :id, :name, { include_hidden: false },
+        { multiple: true,  name: 'idea[local_industries_attributes][][industry_id]'}) %>
   </p>
 
   <p>
     Districts: <br>
-    <%= f.collection_select(:local_districts, District.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
+    <%= f.collection_select(:local_districts, District.all, :id, :name, { include_hidden: false },
+        { multiple: true, name: 'idea[local_districts_attributes][][district_id]' }) %>
   </p>
 
   <p>
@@ -21,7 +23,8 @@
 
   <p>
     We need: <br>
-    <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name, { include_hidden: false }, { multiple: true }) %>
+    <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name, { include_hidden: false },
+        { multiple: true, name: 'idea[local_require_helps_attributes][][require_help_id]' }) %>
   </p>
 
   <p>

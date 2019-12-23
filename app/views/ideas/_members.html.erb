@@ -9,8 +9,8 @@
     <% idea.local_members.each do |local_member| %>
       <p id=<%= 'p_' + find_id(local_member).to_s  %>>
         <%= local_member.member.name %>
-        <input type='text' value=<%= local_member.amount %> name='idea[members][][amount]'>
-        <input type='hidden' value=<%= find_id(local_member) %> name='idea[members][][member_id]'>
+        <input type='text' value=<%= local_member.amount %> name='idea[local_members_attributes][][amount]'>
+        <input type='hidden' value=<%= find_id(local_member) %> name='idea[local_members_attributes][][member_id]'>
       </p>
     <% end %>
   <% end %>

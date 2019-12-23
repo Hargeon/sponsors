@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Idea, type: :model do
   context 'validations' do
-    let(:idea) { build(:idea) }
+    let(:idea) { create(:idea) }
 
     it { should validate_length_of(:name).is_at_least(4) }
 

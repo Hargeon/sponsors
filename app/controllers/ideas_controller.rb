@@ -17,11 +17,17 @@ class IdeasController < ApplicationController
 
   def update
     @idea = Idea.find(params[:id])
-    if CheckAssociationsErrorsService.find_errors(@idea, local_information, member_params) && IdeaEditService.update?(@idea, local_information, member_params, idea_params)
-      redirect_to idea_path(@idea)
+    temp_idea = Idea.new(idea_params)
+    if temp_idea.valid?
+      if UpdateIdeaService.update?(@idea, idea_params)
+        redirect_to idea_path(@idea)
+      else
+        flash[:alert] = @idea.errors.full_messages
+        redirect_to edit_idea_path(@idea)
+      end
     else
-      render :edit
-      #redirect_to edit_idea_path(@idea)
+      flash[:alert] = temp_idea.errors.full_messages
+      redirect_to edit_idea_path(@idea)
     end
   end
 
@@ -33,7 +39,7 @@ class IdeasController < ApplicationController
 
   def create
     @idea = Idea.new(idea_params)
-    if CheckAssociationsErrorsService.find_errors(@idea, local_information, member_params) && IdeaCreateService.create?(@idea, local_information, member_params)
+    if @idea.save
       redirect_to idea_path(@idea)
     else
       render :new
@@ -43,14 +49,10 @@ class IdeasController < ApplicationController
   private
 
   def idea_params
-    params.require(:idea).permit(:name, :description, :plan)
-  end
-
-  def local_information
-    params.require(:idea).permit(local_industries: [], local_districts: [], local_require_helps: [])
-  end
-
-  def member_params
-    params.require(:idea).permit(members: [:amount, :member_id])
+    params.require(:idea).permit(:name, :description, :plan,
+                                 local_industries_attributes: [:industry_id],
+                                 local_districts_attributes: [:district_id],
+                                 local_require_helps_attributes: [:require_help_id],
+                                 local_members_attributes: [:amount, :member_id])
   end
 end
