@@ -8,6 +8,7 @@ FactoryBot.define do
       idea.districts << create(:district)
       idea.local_members << LocalMember.create(amount: 2, member_id: create(:member).id)
       idea.require_helps << create(:require_help)
+      idea.user = create(:user)
     end
   end
 end

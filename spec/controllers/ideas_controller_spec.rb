@@ -18,6 +18,8 @@ RSpec.describe IdeasController, type: :controller do
 
   describe 'GET new' do
     it 'has a 200 status code' do
+      user = create(:user)
+      sign_in user
       get :new
       expect(response.status).to eq(200)
     end
@@ -26,6 +28,7 @@ RSpec.describe IdeasController, type: :controller do
   describe 'GET edit' do
     it 'has a 200 status code' do
       idea = create(:idea)
+      sign_in idea.user
       get :edit, params: { id: idea.id }
       expect(response.status).to eq(200)
     end
@@ -40,6 +43,7 @@ RSpec.describe IdeasController, type: :controller do
     let(:district) { create(:district) }
     let(:member) { create(:member) }
     let(:require_help) { create(:require_help) }
+    let(:user) { create(:user) }
     let(:idea_params) do
       {
         idea: {
@@ -54,6 +58,8 @@ RSpec.describe IdeasController, type: :controller do
     let(:idea) { Idea.first }
 
     before do
+      user = create(:user)
+      sign_in user
       post :create, params: idea_params
     end
 
