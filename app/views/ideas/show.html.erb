@@ -27,7 +27,7 @@
 <dl>
   <dt>Members:</dt>
   <% @idea.local_members.each do |local_member| %>
-    <dd><%= Member.find(local_member.member_id).name %> 
+    <dd><%= local_member.member.name %> 
       <%= local_member.amount %></dd>
   <% end %>
 </dl>

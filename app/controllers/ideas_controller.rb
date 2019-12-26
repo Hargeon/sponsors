@@ -28,7 +28,7 @@ class IdeasController < ApplicationController
 
   def destroy
     idea = current_user.ideas.find(params[:id])
-    idea.destroy
+    idea.destroy!
     redirect_to ideas_path
   end
 

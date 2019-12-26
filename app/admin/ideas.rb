@@ -16,9 +16,9 @@ ActiveAdmin.register Idea do
     column :districts
     column :require_helps
     column :members do |idea|
-      idea.local_members.map do |member|
-        name = Member.find(member.member_id).name
-        "#{name} #{member.amount}"
+      idea.local_members.map do |local_member|
+        name = local_member.member.name
+        "#{name} #{local_member.amount}"
       end
     end
     actions
@@ -32,21 +32,21 @@ ActiveAdmin.register Idea do
       row :plan
 
       row :industries do |idea|
-        idea.industries.map { |industry| industry.name }
+        idea.industries.map(&:name)
       end
 
       row :districts do |idea|
-        idea.districts.map { |district| district.name }
+        idea.districts.map(&:name)
       end
 
       row :require_helps do |idea|
-        idea.require_helps.map { |help| help.name }
+        idea.require_helps.map(&:name)
       end
 
       row :members do |idea|
-        idea.local_members.map do |member|
-          name = Member.find(member.member_id).name
-          "#{name} #{member.amount}"
+        idea.local_members.map do |local_member|
+          name = local_member.member.name
+          "#{name} #{local_member.amount}"
         end
       end
     end

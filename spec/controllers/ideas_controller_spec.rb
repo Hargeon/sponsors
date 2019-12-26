@@ -162,10 +162,11 @@ RSpec.describe IdeasController, type: :controller do
       end
     end
 
-    describe 'DELETE destroy' do
+    describe 'DELETE' do
       before do
         delete :destroy, params: { id: idea.id }
       end
+
       it 'deletes the idea' do
         expect(Idea.count).to eq(0)
       end
