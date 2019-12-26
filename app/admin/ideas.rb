@@ -1,5 +1,5 @@
 ActiveAdmin.register Idea do
-  permit_params :name, :description, :plan,
+  permit_params :name, :description, :plan, :user_id,
                 local_industries_attributes: [:id, :industry_id, :_destroy],
                 local_districts_attributes: [:id, :district_id, :_destroy],
                 local_require_helps_attributes: [:id, :require_help_id, :_destroy],
@@ -8,6 +8,7 @@ ActiveAdmin.register Idea do
   index do
     selectable_column
     column :id
+    column :user
     column :name
     column :description
     column :plan
@@ -25,6 +26,7 @@ ActiveAdmin.register Idea do
 
   show do |idea|
     attributes_table do
+      row :user
       row :name
       row :description
       row :plan
@@ -62,6 +64,7 @@ ActiveAdmin.register Idea do
     f.semantic_errors *f.object.errors.keys
 
     f.inputs do
+      f.input :user
       f.input :name
       f.input :description
       f.input :plan

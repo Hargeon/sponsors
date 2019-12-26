@@ -1,4 +1,6 @@
 class IdeasController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def index
     @ideas = Idea.all
   end
@@ -8,37 +10,30 @@ class IdeasController < ApplicationController
   end
 
   def new
-    @idea = Idea.new
+    @idea = current_user.ideas.new
   end
 
   def edit
-    @idea = Idea.find(params[:id])
+    @idea = current_user.ideas.find(params[:id])
   end
 
   def update
-    @idea = Idea.find(params[:id])
-    temp_idea = Idea.new(idea_params)
-    if temp_idea.valid?
-      if UpdateIdeaService.update?(@idea, idea_params)
-        redirect_to idea_path(@idea)
-      else
-        flash[:alert] = @idea.errors.full_messages
-        redirect_to edit_idea_path(@idea)
-      end
+    @idea = current_user.ideas.find(params[:id])
+    if UpdateIdeaService.update?(@idea, idea_params)
+      redirect_to idea_path(@idea)
     else
-      flash[:alert] = temp_idea.errors.full_messages
-      redirect_to edit_idea_path(@idea)
+      render :edit
     end
   end
 
   def destroy
-    idea = Idea.find(params[:id])
+    idea = current_user.ideas.find(params[:id])
     idea.destroy
     redirect_to ideas_path
   end
 
   def create
-    @idea = Idea.new(idea_params)
+    @idea = current_user.ideas.new(idea_params)
     if @idea.save
       redirect_to idea_path(@idea)
     else

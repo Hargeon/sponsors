@@ -1,4 +1,6 @@
 class Idea < ApplicationRecord
+  belongs_to :user
+
   has_many :local_require_helps, dependent: :destroy
   has_many :local_members, dependent: :destroy
   has_many :local_districts, dependent: :destroy
