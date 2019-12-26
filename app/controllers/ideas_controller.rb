@@ -19,17 +19,10 @@ class IdeasController < ApplicationController
 
   def update
     @idea = current_user.ideas.find(params[:id])
-    temp_idea = current_user.ideas.new(idea_params)
-    if temp_idea.valid?
-      if UpdateIdeaService.update?(@idea, idea_params)
-        redirect_to idea_path(@idea)
-      else
-        flash[:alert] = @idea.errors.full_messages
-        redirect_to edit_idea_path(@idea)
-      end
+    if UpdateIdeaService.update?(@idea, idea_params)
+      redirect_to idea_path(@idea)
     else
-      flash[:alert] = temp_idea.errors.full_messages
-      redirect_to edit_idea_path(@idea)
+      render :edit
     end
   end
 
