@@ -9,20 +9,22 @@ RSpec.describe 'Actions with idea' do
       idea = build(:idea)
       login_as(user, scope: :user)
       create_associations_informations
-      visit '/ideas/new'
-      fill_idea(idea)
+      visit new_idea_path
+      fill_idea_inputs(idea)
     end
 
-    it_behaves_like 'idea example'
+    it_behaves_like 'idea fill inputs'
+  end
 
-    describe 'Edit Idea' do
-      before do
-        click_button 'Create Idea'
-        idea = Idea.first
-        visit "/ideas/#{idea.id}/edit"
-      end
-
-      it_behaves_like 'idea example'
+  describe 'Edit Idea' do
+    before do
+      idea = create(:idea)
+      user = idea.user
+      login_as(user, scope: :user)
+      idea = Idea.first
+      visit edit_idea_path(idea)
     end
+
+    it_behaves_like 'idea fill inputs'
   end
 end

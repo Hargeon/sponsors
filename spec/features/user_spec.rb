@@ -4,7 +4,7 @@ RSpec.describe 'User authorization' do
   describe 'Sign up' do
     before do
       user = build(:user)
-      visit '/users/sign_up'
+      visit new_user_registration_path
       fill_user_data(user)
     end
 
