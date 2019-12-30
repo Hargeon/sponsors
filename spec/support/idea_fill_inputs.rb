@@ -12,15 +12,13 @@ RSpec.shared_examples 'idea fill inputs' do
 
     feature 'with incorrect name' do
       scenario 'should display name error' do
-        fill_in 'Name', with: ''
-        expect_content('Name is too short (minimum is 4 characters)')
+        fill_and_expect_content('Name is too short (minimum is 4 characters)', 'Name')
       end
     end
 
     feature 'with incorrect description' do
       scenario 'should display description error' do
-        fill_in 'Description', with: ''
-        expect_content('Description description need has at least 10 words')
+        fill_and_expect_content('Description description need has at least 10 words', 'Description')
       end
     end
 
@@ -33,29 +31,26 @@ RSpec.shared_examples 'idea fill inputs' do
 
     feature 'with incorrect amount of members' do
       scenario 'should display amount error' do
-        fill_in 'idea[local_members_attributes][][amount]', with: amount
-        expect_content('Local members amount must be greater than or equal to 0')
+        fill_and_expect_content('Local members amount must be greater than or equal to 0',
+                                'idea[local_members_attributes][][amount]', amount)
       end
     end
 
     feature 'without industries' do
       scenario 'should display local industry error' do
-        unselect 'Some name', from: 'idea_local_industries'
-        expect_content("Local industries can't be blank")
+        unselect_and_expect_content("Local industries can't be blank", 'idea_local_industries')
       end
     end
 
     feature 'without districts' do
       scenario 'should display local district error' do
-        unselect 'Some name', from: 'idea_local_districts'
-        expect_content("Local districts can't be blank")
+        unselect_and_expect_content("Local districts can't be blank", 'idea_local_districts')
       end
     end
 
     feature 'without require helps' do
       scenario 'should display local require help error' do
-        unselect 'Some name', from: 'idea_local_require_helps'
-        expect_content("Local require helps can't be blank")
+        unselect_and_expect_content("Local require helps can't be blank", 'idea_local_require_helps')
       end
     end
   end

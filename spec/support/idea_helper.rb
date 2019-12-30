@@ -25,4 +25,14 @@ module IdeaHelper
     click_button 'commit'
     expect(page).to have_content(content)
   end
+
+  def fill_and_expect_content(content, field, value = '')
+    fill_in field, with: value
+    expect_content(content)
+  end
+
+  def unselect_and_expect_content(content, from)
+    unselect 'Some name', from: from
+    expect_content(content)
+  end
 end
