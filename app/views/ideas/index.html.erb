@@ -1,8 +1,17 @@
 <% @ideas.each do |idea| %>
   <p>
     <%= link_to  idea.name, idea_path(idea) %>
-    <%= link_to  "Delete", idea_path(idea), method: :delete, data: { confirm: "Are you sure?" } %>
-    <%= link_to  "Edit", edit_idea_path(idea), class: 'edit_idea' %>
+
+    <% if can? :destroy, Idea %>
+      <%= link_to  "Delete", idea_path(idea), method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
+
+    <% if can? :update, Idea %>
+      <%= link_to  "Edit", edit_idea_path(idea), class: 'edit_idea' %>
+    <% end %>
   </p>
 <% end %>
-<%= link_to  "New Idea", new_idea_path %>
+
+<% if can? :create, Idea %>
+  <%= link_to  "New Idea", new_idea_path %>
+<% end %>

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :ideas, dependent: :destroy
+  has_many :interests, dependent: :destroy
 
   MINIMUM_NAME_LENGTH = 4
   MINIMUM_AGE = 12
