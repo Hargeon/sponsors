@@ -20,4 +20,9 @@ module IdeaHelper
     create(:require_help)
     create(:member)
   end
+
+  def expect_content(content)
+    click_button 'commit'
+    expect(page).to have_content(content)
+  end
 end
