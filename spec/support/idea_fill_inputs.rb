@@ -3,7 +3,7 @@ RSpec.shared_examples 'idea fill inputs' do
     let(:amount) { -1 }
 
     shared_examples 'page has correct message' do |message|
-      scenario "should dispaly #{message}" do
+      scenario "should display #{message}" do
         click_button 'commit'
         expect(page).to have_content(message)
       end
@@ -22,7 +22,7 @@ RSpec.shared_examples 'idea fill inputs' do
         fill_in('Name', with: '')
       end
 
-      include_examples 'page has correct message', 'Name is too short (minimum is 4 characters)', 'Name'
+      include_examples 'page has correct message', 'Name is too short (minimum is 4 characters)'
     end
 
     feature 'with incorrect description' do
