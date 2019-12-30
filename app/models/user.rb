@@ -4,6 +4,8 @@ class User < ApplicationRecord
   MINIMUM_NAME_LENGTH = 4
   MINIMUM_AGE = 12
 
+  enum user_type: [:businessman, :sponsor]
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,4 +16,5 @@ class User < ApplicationRecord
   validates :age, numericality: { greater_than_or_equal_to: MINIMUM_AGE }
   validates :age, numericality: { only_integer: true }
   validates :phone, phone: true
+  validates :user_type, presence: true
 end

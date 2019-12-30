@@ -36,6 +36,12 @@
     <%= f.text_field :phone %>
   </div>
 
+  <br>
+
+  <div class="field">
+   <%= f.select :user_type, User.user_types.keys %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
