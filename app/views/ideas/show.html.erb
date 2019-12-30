@@ -1,0 +1,42 @@
+<%= @idea.name %> <br>
+
+<p>
+  Description: <br>
+  <%= @idea.description %> <br>
+</p>
+
+<p>
+  Plan: <br>
+  <%= @idea.plan %> <br>
+</p>
+
+<dl>
+  <dt>Industries:</dt>
+  <% @idea.industries.each do |industry| %>
+    <dd><%= industry.name %></dd>
+  <% end %>
+</dl>
+
+<dl>
+  <dt>Districts:</dt>
+  <% @idea.districts.each do |district| %>
+    <dd><%= district.name %></dd>
+  <% end %>
+</dl>
+
+<dl>
+  <dt>Members:</dt>
+  <% @idea.local_members.each do |local_member| %>
+    <dd><%= local_member.member.name %> 
+      <%= local_member.amount %></dd>
+  <% end %>
+</dl>
+
+<dl>
+  <dt>We need:</dt>
+  <% @idea.require_helps.each do |need| %>
+    <dd><%= need.name %></dd>
+  <% end %>
+</dl>
+
+<%= link_to  "Back", ideas_path %>

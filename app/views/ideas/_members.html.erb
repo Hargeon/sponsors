@@ -1,0 +1,17 @@
+<div id="members">
+  <% Member.all.each do |member| %>
+    <%= button_tag "#{member.name}", type: 'button', id: "member_#{member.id}", class: 'member' %>
+  <% end %>
+</div>
+
+<div id="text_fields">
+  <% unless idea.nil? %>
+    <% idea.local_members.each do |local_member| %>
+      <p id=<%= 'p_' + local_member.member_id.to_s  %>>
+        <%= local_member.member.name %>
+        <input type='text' value=<%= local_member.amount %> name='idea[local_members_attributes][][amount]'>
+        <input type='hidden' value=<%= local_member.member_id %> name='idea[local_members_attributes][][member_id]'>
+      </p>
+    <% end %>
+  <% end %>
+</div>
