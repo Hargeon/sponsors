@@ -1,0 +1,9 @@
+<%= render 'users/show', user: @user %>
+
+<h1>Ideas:</h1>
+
+<% @user.ideas.each do |idea| %>
+  <h2><%= link_to idea.name, idea_path(idea) %></h2>
+<% end %>
+
+<h3><%= link_to 'Ideas', ideas_path %></h3>
