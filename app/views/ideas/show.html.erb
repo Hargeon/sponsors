@@ -43,7 +43,7 @@ Responded: <%= @idea.interests.size %>
 <% if user_signed_in? %>
   <% if current_user.businessman? %>
     <% @idea.interests.each do |interest| %>
-      <%= User.find(interest.user_id).email %> 
+      <%= link_to interest.user.email, sponsor_path(interest.user) %> 
     <% end %>
   <% end %>
 <% end %> <br>
@@ -54,5 +54,7 @@ Responded: <%= @idea.interests.size %>
   <% end %>
 <% end %>
 <br>
+
+<h1>Account: <%= link_to @idea.user.name, businessman_path(@idea.user) %></h1>
 
 <%= link_to  "Back", ideas_path %>

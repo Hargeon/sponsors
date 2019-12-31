@@ -1,0 +1,13 @@
+<%= render 'users/show', user: @user %>
+
+<hr>
+
+<h1>Support:</h1>
+
+<% @user.interests.each do |interest| %>
+  <h3><%= link_to interest.idea.name, idea_path(interest.idea) %></h3>
+<% end %>
+
+<hr>
+
+<h4><%= link_to 'Ideas', ideas_path %></h4>
