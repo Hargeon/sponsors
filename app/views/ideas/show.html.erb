@@ -40,15 +40,14 @@
 </dl>
 
 Responded: <%= @idea.interests.size %> 
-<% if user_signed_in? %>
-  <% if current_user.businessman? %>
-    <% @idea.interests.each do |interest| %>
-      <%= link_to interest.user.email, sponsor_path(interest.user) %> 
-    <% end %>
+<% if current_user&.businessman? %>
+  <% @interests.each do |interest| %>
+    <%= link_to interest.user.email, sponsor_path(interest.user) %> 
   <% end %>
-<% end %> <br>
+<% end %>
+<br>
 
-<% if can? :create, Interest %>
+<% if can?(:create, Interest) %>
   <% unless user_was_interested?(@idea) %>
     <%= link_to 'I can help', interests_path(idea_id: @idea.id), method: :post  %>
   <% end %>

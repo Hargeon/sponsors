@@ -7,6 +7,7 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
+    @interests = @idea.interests.includes(:user)
   end
 
   def new
