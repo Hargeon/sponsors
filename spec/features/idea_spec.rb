@@ -31,17 +31,17 @@ RSpec.describe 'Actions with idea' do
 
   describe 'User not logged in' do
     feature 'Add idea' do
-      scenario 'Should be redirect to Sign in' do
+      scenario 'Should display You are not authorized to access this page.' do
         visit new_idea_path
-        expect(page).to have_current_path(new_user_session_path)
+        expect(page).to have_content('You are not authorized to access this page.')
       end
     end
 
     feature 'Edit idea' do
-      scenario 'Should be redirect to Sign in' do
+      scenario 'Should display You are not authorized to access this page.' do
         idea = create(:idea)
         visit edit_idea_path(idea)
-        expect(page).to have_current_path(new_user_session_path)
+        expect(page).to have_content('You are not authorized to access this page.')
       end
     end
   end
