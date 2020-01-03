@@ -17,6 +17,7 @@ class Ability
       can :destroy, Idea do |idea|
         idea.user == user
       end
+
     elsif user.sponsor?
       can :create, Interest
     end

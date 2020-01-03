@@ -10,4 +10,8 @@
 
 <hr>
 
+<% if @available %>
+  <h4><%= link_to 'Сhange search criteria', edit_sponsor_path(@user) %></h4>
+<% end %>
+
 <h4><%= link_to 'Ideas', ideas_path %></h4>

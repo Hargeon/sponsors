@@ -1,0 +1,42 @@
+<h1>Set up search criteria</h1>
+
+<% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user, url: sponsor_path(@user) do |f| %>
+
+<p>
+  <h3>Industries</h3>
+  <%= f.collection_select(:sponsor_industries, Industry.all, :id, :name,
+      { include_hidden: false, selected: @user.industries.map(&:id) },
+      { multiple: true,  name: 'user[sponsor_industries_attributes][][industry_id]'}) %>
+</p>
+
+<p>
+  <h3>Sponsor help:</h3>
+  <%= f.collection_select(:sponsor_helps, RequireHelp.all, :id, :name,
+      { include_hidden: false, selected: @user.require_helps.map(&:id) },
+      { multiple: true,  name: 'user[sponsor_helps_attributes][][require_help_id]'}) %>
+</p>
+
+<p>
+  <h3>Districts:</h3>
+  <%= f.collection_select(:sponsor_districts, District.all, :id, :name,
+      { include_hidden: false, selected: @user.districts.map(&:id) },
+      { multiple: true, name: 'user[sponsor_districts_attributes][][district_id]' }) %>
+</p>
+
+<%= f.hidden_field :name, value: @user.name %>
+
+<p>
+  <%= f.submit %>
+</p>
+
+<% end %>
+
+<%= link_to 'Back', sponsor_path(@user) %>

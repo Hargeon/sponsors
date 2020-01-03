@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :ideas
   resources :interests, only: [:create]
-  resources :sponsors, only: [:show]
+  resources :sponsors, only: [:show, :edit, :update]
   resources :businessmans, only: [:show]
   root 'ideas#index'
 end
