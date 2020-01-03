@@ -27,7 +27,7 @@ class SponsorsController < ApplicationController
   def show
     @user = User.find(params[:id])
     @interests = @user.interests.includes(:idea)
-    @available = current_user&.sponsor?
+    @available = owner?
   end
 
   private
@@ -39,7 +39,7 @@ class SponsorsController < ApplicationController
   end
 
   def owner?
-    if current_user&.sponsor? && (current_user&.id == User.find(params[:id]))
+    if current_user&.sponsor? && (current_user&.id == params[:id].to_i)
       true
     else
       false

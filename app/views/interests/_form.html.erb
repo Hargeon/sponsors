@@ -1,0 +1,19 @@
+<% if @interests.errors.any? %>
+  <ul>
+    <% @interests.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for(@interests, remote: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :message %> <br>
+    <%= f.text_field :message %>
+  </div>
+
+  <%= f.hidden_field :idea_id, value: @idea_id %>
+
+  <%= f.submit %>
+<% end %>

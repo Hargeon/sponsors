@@ -1,0 +1,8 @@
+<ul>
+  <% interests.each do |interest| %>
+    <li>
+      <%= interest.message %>, <%= interest.user.name %>, <%= interest.user.phone %>,
+      <%= link_to interest.user.email, sponsor_path(interest.user) %>
+    </li>
+  <% end %>
+</ul>
