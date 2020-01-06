@@ -3,10 +3,7 @@ class IdeasController < ApplicationController
 
   def index
     if current_user&.sponsor?
-      @ideas = Idea.joins(:industries).merge(Industry.where(id: current_user.industries).distinct)
-      @ideas |= Idea.joins(:require_helps).merge(RequireHelp.where(id: current_user.require_helps).distinct)
-      @ideas |= Idea.joins(:districts).merge(District.where(id: current_user.districts).distinct)
-      @ideas += Idea.where.not(id: @ideas)
+      FindIdeas.new(current_user).find
     else
       @ideas = Idea.all
     end
