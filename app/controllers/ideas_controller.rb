@@ -2,7 +2,14 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @ideas = Idea.all
+    if current_user&.sponsor?
+      @ideas = Idea.joins(:industries).merge(Industry.where(id: current_user.industries).distinct)
+      @ideas |= Idea.joins(:require_helps).merge(RequireHelp.where(id: current_user.require_helps).distinct)
+      @ideas |= Idea.joins(:districts).merge(District.where(id: current_user.districts).distinct)
+      @ideas += Idea.where.not(id: @ideas)
+    else
+      @ideas = Idea.all
+    end
   end
 
   def show
