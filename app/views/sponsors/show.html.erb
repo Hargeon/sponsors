@@ -10,7 +10,7 @@
 
 <hr>
 
-<% if @available %>
+<% if can?(:update, @user) %>
   <h4><%= link_to 'Сhange search criteria', edit_sponsor_path(@user) %></h4>
 <% end %>
 

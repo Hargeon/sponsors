@@ -1,11 +1,3 @@
-<% if @interests.errors.any? %>
-  <ul>
-    <% @interests.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <%= form_for(@interests, remote: true) do |f| %>
 
   <div class="field">

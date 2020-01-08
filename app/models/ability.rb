@@ -22,6 +22,8 @@ class Ability
       can :create, Interest
     end
 
+    can :update, User, id: user.id
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
