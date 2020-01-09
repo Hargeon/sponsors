@@ -11,15 +11,19 @@ RSpec.describe InterestsController, type: :controller do
     end
 
     context 'POST intersts' do
-      it 'should add to database' do
-        post :create, xhr: true,  params: { interest: { message: message, idea_id: idea.id } }
-        expect(Interest.count).to eq(1)
+      context 'valid params' do
+        it 'should add to database' do
+          post :create, xhr: true,  params: { interest: { message: message, idea_id: idea.id } }
+          expect(Interest.count).to eq(1)
+        end
       end
 
-      it 'should not add to database' do
-        message = 'q w e r'
-        post :create, xhr: true, params: { interest: { message: message, idea_id: idea.id } }
-        expect(Interest.count).to eq(0)
+      context 'invalid params' do
+        it 'should not add to database' do
+          message = 'q w e r'
+          post :create, xhr: true, params: { interest: { message: message, idea_id: idea.id } }
+          expect(Interest.count).to eq(0)
+        end
       end
     end
   end
@@ -30,12 +34,6 @@ RSpec.describe InterestsController, type: :controller do
 
     context 'Post interests' do
       it 'should redirect' do
-        post :create, xhr: true,  params: { interest: { message: message, idea_id: idea.id } }
-        expect(response.status).to eq(302)
-      end
-
-      it 'should redirect' do
-        message = 'qw we e'
         post :create, xhr: true,  params: { interest: { message: message, idea_id: idea.id } }
         expect(response.status).to eq(302)
       end

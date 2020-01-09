@@ -26,7 +26,7 @@
 
 <dl>
   <dt>Members:</dt>
-  <% @idea.local_members.each do |local_member| %>
+  <% @local_members.each do |local_member| %>
     <dd><%= local_member.member.name %> 
       <%= local_member.amount %></dd>
   <% end %>
@@ -48,11 +48,11 @@
 <% if can?(:create, Interest) %>
   <% unless user_was_interested?(@idea) %>
 
-  <div id="form-error"></div>
+    <div id="form-error"></div>
 
-  <div id="new-interest">
-    <%= link_to 'I can help', new_interest_path(idea_id: @idea.id), remote: true %>
-  </div>
+    <div id="new-interest">
+      <%= link_to 'I can help', new_interest_path(idea_id: @idea.id), remote: true %>
+    </div>
   <% end %>
 <% end %>
 <br>

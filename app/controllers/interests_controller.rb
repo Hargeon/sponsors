@@ -2,14 +2,13 @@ class InterestsController < ApplicationController
   load_and_authorize_resource
 
   def new
-    @interests = current_user.interests.new
-    @idea_id = params[:idea_id]
+    @interest = current_user.interests.new
   end
 
   def create
     @interest = current_user.interests.new(interest_params)
+    @interest.save
     respond_to do |format|
-      @interest.save
       format.js
     end
   end

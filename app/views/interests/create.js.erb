@@ -1,6 +1,6 @@
 $(document).ready(function(){
   <% if @interest.errors.any? %>
-    $("#form-error").html("<%= j render 'error', interest: @interest %>");
+    $("#form-error").html("<%= j render 'partials/error', record: @interest %>");
   <% else %>
     $('#new-interest form').remove();
     $("#form-error").html("");

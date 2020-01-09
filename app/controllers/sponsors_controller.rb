@@ -4,7 +4,7 @@ class SponsorsController < ApplicationController
   def edit; end
 
   def update
-    if CreateSearchCriteriaService.create?(@user, sponsor_params)
+    if UpdateRecordService.new(@user).update(sponsor_params)
       redirect_to sponsor_path(@user)
     else
       render :edit
@@ -12,7 +12,6 @@ class SponsorsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @interests = @user.interests.includes(:idea)
   end
 

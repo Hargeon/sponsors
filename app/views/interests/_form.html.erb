@@ -1,11 +1,11 @@
-<%= form_for(@interests, remote: true) do |f| %>
+<%= form_for(@interest, remote: true) do |f| %>
 
   <div class="field">
     <%= f.label :message %> <br>
     <%= f.text_field :message %>
   </div>
 
-  <%= f.hidden_field :idea_id, value: @idea_id %>
+  <%= f.hidden_field :idea_id, value: params[:idea_id] %>
 
   <%= f.submit %>
 <% end %>
