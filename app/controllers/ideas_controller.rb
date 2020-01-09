@@ -13,10 +13,12 @@ class IdeasController < ApplicationController
 
   def new
     @idea = current_user.ideas.new
+    @local_members = @idea.local_members.includes(:member)
   end
 
   def edit
     @idea = current_user.ideas.find(params[:id])
+    @local_members = @idea.local_members.includes(:member)
   end
 
   def update

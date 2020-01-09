@@ -4,8 +4,7 @@ $(document).ready(function(){
   <% else %>
     $('#new-interest form').remove();
     $("#form-error").html("");
-    let responded = Number($('#responded').text().split(' ').pop());
-    responded++;
+    let responded = <%= idea_interests_count(@interest.idea_id) %>
     $("#responded").text(`Responded: ${responded}`);
   <% end %>
 })

@@ -3,7 +3,7 @@ class IdeasQueries
     @current_user = current_user
   end
 
-  def search_by_criteria
+  def sort_by_sponsor_preferences
     ideas = ideas_with_industries | ideas_with_require_helps | ideas_with_districts
 
     ideas + Idea.where.not(id: ideas).order(created_at: :desc)
@@ -14,11 +14,9 @@ class IdeasQueries
       .joins(:industries)
       .where(
         industries: {
-          id: Industry
-                .from(@current_user.industries
-                        .distinct, :industries)
-                .order(created_at: :desc)
-        })
+          id: @current_user.industries
+        }
+      ).order(created_at: :desc)
   end
 
   def ideas_with_require_helps
@@ -26,11 +24,10 @@ class IdeasQueries
       .joins(:require_helps)
       .where(require_helps:
         {
-          id: RequireHelp
-                .from(@current_user.require_helps
-                        .distinct, :require_helps)
-                .order(created_at: :desc)
-        })
+          id: @current_user.require_helps
+
+        }
+      ).order(created_at: :desc)
   end
 
   def ideas_with_districts
@@ -38,18 +35,14 @@ class IdeasQueries
       .joins(:districts)
       .where(districts:
         {
-          id: District
-              .from(@current_user.districts
-                      .distinct, :districts)
-              .order(created_at: :desc)
-        })
+          id: @current_user.districts
+        }
+      ).order(created_at: :desc)
   end
 
   def find
-    if @current_user&.sponsor?
-      search_by_criteria
-    else
-      @ideas = Idea.order(created_at: :desc)
-    end
+    return sort_by_sponsor_preferences if @current_user&.sponsor?
+
+    Idea.order(created_at: :desc)
   end
 end

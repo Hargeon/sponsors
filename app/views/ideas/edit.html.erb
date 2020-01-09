@@ -7,8 +7,8 @@
   <div id="industries">
     <p>
       Industries: <br>
-      <%= f.collection_select(:local_industries, Industry.order(id: :asc), :id, :name,
-      { include_hidden: false, selected: @idea.industries.order(id: :asc).map(&:id) },
+      <%= f.collection_select(:local_industries, Industry.all, :id, :name,
+      { include_hidden: false, selected: @idea.industries.map(&:id) },
       { multiple: true, name: 'idea[local_industries_attributes][][industry_id]' }) %>
 
       <%= hidden_field_tag 'idea[local_industries_attributes][][exist]', 'exist' %>
@@ -26,7 +26,7 @@
 
   <p>
     Members: <br>
-    <%= render  "members", idea: @idea %>
+    <%= render  "members"%>
 
     <%= hidden_field_tag 'idea[local_members_attributes][][exist]', 'exist' %>
   </p>

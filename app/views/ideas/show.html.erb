@@ -39,7 +39,7 @@
   <% end %>
 </dl>
 
-<h2 id="responded">Responded: <%= @idea.interests.size %></h2>
+<h2 id="responded">Responded: <%= @interests.size %></h2>
 <% if current_user&.businessman? && (current_user&.id == @idea.user.id) %>
   <%= render 'responded', interests: @interests %>
 <% end %>
