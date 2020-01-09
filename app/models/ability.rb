@@ -17,9 +17,12 @@ class Ability
       can :destroy, Idea do |idea|
         idea.user == user
       end
+
     elsif user.sponsor?
       can :create, Interest
     end
+
+    can :update, User, id: user.id
 
     # Define abilities for the passed in user here. For example:
     #

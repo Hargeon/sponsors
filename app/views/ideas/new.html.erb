@@ -1,4 +1,4 @@
-<%= render 'errors', idea: @idea %>
+<%= render 'partials/error', record: @idea %>
 
 <%= form_for @idea do |f| %>
 
@@ -18,7 +18,7 @@
 
   <p>
     Members: <br>
-    <%= render  "members", idea: nil %>
+    <%= render  "members" %>
   </p>
 
   <p>

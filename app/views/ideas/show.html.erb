@@ -26,7 +26,7 @@
 
 <dl>
   <dt>Members:</dt>
-  <% @idea.local_members.each do |local_member| %>
+  <% @local_members.each do |local_member| %>
     <dd><%= local_member.member.name %> 
       <%= local_member.amount %></dd>
   <% end %>
@@ -39,21 +39,24 @@
   <% end %>
 </dl>
 
-Responded: <%= @idea.interests.size %> 
-<% if current_user&.businessman? %>
-  <% @interests.each do |interest| %>
-    <%= link_to interest.user.email, sponsor_path(interest.user) %> 
-  <% end %>
+<h2 id="responded">Responded: <%= @interests.size %></h2>
+<% if current_user&.businessman? && (current_user&.id == @idea.user.id) %>
+  <%= render 'responded', interests: @interests %>
 <% end %>
 <br>
 
 <% if can?(:create, Interest) %>
   <% unless user_was_interested?(@idea) %>
-    <%= link_to 'I can help', interests_path(idea_id: @idea.id), method: :post  %>
+
+    <div id="form-error"></div>
+
+    <div id="new-interest">
+      <%= link_to 'I can help', new_interest_path(idea_id: @idea.id), remote: true %>
+    </div>
   <% end %>
 <% end %>
 <br>
 
-<h1>Account: <%= link_to @idea.user.name, businessman_path(@idea.user) %></h1>
+<h3>Account: <%= link_to @idea.user.name, businessman_path(@idea.user) %></h3>
 
 <%= link_to  "Back", ideas_path %>
