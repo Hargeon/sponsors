@@ -1,0 +1,17 @@
+<%= render 'users/show', user: @user %>
+
+<hr>
+
+<h1>Support:</h1>
+
+<% @interests.each do |interest| %>
+  <h3><%= link_to interest.idea.name, idea_path(interest.idea) %></h3>
+<% end %>
+
+<hr>
+
+<% if can?(:update, @user) %>
+  <h4><%= link_to 'Сhange search criteria', edit_sponsor_path(@user) %></h4>
+<% end %>
+
+<h4><%= link_to 'Ideas', ideas_path %></h4>

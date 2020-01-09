@@ -1,26 +1,34 @@
-<%= render 'errors', idea: @idea %>
+<%= render 'partials/error', record: @idea %>
 
 <%= form_for @idea do |f| %>
 
   <%= render  "plain_information", form: f %>
 
-  <p>
-    Industries: <br>
-    <%= f.collection_select(:local_industries, Industry.all, :id, :name,
-    { include_hidden: false, selected: @idea.industries.map(&:id) },
-    { multiple: true, name: 'idea[local_industries_attributes][][industry_id]' }) %>
-  </p>
+  <div id="industries">
+    <p>
+      Industries: <br>
+      <%= f.collection_select(:local_industries, Industry.all, :id, :name,
+      { include_hidden: false, selected: @idea.industries.map(&:id) },
+      { multiple: true, name: 'idea[local_industries_attributes][][industry_id]' }) %>
+
+      <%= hidden_field_tag 'idea[local_industries_attributes][][exist]', 'exist' %>
+    </p>
+  </div>
 
   <p>
     Districts: <br>
     <%= f.collection_select(:local_districts, District.all, :id, :name,
-    { include_hidden: false , selected: @idea.districts.map(&:id) },
+    { include_hidden: false, selected: @idea.districts.map(&:id) },
     { multiple: true, name: 'idea[local_districts_attributes][][district_id]' }) %>
+
+    <%= hidden_field_tag 'idea[local_districts_attributes][][exist]', 'exist' %>
   </p>
 
   <p>
     Members: <br>
-    <%= render  "members", idea: @idea %>
+    <%= render  "members"%>
+
+    <%= hidden_field_tag 'idea[local_members_attributes][][exist]', 'exist' %>
   </p>
 
   <p>
@@ -28,6 +36,8 @@
     <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name,
     { include_hidden: false, selected: @idea.require_helps.map(&:id) },
     { multiple: true, name: 'idea[local_require_helps_attributes][][require_help_id]' }) %>
+
+    <%= hidden_field_tag 'idea[local_require_helps_attributes][][exist]', 'exist' %>
   </p>
 
   <p>

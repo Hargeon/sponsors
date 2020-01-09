@@ -6,5 +6,6 @@ FactoryBot.define do
     password_confirmation { 'password' }
     age { 22 }
     phone { '+375291236542' }
+    user_type { 'businessman' }
   end
 end
