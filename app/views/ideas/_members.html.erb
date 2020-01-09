@@ -5,7 +5,7 @@
 </div>
 
 <div id="text_fields">
-    <% @local_members.includes(:member).each do |local_member| %>
+    <% @local_members.each do |local_member| %>
       <p id=<%= 'p_' + local_member.member_id.to_s  %>>
         <%= local_member.member.name %>
         <input type='text' value=<%= local_member.amount %> name='idea[local_members_attributes][][amount]'>
