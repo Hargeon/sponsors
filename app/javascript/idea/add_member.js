@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 function add_p(id, name){
   p_start = `<p id=p_${id}>`;
-  str = p_start + name + " <input type='text' value='0' name='idea[local_members_attributes][][amount]'>";
+  str = p_start + name + " <input type='text' value='0' name='idea[local_members_attributes][][amount]' class='form-control'>";
   hiden_value = `value=${id}`;
   str += "<input type='hidden' " + hiden_value + " name='idea[local_members_attributes][][member_id]'> </p>";
   $('#text_fields').append(str);
