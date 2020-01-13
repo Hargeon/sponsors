@@ -1,17 +1,73 @@
-<%= render 'users/show', user: @user %>
+<div class="wrap-contanier">
+  <div class="container">
+    <%= render 'users/show', user: @user %>
 
-<hr>
+    <hr>
 
-<h1>Support:</h1>
+    <h1>
+      Support:
+      <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">
+        Look
+      </button>
+    </h1>
 
-<% @interests.each do |interest| %>
-  <h3><%= link_to interest.idea.name, idea_path(interest.idea) %></h3>
-<% end %>
+    <hr>
 
-<hr>
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Industries: </h4>
+        <ul>
+          <% @user.industries.each do |industry| %>
+            <li><%= industry.name %></li>
+          <% end %>
+        </ul>
+      </div>
 
-<% if can?(:update, @user) %>
-  <h4><%= link_to 'Сhange search criteria', edit_sponsor_path(@user) %></h4>
-<% end %>
+      <div class="col-md-4">
+        <h4>Districts:</h4>
+        <ul>
+          <% @user.districts.each do |district| %>
+            <li><%= district.name %></li>
+          <% end %>
+        </ul>
+      </div>
 
-<h4><%= link_to 'Ideas', ideas_path %></h4>
+      <div class="col-md-4">
+        <h4>Can Help:</h4>
+        <ul>
+          <% @user.require_helps.each do |need| %>
+            <li><%= need.name %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <% if can?(:update, @user) %>
+      <h4><%= link_to 'Сhange search criteria', edit_sponsor_path(@user), class: 'btn btn-outline-primary' %></h4>
+    <% end %>
+
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sponsors</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% @interests.each do |interest| %>
+         <h3>
+           <%= link_to interest.idea.name, idea_path(interest.idea), class: 'btn btn-outline-primary' %>
+          </h3>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

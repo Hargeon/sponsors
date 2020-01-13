@@ -1,42 +1,46 @@
-<h1>Set up search criteria</h1>
+<div class="wrap-contanier">
+  <div class="container">
 
-<%= render 'partials/error', record: @user %>
+    <h1>Set up search criteria</h1>
 
-<%= form_for @user, url: sponsor_path(@user) do |f| %>
+    <%= render 'partials/error', record: @user %>
 
-  <p>
-    <h3>Industries</h3>
-    <%= f.collection_select(:sponsor_industries, Industry.all, :id, :name,
-        { include_hidden: false, selected: @user.industries.map(&:id) },
-        { multiple: true,  name: 'user[sponsor_industries_attributes][][industry_id]'}) %>
+    <%= form_for @user, url: sponsor_path(@user) do |f| %>
 
-    <%= hidden_field_tag 'user[sponsor_industries_attributes][][exist]', 'exist' %>
-  </p>
+      <p>
+        <h3>Industries:</h3>
+        <%= f.collection_select(:sponsor_industries, Industry.all, :id, :name,
+            { include_hidden: false, selected: @user.industries.map(&:id) },
+            { multiple: true,  name: 'user[sponsor_industries_attributes][][industry_id]', class: 'custom-select'}) %>
 
-  <p>
-    <h3>Sponsor help:</h3>
-    <%= f.collection_select(:sponsor_helps, RequireHelp.all, :id, :name,
-        { include_hidden: false, selected: @user.require_helps.map(&:id) },
-        { multiple: true,  name: 'user[sponsor_helps_attributes][][require_help_id]'}) %>
+        <%= hidden_field_tag 'user[sponsor_industries_attributes][][exist]', 'exist' %>
+      </p>
 
-    <%= hidden_field_tag 'user[sponsor_helps_attributes][][exist]', 'exist' %>
-  </p>
+      <p>
+        <h3>Sponsor help:</h3>
+        <%= f.collection_select(:sponsor_helps, RequireHelp.all, :id, :name,
+            { include_hidden: false, selected: @user.require_helps.map(&:id) },
+            { multiple: true,  name: 'user[sponsor_helps_attributes][][require_help_id]', class: 'custom-select'}) %>
 
-  <p>
-    <h3>Districts:</h3>
-    <%= f.collection_select(:sponsor_districts, District.all, :id, :name,
-        { include_hidden: false, selected: @user.districts.map(&:id) },
-        { multiple: true, name: 'user[sponsor_districts_attributes][][district_id]' }) %>
+        <%= hidden_field_tag 'user[sponsor_helps_attributes][][exist]', 'exist' %>
+      </p>
 
-    <%= hidden_field_tag 'user[sponsor_districts_attributes][][exist]', 'exist' %>
-  </p>
+      <p>
+        <h3>Districts:</h3>
+        <%= f.collection_select(:sponsor_districts, District.all, :id, :name,
+            { include_hidden: false, selected: @user.districts.map(&:id) },
+            { multiple: true, name: 'user[sponsor_districts_attributes][][district_id]', class: 'custom-select' }) %>
 
-  <%= f.hidden_field :name, value: @user.name %>
+        <%= hidden_field_tag 'user[sponsor_districts_attributes][][exist]', 'exist' %>
+      </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
+      <%= f.hidden_field :name, value: @user.name %>
 
-<% end %>
+      <p>
+        <%= f.submit class: 'btn btn-outline-primary' %>
+      </p>
 
-<%= link_to 'Back', sponsor_path(@user) %>
+    <% end %>
+    <%= link_to 'Back', sponsor_path(@user), class: 'btn btn-outline-secondary' %>
+  </div>
+</div>

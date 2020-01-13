@@ -23,6 +23,7 @@ class IdeasController < ApplicationController
 
   def update
     @idea = current_user.ideas.find(params[:id])
+    @local_members = @idea.local_members.includes(:member)
     if UpdateRecordService.new(@idea).update(association_params, idea_params)
       redirect_to idea_path(@idea)
     else
@@ -38,6 +39,7 @@ class IdeasController < ApplicationController
 
   def create
     @idea = current_user.ideas.new(idea_params.merge(association_params))
+    @local_members = @idea.local_members.includes(:member)
     if @idea.save
       redirect_to idea_path(@idea)
     else

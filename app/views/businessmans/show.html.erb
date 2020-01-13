@@ -1,9 +1,42 @@
-<%= render 'users/show', user: @user %>
+<div class="wrap-contanier">
+  <div class="container">
+    <%= render 'users/show', user: @user %>
 
-<h1>Ideas:</h1>
+    <hr>
 
-<% @user.ideas.each do |idea| %>
-  <h2><%= link_to idea.name, idea_path(idea) %></h2>
-<% end %>
+    <h1>
+      Ideas:
+      <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">
+        Look
+      </button>
+    </h1>
 
-<h3><%= link_to 'Ideas', ideas_path %></h3>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Ideas</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+        <% @user.ideas.each do |idea| %>
+          <h2><%= link_to idea.name, idea_path(idea), class: 'btn btn-outline-primary' %></h2>
+        <% end %>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -58,19 +58,19 @@ RSpec.describe 'User authorization' do
     end
 
     scenario 'with correct params' do
-      click_button 'Log in'
+      click_button 'Sign in'
       expect(page).to have_link('Log out')
     end
 
     scenario 'with uncorrect email' do
       fill_in 'Email', with: ''
-      click_button 'Log in'
+      click_button 'Sign in'
       expect(page).to have_content('Invalid Email or password')
     end
 
     scenario 'with uncorrect password' do
       fill_in 'Password', with: ''
-      click_button 'Log in'
+      click_button 'Sign in'
       expect(page).to have_content('Invalid Email or password')
     end
   end

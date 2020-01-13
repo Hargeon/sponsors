@@ -1,35 +1,46 @@
-<%= render 'partials/error', record: @idea %>
+<div class="wrap-contanier">
+  <div class="container">
+    <%= render 'partials/error', record: @idea %>
 
-<%= form_for @idea do |f| %>
+    <%= form_for @idea do |f| %>
 
-  <%= render  "plain_information", form: f %>
+      <%= render  "plain_information", form: f %>
 
-  <p>
-    Industries: <br>
-    <%= f.collection_select(:local_industries, Industry.all, :id, :name, { include_hidden: false },
-        { multiple: true,  name: 'idea[local_industries_attributes][][industry_id]'}) %>
-  </p>
+      <div class="row">
+        <div class="col-md-3">
+          <p>
+            Industries: <br>
+            <%= f.collection_select(:local_industries, Industry.all, :id, :name, { include_hidden: false },
+                { multiple: true,  name: 'idea[local_industries_attributes][][industry_id]', class: 'custom-select'}) %>
+          </p>
+        </div>
 
-  <p>
-    Districts: <br>
-    <%= f.collection_select(:local_districts, District.all, :id, :name, { include_hidden: false },
-        { multiple: true, name: 'idea[local_districts_attributes][][district_id]' }) %>
-  </p>
+        <div class="col-md-3">
+          <p>
+            Districts: <br>
+            <%= f.collection_select(:local_districts, District.all, :id, :name, { include_hidden: false },
+                { multiple: true, name: 'idea[local_districts_attributes][][district_id]', class: 'custom-select'}) %>
+          </p>
+        </div>
 
-  <p>
-    Members: <br>
-    <%= render  "members" %>
-  </p>
+        <div class="col-md-3">
+          <p>
+            We need: <br>
+            <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name, { include_hidden: false },
+                { multiple: true, name: 'idea[local_require_helps_attributes][][require_help_id]', class: 'custom-select'}) %>
+          </p>
+        </div>
+      </div>
 
-  <p>
-    We need: <br>
-    <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name, { include_hidden: false },
-        { multiple: true, name: 'idea[local_require_helps_attributes][][require_help_id]' }) %>
-  </p>
+      <p>
+        Members: <br>
+        <%= render  "members" %>
+      </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+      <p>
+        <%= f.submit class: 'btn btn-outline-primary' %>
+      </p>
+    <% end %>
 
-<%= link_to  "Back", ideas_path %>
+  </div>
+</div>

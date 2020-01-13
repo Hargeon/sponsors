@@ -1,62 +1,90 @@
-<%= @idea.name %> <br>
+<div class="wrap-contanier">
+  <div class="container">
+    <h1>
+      <%= @idea.name %>
+      <div class="btn-group">
 
-<p>
-  Description: <br>
-  <%= @idea.description %> <br>
-</p>
+        <% if can?(:update, Idea) %>
+          <%= link_to  "Edit", edit_idea_path(@idea), class: "btn btn-outline-warning"  %>
+        <% end %>
 
-<p>
-  Plan: <br>
-  <%= @idea.plan %> <br>
-</p>
+        <% if can?(:destroy, Idea) %>
+          <%= link_to  "Delete", idea_path(@idea), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
+        <% end %>
 
-<dl>
-  <dt>Industries:</dt>
-  <% @idea.industries.each do |industry| %>
-    <dd><%= industry.name %></dd>
-  <% end %>
-</dl>
+      </div>
+    </h1>
+    <p class="text-muted">
+      <%= @idea.created_at.to_date %> by
+      <%= link_to @idea.user.name, businessman_path(@idea.user) %>
+    </p>
 
-<dl>
-  <dt>Districts:</dt>
-  <% @idea.districts.each do |district| %>
-    <dd><%= district.name %></dd>
-  <% end %>
-</dl>
+    <p>
+      <h4>Description:</h4>
+      <%= @idea.description %> <br>
+    </p>
 
-<dl>
-  <dt>Members:</dt>
-  <% @local_members.each do |local_member| %>
-    <dd><%= local_member.member.name %> 
-      <%= local_member.amount %></dd>
-  <% end %>
-</dl>
+    <div class="row">
+      <div class="col-md-3">
+        <h4>Industries: </h4>
+        <ul>
+          <% @idea.industries.each do |industry| %>
+            <li><%= industry.name %></li>
+          <% end %>
+        </ul>
+      </div>
 
-<dl>
-  <dt>We need:</dt>
-  <% @idea.require_helps.each do |need| %>
-    <dd><%= need.name %></dd>
-  <% end %>
-</dl>
+      <div class="col-md-3">
+        <h4>Districts:</h4>
+        <ul>
+          <% @idea.districts.each do |district| %>
+            <li><%= district.name %></li>
+          <% end %>
+        </ul>
+      </div>
 
-<h2 id="responded">Responded: <%= @interests.size %></h2>
-<% if current_user&.businessman? && (current_user&.id == @idea.user.id) %>
-  <%= render 'responded', interests: @interests %>
-<% end %>
-<br>
+      <div class="col-md-3">
+        <h4>Members:</h4>
+        <ul>
+          <% @local_members.each do |local_member| %>
+            <li><%= local_member.member.name %> 
+              <%= local_member.amount %></li>
+          <% end %>
+        </ul>
+      </div>
 
-<% if can?(:create, Interest) %>
-  <% unless user_was_interested?(@idea) %>
-
-    <div id="form-error"></div>
-
-    <div id="new-interest">
-      <%= link_to 'I can help', new_interest_path(idea_id: @idea.id), remote: true %>
+      <div class="col-md-3">
+        <h4>We need:</h4>
+        <ul>
+          <% @idea.require_helps.each do |need| %>
+            <li><%= need.name %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  <% end %>
-<% end %>
-<br>
 
-<h3>Account: <%= link_to @idea.user.name, businessman_path(@idea.user) %></h3>
+    <p>
+      <h4>Plan:</h4>
+      <%= @idea.plan %> <br>
+    </p>
 
-<%= link_to  "Back", ideas_path %>
+    <h2 id="responded">Responded: <%= @interests.size %></h2>
+    <% if current_user&.businessman? && (current_user&.id == @idea.user.id) %>
+      <%= render 'responded', interests: @interests %>
+    <% end %>
+    <br>
+
+    <% if can?(:create, Interest) %>
+      <% unless user_was_interested?(@idea) %>
+
+        <div id="form-error"></div>
+
+        <div id="new-interest">
+          <%= link_to 'I can help', new_interest_path(idea_id: @idea.id), remote: true, class: 'btn btn-outline-primary' %>
+        </div>
+      <% end %>
+    <% end %>
+    <br>
+
+  </div>
+</div>

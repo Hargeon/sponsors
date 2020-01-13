@@ -1,17 +1,37 @@
-<% @ideas.each do |idea| %>
-  <p>
-    <%= link_to  idea.name, idea_path(idea) %>
+<%= render 'carousel' %>
 
-    <% if can?(:destroy, Idea) %>
-      <%= link_to  "Delete", idea_path(idea), method: :delete, data: { confirm: "Are you sure?" } %>
+<div class="container">
+  <div class="row">
+    <% @ideas.each do |idea| %>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+
+          <h5 class="card-header">
+            <%= idea.name %>
+          </h5>
+
+          <div class="card-body">
+
+            <p class="card-text">
+              <%= idea.description %>
+            </p>
+
+            <div class="btn-group">
+              <%= link_to  'View', idea_path(idea), class: "btn btn-sm btn-outline-secondary" %>
+
+              <% if can?(:update, Idea) %>
+                <%= link_to  "Edit", edit_idea_path(idea), class: "btn btn-outline-warning"  %>
+              <% end %>
+
+              <% if can?(:destroy, Idea) %>
+                <%= link_to  "Delete", idea_path(idea), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
+              <% end %>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
     <% end %>
-
-    <% if can?(:update, Idea) %>
-      <%= link_to  "Edit", edit_idea_path(idea), class: 'edit_idea' %>
-    <% end %>
-  </p>
-<% end %>
-
-<% if can?(:create, Idea) %>
-  <%= link_to  "New Idea", new_idea_path %>
-<% end %>
+  </div>
+</div>
