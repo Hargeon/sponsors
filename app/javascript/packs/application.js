@@ -7,7 +7,7 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 import 'bootstrap'
-import './src/application.scss.erb'
+import './src/application.scss'
 require("jquery")
 
 require("idea/add_member")
