@@ -5,7 +5,11 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    can :read, :all
+
+    can :read, User
+    can :read, Idea do |idea|
+      idea.active == true
+    end
 
     if user.businessman?
       can :create, Idea

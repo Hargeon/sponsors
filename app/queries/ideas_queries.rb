@@ -6,11 +6,12 @@ class IdeasQueries
   def sort_by_sponsor_preferences
     ideas = ideas_with_industries | ideas_with_require_helps | ideas_with_districts
 
-    ideas + Idea.where.not(id: ideas).order(created_at: :desc)
+    ideas + Idea.getActive.where.not(id: ideas).order(created_at: :desc)
   end
 
   def ideas_with_industries
     Idea
+      .getActive
       .joins(:industries)
       .where(
         industries: {
@@ -21,6 +22,7 @@ class IdeasQueries
 
   def ideas_with_require_helps
     Idea
+      .getActive
       .joins(:require_helps)
       .where(require_helps:
         {
@@ -32,6 +34,7 @@ class IdeasQueries
 
   def ideas_with_districts
     Idea
+      .getActive
       .joins(:districts)
       .where(districts:
         {
@@ -43,6 +46,6 @@ class IdeasQueries
   def find
     return sort_by_sponsor_preferences if @current_user&.sponsor?
 
-    Idea.order(created_at: :desc)
+    Idea.getActive.order(created_at: :desc)
   end
 end

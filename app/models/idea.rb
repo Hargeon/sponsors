@@ -27,4 +27,14 @@ class Idea < ApplicationRecord
   validates :local_members, presence: true
   validates :local_districts, presence: true
   validates :local_require_helps, presence: true
+
+  before_create :set_active
+
+  scope :getActive, -> { where(active: true) }
+
+  private
+
+  def set_active
+    self.active = true
+  end
 end
