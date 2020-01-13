@@ -28,4 +28,7 @@ class User < ApplicationRecord
   validates :age, numericality: { only_integer: true }
   validates :phone, phone: true
   validates :user_type, presence: true
+
+  scope :getSponsors, -> { where(user_type: :sponsor) }
+  # Ex:- scope :active, -> {where(:active => true)}
 end
