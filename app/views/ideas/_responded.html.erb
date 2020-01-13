@@ -1,8 +1,34 @@
-<ul>
-  <% interests.each do |interest| %>
-    <li>
-      <%= interest.message %>, <%= interest.user.name %>, <%= interest.user.phone %>,
-      <%= link_to interest.user.email, sponsor_path(interest.user) %>
-    </li>
-  <% end %>
-</ul>
+<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">
+  Sponsors
+</button>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Sponsors</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+        <% interests.each do |interest| %>
+          <p>
+            <%= interest.user.name %>, <%= interest.user.phone %>,
+            <%= link_to interest.user.email, sponsor_path(interest.user), class: 'btn btn-outline-primary' %> <br>
+            Message: <%= interest.message %>
+          </p>
+        <% end %>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

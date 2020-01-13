@@ -5,26 +5,45 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <div>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div>
+        <span class="notice text-warning"><%= notice %></span>
+        <span class="alert text-danger"><%= alert %></span>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <%= link_to 'Home', ideas_path, class: 'btn btn-outline-light' %>
+
+          <% if user_signed_in? %>
+            <% if can?(:create, Idea) %>
+              <%= link_to  "New Idea", new_idea_path, class: 'btn btn-outline-success' %>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
       <% if user_signed_in? %>
-        <%= current_user.email %> | 
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { confirm: "Do you want log out?" } %>
+        <% if current_user.sponsor? %>
+          <%= link_to current_user.email, sponsor_path(current_user), class: "btn btn-outline-light" %>
+        <% else %>
+          <%= link_to current_user.email, businessman_path(current_user), class: "btn btn-outline-light" %>
+        <% end %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { confirm: "Do you want log out?" }, class: "btn btn-outline-danger" %>
       <% else %>
-        <%= link_to "Sign in", new_user_session_path %> | 
-        <%= link_to "Sign up", new_user_registration_path %>
+        <%= link_to "Sign in", new_user_session_path, class: "btn btn-outline-warning" %>
+        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-danger" %>
       <% end %>
-    </div>
+    </nav>
 
-    <div>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <div class="content">
+      <%= yield %>
     </div>
-
-    <%= yield %>
   </body>
 </html>
