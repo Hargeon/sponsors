@@ -1,0 +1,38 @@
+<h1>Hello We have a new Idea</h1>
+
+<h2><%= @idea.name %></h2>
+
+Description:
+<p>
+  <%= @idea.description %>
+</p>
+
+Plan:
+<p>
+  <%= @idea.plan %>
+</p>
+
+Industries:
+<ul>
+  <% @idea.industries.each do |industry| %>
+    <li><%= industry.name %></li>
+  <% end %>
+</ul>
+
+<hr>
+
+District:
+<ul>
+  <% @idea.districts.each do |district| %>
+    <li><%= district.name %></li>
+  <% end %>
+</ul>
+
+<hr>
+
+Require help:
+<ul>
+  <% @idea.require_helps.each do |help| %>
+    <li><%= help.name %></li>
+  <% end %>
+</ul>

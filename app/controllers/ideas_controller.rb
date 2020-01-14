@@ -41,6 +41,7 @@ class IdeasController < ApplicationController
     @idea = current_user.ideas.new(idea_params.merge(association_params))
     @local_members = @idea.local_members.includes(:member)
     if @idea.save
+      SendMailsServise.create_idea(@idea)
       redirect_to idea_path(@idea)
     else
       render :new

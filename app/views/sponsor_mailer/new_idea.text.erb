@@ -1,0 +1,22 @@
+Hello We have a new Idea
+
+<%= @idea.name %>
+
+Plan:
+  <%= @idea.plan %>
+
+
+Industries:
+<% @idea.industries.each do |industry| %>
+  --<%= industry.name %></li>
+<% end %>
+
+District:
+<% @idea.districts.each do |district| %>
+  --<li><%= district.name %></li>
+<% end %>
+
+Require help:
+<% @idea.require_helps.each do |help| %>
+  --<li><%= help.name %></li>
+<% end %>
