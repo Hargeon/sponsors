@@ -7,6 +7,8 @@ class ViewServise
   def find_or_create
     return if @current_user.nil?
 
-    View.find_or_create_by!(idea_id: @idea.id, user_id: @current_user.id)
+    View.transaction do
+      View.find_or_create_by!(idea_id: @idea.id, user_id: @current_user.id)
+    end
   end
 end

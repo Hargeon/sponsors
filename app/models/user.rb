@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :districts, through: :sponsor_districts
   has_many :require_helps, through: :sponsor_helps
   has_many :views, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   accepts_nested_attributes_for :sponsor_districts, allow_destroy: true
   accepts_nested_attributes_for :sponsor_industries, allow_destroy: true

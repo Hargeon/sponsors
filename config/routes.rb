@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   resources :businessmans, only: [:show]
   root 'ideas#index'
   mount Sidekiq::Web => '/sidekiq'
+  namespace 'api' do
+    namespace 'v1' do
+      resources :likes, only: [:create, :destroy]
+    end
+  end
 end

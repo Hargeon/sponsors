@@ -24,6 +24,11 @@ class Ability
 
     elsif user.sponsor?
       can :create, Interest
+      can :create, Like
+
+      can :destroy, Like do |like|
+        like.user == user
+      end
     end
 
     can :update, User, id: user.id
