@@ -12,6 +12,12 @@ $(document).ready(function() {
         $('#like').html('<button id="remove-like" class="btn btn-outline-danger">Like</button>' +
         `<input type="hidden" name="like_id" id="like_id" value=${param.id}>`
         );
+        if(param.dislike){
+          $('#dislike_id').remove();
+          $('#remove-dislike').remove();
+          $('#dislike-count').text(param.dislike_count);
+          $('#dislike').html('<button id="add-dislike" class="btn btn-outline-warning">Dislike</button>');
+        }
       }
     })
   })

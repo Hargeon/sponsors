@@ -23,18 +23,31 @@
     <% if can?(:create, Like) %>
       <%= hidden_field_tag 'idea_id', "#{@idea.id}" %>
 
-      <div id="like">
-        <% if like_present?(@idea) %>
-          <%= hidden_field_tag 'like_id', "#{like_id(@idea)}" %>
-          <button id="remove-like" class="btn btn-outline-danger">Like</button>
-        <% else %>
-          <button id="add-like" class="btn btn-outline-primary">Like</button>
-        <% end %>
+      <div class="btn-group">
+          <div id="like">
+            <% if like_present?(@idea) %>
+              <%= hidden_field_tag 'like_id', "#{like_id(@idea)}" %>
+              <button id="remove-like" class="btn btn-outline-danger">Like</button>
+            <% else %>
+              <button id="add-like" class="btn btn-outline-primary">Like</button>
+            <% end %>
+        </div>
+
+          <div id="dislike">
+            <% if dislike_present?(@idea) %>
+              <%= hidden_field_tag 'dislike_id', "#{dislike_id(@idea)}" %>
+              <button id="remove-dislike" class="btn btn-outline-danger">Dislike</button>
+            <% else %>
+              <button id="add-dislike" class="btn btn-outline-warning">Dislike</button>
+            <%end %>
+          </div>
       </div>
 
     <% end %>
+    <br>
 
     <span id="like-count"><%= @idea.likes.count %></span> likes
+    <span id="dislike-count"><%= @idea.dislikes.count %></span> dislikes
 
     <p>
       <h4>Description:</h4>

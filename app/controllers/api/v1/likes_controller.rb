@@ -11,7 +11,7 @@ module Api
           dislike_present = false
           if current_user.dislikes.find_by(idea_id: params[:idea_id]).present?
             current_user.dislikes.find_by(idea_id: params[:idea_id]).destroy!
-            dislike_present - true
+            dislike_present = true
           end
           render json: {
             "message": 'success',
