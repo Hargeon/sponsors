@@ -9,6 +9,7 @@ class IdeasController < ApplicationController
     @idea = Idea.find(params[:id])
     @interests = @idea.interests.includes(:user)
     @local_members = @idea.local_members.includes(:member)
+    ViewServise.new(current_user, @idea).find_or_create
   end
 
   def new

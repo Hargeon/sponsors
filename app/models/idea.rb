@@ -10,6 +10,7 @@ class Idea < ApplicationRecord
   has_many :members, through: :local_members
   has_many :require_helps, through: :local_require_helps
   has_many :interests, dependent: :destroy
+  has_many :views, dependent: :destroy
 
   accepts_nested_attributes_for :local_industries, allow_destroy: true
   accepts_nested_attributes_for :local_members, allow_destroy: true

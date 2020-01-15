@@ -20,3 +20,5 @@ Require help:
 <% @idea.require_helps.each do |help| %>
   --<li><%= help.name %></li>
 <% end %>
+
+<%= link_to 'Review', idea_url(@idea) %>

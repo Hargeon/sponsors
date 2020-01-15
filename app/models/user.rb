@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :industries, through: :sponsor_industries
   has_many :districts, through: :sponsor_districts
   has_many :require_helps, through: :sponsor_helps
+  has_many :views, dependent: :destroy
 
   accepts_nested_attributes_for :sponsor_districts, allow_destroy: true
   accepts_nested_attributes_for :sponsor_industries, allow_destroy: true
@@ -29,6 +30,5 @@ class User < ApplicationRecord
   validates :phone, phone: true
   validates :user_type, presence: true
 
-  scope :getSponsors, -> { where(user_type: :sponsor) }
-  # Ex:- scope :active, -> {where(:active => true)}
+  scope :get_sponsors, -> { where(user_type: :sponsor) }
 end
