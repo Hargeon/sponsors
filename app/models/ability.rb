@@ -29,6 +29,12 @@ class Ability
       can :destroy, Like do |like|
         like.user == user
       end
+
+      can :create, Dislike
+
+      can :destroy, Dislike do |dislike|
+        dislike.user == user
+      end
     end
 
     can :update, User, id: user.id

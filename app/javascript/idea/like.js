@@ -8,7 +8,7 @@ $(document).ready(function() {
       dataType: 'JSON',
       success: function (param) {
         $('#add-like').remove();
-        $('#like-count').text(param.count);
+        $('#like-count').text(param.like_count);
         $('#like').html('<button id="remove-like" class="btn btn-outline-danger">Like</button>' +
         `<input type="hidden" name="like_id" id="like_id" value=${param.id}>`
         );
@@ -25,7 +25,7 @@ $(document).ready(function() {
       success: function (param) {
         $('#like_id').remove();
         $('#remove-like').remove();
-        $('#like-count').text(param.count);
+        $('#like-count').text(param.like_count);
         $('#like').html('<button id="add-like" class="btn btn-outline-primary">Like</button>');
       }
     })
