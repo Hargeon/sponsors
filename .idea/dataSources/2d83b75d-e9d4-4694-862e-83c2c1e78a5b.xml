@@ -9,7 +9,11 @@
       <Owner>rails_dev</Owner>
       <IntrospectionStateNumber>651</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|16387|16389|1
+      <Relations>sequence|table|16500|16502|1
+sequence|table|16508|16510|1
+sequence|table|16516|16518|1
+sequence|table|16524|16526|1
+sequence|table|16387|16389|1
 sequence|table|16402|16404|1
 sequence|table|16413|16415|1
 sequence|table|16424|16426|1
@@ -20,10 +24,6 @@ sequence|table|16462|16464|1
 sequence|table|16470|16472|1
 sequence|table|16478|16480|1
 sequence|table|16489|16491|1
-sequence|table|16500|16502|1
-sequence|table|16508|16510|1
-sequence|table|16516|16518|1
-sequence|table|16524|16526|1
 sequence|table|16725|16727|1
 sequence|table|16733|16735|1
 sequence|table|16741|16743|1
