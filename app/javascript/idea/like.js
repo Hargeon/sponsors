@@ -30,7 +30,7 @@ function like(){
 function removeLike(response) {
   $('#like').data('id', '');
   $('#like').data('action', 'add');
-  $('#like').attr('class', 'btn btn-outline-primary')
+  $('#like').removeClass('btn-outline-danger').addClass('btn-outline-primary')
   $('#like-count').text(response.like_count);
 }
 
@@ -38,7 +38,7 @@ function addLike(response) {
   $('#like').data('id', response.id)
   $('#like').data('action', 'remove')
   $('#like-count').text(response.like_count);
-  $('#like').attr('class', 'btn btn-outline-danger')
+  $('#like').removeClass('btn-outline-primary').addClass('btn-outline-danger')
   if(response.dislike){
     removeDislike(response);
   }
@@ -71,14 +71,14 @@ function dislike() {
 function removeDislike(response) {
   $('#dislike').data('id', '');
   $('#dislike').data('action', 'add');
-  $('#dislike').attr('class', 'btn btn-outline-warning')
+  $('#dislike').removeClass('btn-outline-danger').addClass('btn-outline-warning')
   $('#dislike-count').text(response.dislike_count);
 }
 
 function addDislike(response) {
   $('#dislike').data('id', response.id);
   $('#dislike').data('action', 'remove');
-  $('#dislike').attr('class', 'btn btn-outline-danger');
+  $('#dislike').removeClass('btn-outline-warning').addClass('btn-outline-danger')
   $('#dislike-count').text(response.dislike_count);
 
   if(response.like){
