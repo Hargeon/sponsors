@@ -12,8 +12,8 @@ class LikeServise
     like.destroy!
 
     {
-      "message": 'success',
-      "like_count": RatingServise.likes_count(idea_id)
+      'message': 'success',
+      'like_count': RatingServise.likes_count(idea_id)
     }
   end
 
@@ -25,7 +25,7 @@ class LikeServise
     dislike_present = @current_user.dislikes.find_by(idea_id: @idea_id).present?
     @current_user.dislikes.find_by(idea_id: @idea_id).destroy! if dislike_present
 
-    { "id": like.id, "dislike": dislike_present }
+    { 'id': like.id, 'dislike': dislike_present }
   end
 
   private

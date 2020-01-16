@@ -33,7 +33,7 @@ class Idea < ApplicationRecord
 
   before_create :set_active
 
-  scope :getActive, -> { where(active: true) }
+  scope :active, -> { where(active: true) }
 
   private
 

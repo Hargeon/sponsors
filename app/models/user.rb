@@ -32,5 +32,5 @@ class User < ApplicationRecord
   validates :phone, phone: true
   validates :user_type, presence: true
 
-  scope :get_sponsors, -> { where(user_type: :sponsor) }
+  scope :sponsors, -> { where(user_type: :sponsor) }
 end

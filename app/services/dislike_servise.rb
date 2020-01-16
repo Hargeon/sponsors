@@ -11,7 +11,7 @@ class DislikeServise
     like_present = @current_user.likes.find_by(idea_id: @idea_id).present?
     @current_user.likes.find_by(idea_id: @idea_id).destroy! if like_present
 
-    { "id": dislike.id, "like": like_present }
+    { 'id': dislike.id, 'like': like_present }
   end
 
   def destroy_dislike(id)
@@ -22,8 +22,8 @@ class DislikeServise
     dislike.destroy!
 
     {
-      "message": 'success',
-      "dislike_count": RatingServise.dislikes_count(idea_id)
+      'message': 'success',
+      'dislike_count': RatingServise.dislikes_count(idea_id)
     }
   end
 

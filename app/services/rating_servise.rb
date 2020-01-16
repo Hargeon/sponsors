@@ -1,9 +1,9 @@
 class RatingServise
   def self.likes_count(id)
-    Idea.find(id).likes.count
+    Like.where(idea_id: id).count
   end
 
   def self.dislikes_count(id)
-    Idea.find(id).dislikes.count
+    Dislike.where(idea_id: id).count
   end
 end

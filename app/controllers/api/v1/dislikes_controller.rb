@@ -6,11 +6,7 @@ module Api
       def create
         dislike = DislikeServise.new(current_user, params[:idea_id]).create_dislike
         if dislike
-          render json: {
-            "message": 'success',
-            "dislike_count": RatingServise.dislikes_count(params[:idea_id]),
-            "like_count": RatingServise.likes_count(params[:idea_id])
-          }.merge(dislike), status: 200
+          render json: RatingResponseSerializer.new(dislike, params[:idea_id]), status: 200
         else
           render_error
         end
@@ -28,7 +24,7 @@ module Api
       private
 
       def render_error
-        render json: { "message": 'error' }, status: 400
+        render json: { 'message': 'error' }, status: 400
       end
     end
   end
