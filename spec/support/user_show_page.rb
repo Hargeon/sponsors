@@ -1,4 +1,4 @@
-RSpec.shared_examples 'user show page' do |user|
+RSpec.shared_examples 'user show page' do
   scenario 'should display name' do
     expect(page).to have_content("Name: #{user.name}")
   end
