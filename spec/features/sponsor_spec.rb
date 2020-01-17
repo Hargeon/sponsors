@@ -5,7 +5,7 @@ RSpec.describe 'Actions with sponsor' do
   let(:user) { create(:sponsor) }
   let(:message) { 't y u i o k j h b n m k kj h g h' }
 
-  feature 'Sponsor not authorized' do
+  feature 'User not authorized' do
     feature 'Show page' do
       before do
         user.interests.create(idea_id: idea.id, message: message)
@@ -73,7 +73,7 @@ RSpec.describe 'Actions with sponsor' do
         visit idea_path(idea)
       end
 
-      feature 'Like without dislike' do
+      feature 'Add like without dislike' do
         feature 'Add like' do
           scenario 'should display 1 likes' do
             click_on 'Like'
@@ -90,7 +90,7 @@ RSpec.describe 'Actions with sponsor' do
         end
       end
 
-      feature 'Dislike without like' do
+      feature 'Add dislike without like' do
         feature 'Add dislike' do
           scenario 'should display 1 dislikes' do
             click_on 'Dislike'

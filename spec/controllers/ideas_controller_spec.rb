@@ -60,11 +60,18 @@ RSpec.describe IdeasController, type: :controller do
     before do
       user = create(:user)
       sign_in user
+      create(:sponsor)
       post :create, params: idea_params
     end
 
     it 'has a 302 status code' do
       expect(response.status).to eq(302)
+    end
+
+    it 'send mail to sponsors' do
+      expect {
+        perform_enqueued_jobs { post :create, params: idea_params }
+      }.to change(SponsorMailer.deliveries, :count).by(1)
     end
 
     it 'adds to database' do

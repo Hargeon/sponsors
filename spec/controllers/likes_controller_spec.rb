@@ -9,7 +9,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
       sign_in sponsor
     end
 
-    context 'POST create' do
+    context 'POST' do
       context 'without dislike' do
         before do
           post :create, xhr: true, params: { idea_id: idea.id }
@@ -86,7 +86,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
   end
 
   describe 'Sponsor not authorized' do
-    context 'Post create' do
+    context 'Post' do
       context 'without dislike' do
         before do
           post :create, xhr: true, params: { idea_id: idea.id }

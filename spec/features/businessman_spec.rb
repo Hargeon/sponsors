@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Actions with businessman' do
-  feature 'Sponsor not authorized' do
+  feature 'User not authorized' do
     feature 'Show page' do
       let(:idea) { create(:idea) }
       let(:user) { idea.user }
