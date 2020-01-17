@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Actions with sponsor' do
   let(:idea) { create(:idea) }
-  let(:user) { create(:user, user_type: :sponsor, email: 'second@sponsor.com') }
+  let(:user) { create(:sponsor) }
   let(:message) { 't y u i o k j h b n m k kj h g h' }
 
   feature 'Sponsor not authorized' do
@@ -13,7 +13,7 @@ RSpec.describe 'Actions with sponsor' do
       end
 
       it_behaves_like 'user show page' do
-        let(:user) { create(:user, user_type: :sponsor, email: 'second@sponsor.com') }
+        let(:user) { create(:sponsor) }
       end
 
       feature "'Look' button" do
@@ -21,7 +21,7 @@ RSpec.describe 'Actions with sponsor' do
           click_button 'Look'
         end
 
-        scenario 'should display idea witch like the sponsor' do
+        scenario 'should display idea wich like the sponsor' do
           user.interests.each do |interest|
             expect(page).to have_content(interest.idea.name)
           end

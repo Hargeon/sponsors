@@ -1,11 +1,15 @@
 FactoryBot.define do
   factory :user do
     name { 'Some name' }
-    email { 'example@example.com' }
+    sequence(:email) { |n| "example#{n}@example.com" }
     password { 'password' }
     password_confirmation { 'password' }
     age { 22 }
     phone { '+375291236542' }
     user_type { 'businessman' }
+
+    factory :sponsor do
+      user_type { 'sponsor' }
+    end
   end
 end

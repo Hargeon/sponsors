@@ -26,19 +26,11 @@
       <div class="btn-group">
 
         <div>
-          <% if like_present?(@idea) %>
-            <button id="like" class="btn btn-outline-danger" data-id=<%= like_id(@idea) %> data-action="remove">Like</button>
-          <% else %>
-            <button id="like" class="btn btn-outline-primary" data-action="add" data-id="">Like</button>
-          <% end %>
+          <%= like_button(@idea) %>
         </div>
 
         <div>
-          <% if dislike_present?(@idea) %>
-            <button id="dislike" class="btn btn-outline-danger" data-id=<%= dislike_id(@idea) %> data-action="remove" >Dislike</ button>
-          <% else %>
-            <button id="dislike" class="btn btn-outline-warning" data-action="add" data-id="">Dislike</button>
-          <% end %>
+          <%= dislike_button(@idea) %>
         </div>
 
       </div>

@@ -2,6 +2,8 @@ class SponsorMailer < ApplicationMailer
   def new_idea
     @idea = params[:idea]
     emails = User.sponsors.pluck(:email)
-    mail(to: emails, subject: 'New Idea')
+    emails.each do |email|
+      mail(to: email, subject: 'New Idea')
+    end
   end
 end

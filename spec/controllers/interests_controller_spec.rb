@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe InterestsController, type: :controller do
   describe 'Sponsor authorized' do
     let(:idea) { create(:idea) }
-    let(:sponsor) { create(:user, email: 'sponsor@sponsor.com', user_type: 'sponsor') }
+    let(:sponsor) { create(:sponsor) }
     let(:message) { 'q w e r t y u i o p k hj g f d d' }
 
     before do
