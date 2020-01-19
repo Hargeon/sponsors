@@ -10,6 +10,7 @@ class IdeasController < ApplicationController
     @interests = @idea.interests.includes(:user)
     @local_members = @idea.local_members.includes(:member)
     ViewServise.new(current_user, @idea).find_or_create
+    @create_rating = can?(:create, Rating) ? RatingServise.can_create_rating?(current_user, @idea.id) : false
   end
 
   def new

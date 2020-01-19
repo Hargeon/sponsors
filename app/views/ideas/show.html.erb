@@ -95,7 +95,6 @@
     <% if current_user&.businessman? && (current_user&.id == @idea.user.id) %>
       <%= render 'responded', interests: @interests %>
     <% end %>
-    <br>
 
     <% if can?(:create, Interest) %>
       <% unless user_was_interested?(@idea) %>
@@ -107,7 +106,8 @@
         </div>
       <% end %>
     <% end %>
-    <br>
 
+    <hr>
+    <%= render 'rating' %>
   </div>
 </div>
