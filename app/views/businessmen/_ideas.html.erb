@@ -20,7 +20,8 @@
       Reviewed: <%= idea.views.count %> |
       Likes: <%= idea.likes.count %> |
       Dislikes: <%= idea.dislikes.count %> |
-      Average rating: <%= RatingServise.average_rating(idea) %>
+      Average rating: <%= RatingServise.average_rating(idea) %> |
+      Count votes: <%= RatingServise.count_votes(idea) %>
     </p>
 
     <ul>
