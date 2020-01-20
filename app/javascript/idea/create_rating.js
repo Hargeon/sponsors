@@ -26,21 +26,29 @@ function post() {
 }
 
 function successResponse(response) {
-  $('.starts').remove();
+  $('.stars').remove();
+  $('.all-stars').html();
+
+  for(let i = 0; i < Math.floor(response.average_rating); i++) {
+    $('.all-stars').append('<div class="rating-item active"></div>');
+  }
+
+  $('.average-rating').text(`${response.average_rating} Average rating`);
+  $('.count-votes').text(`${response.count_votes} votes`);
 }
 
 function attraction() {
-  return $($('#attraction').children('.current-active')[0]).data('rate');
+  return $('#attraction .current-active').data('rate')
 }
 
 function strategy() {
-  return $($('#strategy').children('.current-active')[0]).data('rate');
+  return $('#strategy .current-active').data('rate');
 }
 
 function competitiveness() {
-  return $($('#competitiveness').children('.current-active')[0]).data('rate');
+  return $('#competitiveness .current-active').data('rate');
 }
 
 function finance() {
-  return $($('#finance').children('.current-active')[0]).data('rate');
+  return $('#finance .current-active').data('rate');
 }

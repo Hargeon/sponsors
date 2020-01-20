@@ -1,4 +1,4 @@
-class BusinessmansController < ApplicationController
+class BusinessmenController < ApplicationController
   load_and_authorize_resource :user
 
   def show

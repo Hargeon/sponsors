@@ -10,7 +10,6 @@ class IdeasController < ApplicationController
     @interests = @idea.interests.includes(:user)
     @local_members = @idea.local_members.includes(:member)
     ViewServise.new(current_user, @idea).find_or_create
-    @create_rating = can?(:create, Rating) ? RatingServise.can_create_rating?(current_user, @idea.id) : false
   end
 
   def new
@@ -43,7 +42,7 @@ class IdeasController < ApplicationController
     @idea = current_user.ideas.new(idea_params.merge(association_params))
     @local_members = @idea.local_members.includes(:member)
     if @idea.save
-      SponsorMailer.with(idea: @idea).new_idea.deliver_later
+      SendMailsToSponsorsWorker.perform_async(@idea.id)
       redirect_to idea_path(@idea)
     else
       render :new

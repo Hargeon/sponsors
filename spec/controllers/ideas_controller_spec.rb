@@ -71,7 +71,7 @@ RSpec.describe IdeasController, type: :controller do
     it 'send mail to sponsors' do
       expect {
         perform_enqueued_jobs { post :create, params: idea_params }
-      }.to change(SponsorMailer.deliveries, :count).by(1)
+      }.to change(SendMailsToSponsorsWorker.jobs, :size).by(1)
     end
 
     it 'adds to database' do

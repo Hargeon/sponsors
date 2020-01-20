@@ -6,7 +6,7 @@ module Api
       def create
         @rating = current_user.ratings.new(rating_params)
         if @rating.save
-          render json: { 'message': 'success' }, status: 200
+          render json: RatingResponseSerializer.new(@rating), status: 200
         else
           render json: { 'message': 'All points must be clicked' }, status: 400
         end

@@ -6,7 +6,7 @@ module Api
       def create
         like = LikeServise.new(current_user, params[:idea_id]).create_like
         if like
-          render json: RatingResponseSerializer.new(like, params[:idea_id]), status: 200
+          render json: LikeDislikeResponseSerializer.new(like, params[:idea_id]), status: 200
         else
           render_error
         end

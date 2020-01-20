@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BusinessmansController, type: :controller do
+RSpec.describe BusinessmenController, type: :controller do
   describe 'GET show' do
     it 'response has 200 status' do
       user = create(:user)

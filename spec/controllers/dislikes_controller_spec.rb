@@ -11,6 +11,16 @@ RSpec.describe Api::V1::DislikesController, type: :controller do
 
     context 'POST' do
       context 'without like' do
+        let(:expected) {
+          {
+            'message': 'success',
+            'dislike_count': 1,
+            'like_count': 0,
+            'id': Dislike.last.id,
+            'like': false
+          }.to_json
+        }
+
         before do
           post :create, xhr: true, params: { idea_id: idea.id }
         end
@@ -20,13 +30,6 @@ RSpec.describe Api::V1::DislikesController, type: :controller do
         end
 
         it 'valid response body' do
-          expected = {
-            'message': 'success',
-            'dislike_count': 1,
-            'like_count': 0,
-            'id': Dislike.last.id,
-            'like': false
-          }.to_json
           expect(response.body).to eq(expected)
         end
 
@@ -34,8 +37,18 @@ RSpec.describe Api::V1::DislikesController, type: :controller do
       end
 
       context 'with like' do
+        let(:expected) {
+          {
+            'message': 'success',
+            'dislike_count': 1,
+            'like_count': 0,
+            'id': Dislike.last.id,
+            'like': true
+          }.to_json
+        }
+
         before do
-          Like.create(idea_id: idea.id, user_id: sponsor.id)
+          create(:like, idea_id: idea.id, user_id: sponsor.id)
           post :create, xhr: true, params: { idea_id: idea.id }
         end
 
@@ -48,13 +61,6 @@ RSpec.describe Api::V1::DislikesController, type: :controller do
         end
 
         it 'valid response body' do
-          expected = {
-            'message': 'success',
-            'dislike_count': 1,
-            'like_count': 0,
-            'id': Dislike.last.id,
-            'like': true
-          }.to_json
           expect(response.body).to eq(expected)
         end
 
@@ -63,7 +69,13 @@ RSpec.describe Api::V1::DislikesController, type: :controller do
     end
 
     context 'DELETE' do
-      let(:dislike) { Dislike.create(idea_id: idea.id, user_id: sponsor.id) }
+      let(:dislike) { create(:dislike, idea_id: idea.id, user_id: sponsor.id) }
+      let(:expected) {
+        {
+          'message': 'success',
+          'dislike_count': 0
+        }.to_json
+      }
 
       before do
         delete :destroy, xhr: true, params: { id: dislike.id }
@@ -74,10 +86,6 @@ RSpec.describe Api::V1::DislikesController, type: :controller do
       end
 
       it 'valid response body' do
-        expected = {
-          'message': 'success',
-          'dislike_count': 0
-        }.to_json
         expect(response.body).to eq(expected)
       end
 
@@ -102,7 +110,7 @@ RSpec.describe Api::V1::DislikesController, type: :controller do
 
       context 'with like' do
         before do
-          Like.create(idea_id: idea.id, user_id: sponsor.id)
+          create(:like, idea_id: idea.id, user_id: sponsor.id)
           post :create, xhr: true, params: { idea_id: idea.id }
         end
 
@@ -120,7 +128,7 @@ RSpec.describe Api::V1::DislikesController, type: :controller do
     end
 
     context 'DELETE' do
-      let(:dislike) { Dislike.create(idea_id: idea.id, user_id: sponsor.id) }
+      let(:dislike) { create(:dislike, idea_id: idea.id, user_id: sponsor.id) }
 
       before do
         delete :destroy, xhr: true, params: { id: dislike.id }

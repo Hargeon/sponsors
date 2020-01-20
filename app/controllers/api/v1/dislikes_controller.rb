@@ -6,7 +6,7 @@ module Api
       def create
         dislike = DislikeServise.new(current_user, params[:idea_id]).create_dislike
         if dislike
-          render json: RatingResponseSerializer.new(dislike, params[:idea_id]), status: 200
+          render json: LikeDislikeResponseSerializer.new(dislike, params[:idea_id]), status: 200
         else
           render_error
         end

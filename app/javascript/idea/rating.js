@@ -1,6 +1,7 @@
 $(document).ready(function () {
   let ratings = document.querySelectorAll('.rating');
   let ratingItems = [];
+
   for(let i = 0; i < ratings.length; i++) {
     ratingItems[i] = ratings[i].querySelectorAll('.rating-item');
   }
@@ -21,7 +22,7 @@ $(document).ready(function () {
       if(target.classList.contains('rating-item')) {
         removeClass(ratingItems[i], 'active');
         target.classList.add('active');
-        mouseOverActiveClass(ratingItems[i]);
+        addActiveClsForPrevSrtars(ratingItems[i]);
       }
     };
 
@@ -40,7 +41,7 @@ function removeClass(arr) {
   }
 }
 
-function mouseOverActiveClass(arr) {
+function addActiveClsForPrevSrtars(arr) {
   for(let i = 0; i < arr.length; i++) {
     if(arr[i].classList.contains('active')) {
       break;

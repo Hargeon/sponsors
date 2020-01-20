@@ -1,41 +1,56 @@
-<% if @create_rating %>
-  <div class="starts">
-    Offer attractiveness:
-    <div class="rating" id="attraction">
-      <div class="rating-item active" data-rate="1"></div>
-      <div class="rating-item" data-rate="2"></div>
-      <div class="rating-item" data-rate="3"></div>
-      <div class="rating-item" data-rate="4"></div>
-      <div class="rating-item" data-rate="5"></div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="all-stars">
+      <% RatingServise.average_rating(@idea).to_i.times do %>
+        <div class="rating-item active"></div>
+      <% end %>
     </div>
 
-    Implementation strategy:
-    <div class="rating" id="strategy">
-      <div class="rating-item active" data-rate="1"></div>
-      <div class="rating-item" data-rate="2"></div>
-      <div class="rating-item" data-rate="3"></div>
-      <div class="rating-item" data-rate="4"></div>
-      <div class="rating-item" data-rate="5"></div>
-    </div>
-
-    Competitiveness:
-    <div class="rating" id="competitiveness">
-      <div class="rating-item active" data-rate="1"></div>
-      <div class="rating-item" data-rate="2"></div>
-      <div class="rating-item" data-rate="3"></div>
-      <div class="rating-item" data-rate="4"></div>
-      <div class="rating-item" data-rate="5"></div>
-    </div>
-
-    Financial attractiveness:
-    <div class="rating" id="finance">
-      <div class="rating-item active" data-rate="1"></div>
-      <div class="rating-item" data-rate="2"></div>
-      <div class="rating-item" data-rate="3"></div>
-      <div class="rating-item" data-rate="4"></div>
-      <div class="rating-item" data-rate="5"></div>
-    </div>
-
-    <button id="create-rating" class="btn btn-outline-primary">Share</button>
+      <h4 class="average-rating"><%= RatingServise.average_rating(@idea) %> Average rating</h4>
+      <h4 class="count-votes"> <%= RatingServise.count_votes(@idea) %> votes </h4>
   </div>
-<% end %>
+
+  <div class="col-md-6">
+    <% if RatingServise.can_create_rating?(current_user, @idea.id) %>
+      <div class="stars">
+        Offer attractiveness:
+        <div class="rating" id="attraction">
+          <div class="rating-item active" data-rate="1"></div>
+          <div class="rating-item" data-rate="2"></div>
+          <div class="rating-item" data-rate="3"></div>
+          <div class="rating-item" data-rate="4"></div>
+          <div class="rating-item" data-rate="5"></div>
+        </div>
+
+        Implementation strategy:
+        <div class="rating" id="strategy">
+          <div class="rating-item active" data-rate="1"></div>
+          <div class="rating-item" data-rate="2"></div>
+          <div class="rating-item" data-rate="3"></div>
+          <div class="rating-item" data-rate="4"></div>
+          <div class="rating-item" data-rate="5"></div>
+        </div>
+
+        Competitiveness:
+        <div class="rating" id="competitiveness">
+          <div class="rating-item active" data-rate="1"></div>
+          <div class="rating-item" data-rate="2"></div>
+          <div class="rating-item" data-rate="3"></div>
+          <div class="rating-item" data-rate="4"></div>
+          <div class="rating-item" data-rate="5"></div>
+        </div>
+
+        Financial attractiveness:
+        <div class="rating" id="finance">
+          <div class="rating-item active" data-rate="1"></div>
+          <div class="rating-item" data-rate="2"></div>
+          <div class="rating-item" data-rate="3"></div>
+          <div class="rating-item" data-rate="4"></div>
+          <div class="rating-item" data-rate="5"></div>
+        </div>
+
+        <button id="create-rating" class="btn btn-outline-primary">Share</button>
+      </div>
+    <% end %>
+  </div>
+</div>
