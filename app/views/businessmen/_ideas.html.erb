@@ -1,10 +1,15 @@
-<% if can?(:read, Interest) %>
-  <% @user.ideas.each do |idea| %>
+<% if current_user&.id == @user.id %>
+  <% @ideas.order(created_at: :desc).each do |idea| %>
     <hr>
     <p>
       <%= link_to idea.name, idea_path(idea), class: 'btn btn-outline-secondary' %>
       <%= link_to 'Edit', edit_idea_path(idea), class: 'btn btn-outline-warning' %>
       <%= link_to 'Delete', idea_path(idea), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
+
+      <p class="text-muted">
+        Date:  <%= idea.created_at.to_date %>
+      </p>
+
       <p>
         Description: <br>
         <%= idea.description %>
@@ -18,11 +23,15 @@
       Average rating: <%= RatingServise.average_rating(idea) %>
     </p>
 
-    <% idea.interests.each do |interest| %>
-      <p>
-        <%= link_to interest.user.name, sponsor_path(interest.user), class: 'btn btn-outline-primary' %>
-        Message: <%= interest.message %>
-      </p>
-    <% end %>
+    <ul>
+      <% idea.interests.each do |interest| %>
+        <li>
+          <p>
+            <%= link_to interest.user.email, sponsor_path(interest.user) %>
+            Message: <%= interest.message %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 <% end %>
