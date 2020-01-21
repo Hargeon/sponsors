@@ -1,28 +1,26 @@
-<% if current_user&.id == @user.id %>
-  <% @interests.order(created_at: :desc).each do |interest| %>
-    <hr>
-    <%= link_to interest.idea.name, idea_path(interest.idea), class: 'btn btn-outline-secondary' %> <br>
+<% @interests.order(created_at: :desc).each do |interest| %>
+  <hr>
+  <%= link_to interest.idea.name, idea_path(interest.idea), class: 'btn btn-outline-secondary' %> <br>
 
-    <p class="text-muted">
-      Date: <%= interest.idea.created_at.to_date %> by
-      <%= link_to interest.idea.user.email, businessman_path(interest.idea.user) %>
-    </p>
+  <p class="text-muted">
+    Date: <%= interest.idea.created_at.to_date %> by
+    <%= link_to interest.idea.user.email, businessman_path(interest.idea.user) %>
+  </p>
 
-    Description:
-    <p>
-       <%= interest.idea.description %>
-    </p>
+  Description:
+  <p>
+     <%= interest.idea.description %>
+  </p>
 
-    <p>
-      Message: <%= interest.message %>
-    </p>
+  <p>
+    Message: <%= interest.message %>
+  </p>
 
-    <p>
-      Reviewed: <%= interest.idea.views.count %> |
-      Likes: <%= interest.idea.likes.count %> |
-      Dislikes: <%= interest.idea.dislikes.count %> |
-      Average rating: <%= RatingServise.average_rating(interest.idea) %> |
-      Count votes: <%= RatingServise.count_votes(interest.idea) %>
-    </p>
-  <% end %>
+  <p>
+    Reviewed: <%= interest.idea.views.count %> |
+    Likes: <%= interest.idea.likes.count %> |
+    Dislikes: <%= interest.idea.dislikes.count %> |
+    Average rating: <%= RatingService.average_rating(interest.idea) %> |
+    Count votes: <%= RatingService.count_votes(interest.idea) %>
+  </p>
 <% end %>

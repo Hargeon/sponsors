@@ -4,7 +4,7 @@ module Api
       load_and_authorize_resource
 
       def create
-        like = LikeServise.new(current_user, params[:idea_id]).create_like
+        like = LikeService.new(current_user, params[:idea_id]).create_like
         if like
           render json: LikeDislikeResponseSerializer.new(like, params[:idea_id]), status: 200
         else
@@ -13,7 +13,7 @@ module Api
       end
 
       def destroy
-        like = LikeServise.new(current_user).destroy_like(params[:id])
+        like = LikeService.new(current_user).destroy_like(params[:id])
         if like
           render json: like, status: 200
         else

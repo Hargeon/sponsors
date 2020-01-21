@@ -6,10 +6,11 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
   let(:strategy) { 4 }
   let(:competitiveness) { 2 }
   let(:finance) { 5 }
-  let(:average_rating) {
+  let(:average_rating) do
     (attraction + strategy + competitiveness + finance).to_f / 4
-  }
-  let(:rating_params) {
+  end
+
+  let(:rating_params) do
     {
       rating: {
         idea_id: idea.id,
@@ -19,12 +20,10 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
         finance: finance
       }
     }
-  }
+  end
 
-  shared_examples 'add rating' do
-    it 'should not add to database' do
-      expect(Rating.count).to eq(0)
-    end
+  shared_examples 'should not add to database' do
+    it { expect(Rating.count).to eq(0) }
   end
 
   describe 'Sponsor authorized' do
@@ -36,13 +35,13 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
 
     describe 'Valid params' do
       let(:rating) { Rating.first }
-      let(:expected_body) {
+      let(:expected_body) do
         {
           'message': 'success',
           'average_rating': average_rating,
           'count_votes': 1
         }.to_json
-      }
+      end
 
       before do
         post :create, xhr: true, params: rating_params
@@ -82,7 +81,7 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
       let(:strategy) { 'b' }
       let(:competitiveness) { 'c' }
       let(:finance) { 'd' }
-      let(:rating_params) {
+      let(:rating_params) do
         {
           rating: {
             idea_id: idea.id,
@@ -91,12 +90,13 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
             finance: finance
           }
         }
-      }
-      let(:expected_body) {
+      end
+
+      let(:expected_body) do
         {
           'message': 'All points must be clicked'
         }.to_json
-      }
+      end
 
       before do
         post :create, xhr: true, params: rating_params
@@ -110,16 +110,16 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
         expect(response.body).to eq(expected_body)
       end
 
-      it_behaves_like 'add rating'
+      it_behaves_like 'should not add to database'
     end
   end
 
   describe 'Sponsor not authorized' do
-    let(:expected_body) {
+    let(:expected_body) do
       {
         'message': 'error'
       }.to_json
-    }
+    end
 
     before do
       post :create, xhr: true, params: rating_params
@@ -133,6 +133,6 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
       expect(response.body).to eq(expected_body)
     end
 
-    it_behaves_like 'add rating'
+    it_behaves_like 'should not add to database'
   end
 end

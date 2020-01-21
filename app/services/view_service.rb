@@ -1,4 +1,4 @@
-class ViewServise
+class ViewService
   def initialize(current_user, idea)
     @current_user = current_user
     @idea = idea

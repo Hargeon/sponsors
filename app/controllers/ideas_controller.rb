@@ -8,7 +8,7 @@ class IdeasController < ApplicationController
   def show
     @interests = @idea.interests.includes(:user)
     @local_members = @idea.local_members.includes(:member)
-    ViewServise.new(current_user, @idea).find_or_create
+    ViewService.new(current_user, @idea).find_or_create
   end
 
   def new

@@ -7,8 +7,8 @@ class LikeDislikeResponseSerializer
   def as_json(*)
     {
       'message': 'success',
-      'dislike_count': RatingServise.dislikes_count(@idea_id),
-      'like_count': RatingServise.likes_count(@idea_id)
+      'dislike_count': RatingService.dislikes_count(@idea_id),
+      'like_count': RatingService.likes_count(@idea_id)
     }.merge(@data)
   end
 end

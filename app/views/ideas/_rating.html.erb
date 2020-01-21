@@ -1,17 +1,22 @@
 <div class="row">
+  <% average_rating = RatingService.average_rating(@idea) %>
   <div class="col-md-6">
     <div class="all-stars">
-      <% RatingServise.average_rating(@idea).to_i.times do %>
-        <div class="rating-item active"></div>
+      <% 5.times do |i| %>
+        <% if i < average_rating.to_i %>
+          <div class="rating-item average"></div>
+          <% else %>
+          <div class="rating-item average exclude"></div>
+        <% end %>
       <% end %>
     </div>
 
-      <h4 class="average-rating"><%= RatingServise.average_rating(@idea) %> Average rating</h4>
-      <h4 class="count-votes"> <%= RatingServise.count_votes(@idea) %> votes </h4>
+      <h4 class="average-rating"><%= average_rating %> Average rating</h4>
+      <h4 class="count-votes"> <%= RatingService.count_votes(@idea) %> votes </h4>
   </div>
 
   <div class="col-md-6">
-    <% if RatingServise.can_create_rating?(current_user, @idea.id) %>
+    <% if RatingService.can_create_rating?(current_user, @idea.id) %>
       <div class="stars">
         Offer attractiveness:
         <div class="rating" id="attraction">

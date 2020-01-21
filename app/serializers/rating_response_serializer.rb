@@ -6,8 +6,8 @@ class RatingResponseSerializer
   def as_json(*)
     {
       'message': 'success',
-      'average_rating': RatingServise.average_rating(@idea),
-      'count_votes': RatingServise.count_votes(@idea)
+      'average_rating': RatingService.average_rating(@idea),
+      'count_votes': RatingService.count_votes(@idea)
     }
   end
 end

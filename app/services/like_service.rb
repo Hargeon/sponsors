@@ -1,4 +1,4 @@
-class LikeServise
+class LikeService
   def initialize(current_user, idea_id = nil)
     @idea_id = idea_id
     @current_user = current_user
@@ -13,7 +13,7 @@ class LikeServise
 
     {
       'message': 'success',
-      'like_count': RatingServise.likes_count(idea_id)
+      'like_count': RatingService.likes_count(idea_id)
     }
   end
 

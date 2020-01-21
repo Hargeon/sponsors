@@ -11,7 +11,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
 
     context 'POST' do
       context 'without dislike' do
-        let(:expected) {
+        let(:expected) do
           {
             'message': 'success',
             'dislike_count': 0,
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
             'id': Like.last.id,
             'dislike': false
           }.to_json
-        }
+        end
 
         before do
           post :create, xhr: true, params: { idea_id: idea.id }
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
       end
 
       context 'with dislike' do
-        let(:expected) {
+        let(:expected) do
           {
             'message': 'success',
             'dislike_count': 0,
@@ -45,7 +45,7 @@ RSpec.describe Api::V1::LikesController, type: :controller do
             'id': Like.last.id,
             'dislike': true
           }.to_json
-        }
+        end
 
         before do
           create(:dislike, user_id: sponsor.id, idea_id: idea.id)
@@ -70,12 +70,12 @@ RSpec.describe Api::V1::LikesController, type: :controller do
 
     context 'DELETE' do
       let(:like) { create(:like, user_id: sponsor.id, idea_id: idea.id) }
-      let(:expected) {
+      let(:expected) do
         {
           'message': 'success',
           'like_count': 0
         }.to_json
-      }
+      end
 
       before do
         delete :destroy, xhr: true, params: { id: like.id }

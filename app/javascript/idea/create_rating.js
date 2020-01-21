@@ -27,10 +27,13 @@ function post() {
 
 function successResponse(response) {
   $('.stars').remove();
-  $('.all-stars').html();
+  $('.rating-item.average').addClass('exclude');
+
+  let all_stars = document.querySelector('.all-stars');
+  let ratingsItem = all_stars.querySelectorAll('.rating-item.average.exclude')
 
   for(let i = 0; i < Math.floor(response.average_rating); i++) {
-    $('.all-stars').append('<div class="rating-item active"></div>');
+    ratingsItem[i].classList.remove('exclude');
   }
 
   $('.average-rating').text(`${response.average_rating} Average rating`);

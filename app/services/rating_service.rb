@@ -1,4 +1,4 @@
-class RatingServise
+class RatingService
   def self.likes_count(id)
     Like.where(idea_id: id).count
   end
@@ -28,11 +28,9 @@ class RatingServise
       count += 1
     end
 
-    begin
-      sum / count
-    rescue ZeroDivisionError
-      0
-    end
+    return 0 if count.zero?
+
+    sum / count
   end
 
   def self.count_votes(idea)

@@ -22,7 +22,7 @@ $(document).ready(function () {
       if(target.classList.contains('rating-item')) {
         removeClass(ratingItems[i], 'active');
         target.classList.add('active');
-        addActiveClsForPrevSrtars(ratingItems[i]);
+        addActiveClsForPrevStars(ratingItems[i]);
       }
     };
 
@@ -33,36 +33,34 @@ $(document).ready(function () {
   }
 });
 
-function removeClass(arr) {
-  for(let i = 0; i < arr.length; i++) {
-    for(let j = 1; j < arguments.length; j++) {
-      arr[i].classList.remove(arguments[j]);
-    }
+function removeClass(elements, elementsClass) {
+  for(let i = 0; i < elements.length; i++) {
+    elements[i].classList.remove(elementsClass);
   }
 }
 
-function addActiveClsForPrevSrtars(arr) {
-  for(let i = 0; i < arr.length; i++) {
-    if(arr[i].classList.contains('active')) {
+function addActiveClsForPrevStars(elements) {
+  for(let i = 0; i < elements.length; i++) {
+    if(elements[i].classList.contains('active')) {
       break;
     } else {
-      arr[i].classList.add('active');
+      elements[i].classList.add('active');
     }
   }
 }
 
-function mouseOutCurrentActive(arr) {
-  for(let i = arr.length - 1; i > 0; i--) {
-    if(arr[i].classList.contains('current-active')) {
+function mouseOutCurrentActive(elements) {
+  for(let i = elements.length - 1; i > 0; i--) {
+    if(elements[i].classList.contains('current-active')) {
       break;
     } else {
-      arr[i].classList.remove('active');
+      elements[i].classList.remove('active');
     }
   }
 }
 
-function addActiveClass(arr) {
-  for(let i = 0; i < arr.length; i++) {
-    arr[i].classList.add('active');
+function addActiveClass(elements) {
+  for(let i = 0; i < elements.length; i++) {
+    elements[i].classList.add('active');
   }
 }

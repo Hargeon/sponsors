@@ -37,6 +37,17 @@
   background-position: center;
 }
 
+.rating-item.average {
+  cursor: default;
+  background-size: cover;
+  background-image: url('star.png');
+  background-position: center;
+}
+
+.rating-item.average.exclude {
+  visibility: hidden;
+}
+
 .registration {
   margin: auto;
   margin-top: 15rem;
