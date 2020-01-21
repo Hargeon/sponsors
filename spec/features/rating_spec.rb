@@ -9,7 +9,7 @@ RSpec.describe 'Add rating' do
     create(:rating, user_id: first_sponsor.id, idea_id: idea.id)
   end
 
-  feature 'Sponsor authorized' do
+  feature 'Sponsor authorized', js: true do
     before do
       login_as(second_sponsor, scope: :user)
       visit idea_path(idea)
@@ -48,7 +48,6 @@ RSpec.describe 'Add rating' do
       end
 
       scenario "should display 'All points must be clicked'" do
-        sleep 1
         text = page.driver.browser.switch_to.alert.text
         expect(text).to eq('All points must be clicked')
       end
