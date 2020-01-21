@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SponsorsController, type: :controller do
-  let(:sponsor) { create(:user, email: 'second@sponsor.com', user_type: 'sponsor') }
+  let(:sponsor) { create(:sponsor) }
   let(:industry) { create(:industry) }
   let(:district) { create(:district) }
   let(:require_help) { create(:require_help) }
@@ -17,7 +17,7 @@ RSpec.describe SponsorsController, type: :controller do
   end
 
   shared_examples 'GET show' do
-    let(:user) { create(:user, user_type: 'sponsor') }
+    let(:user) { create(:sponsor) }
 
     it 'response has 200 status code' do
       get :show, params: { id: user.id }

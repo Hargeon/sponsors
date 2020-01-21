@@ -12,7 +12,7 @@ class SponsorsController < ApplicationController
   end
 
   def show
-    @interests = @user.interests.includes(:idea)
+    @interests = @user.interests.includes(idea: :user)
   end
 
   private

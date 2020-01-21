@@ -11,6 +11,9 @@ import './src/application.scss'
 require("jquery")
 
 require("idea/add_member")
+require("idea/like")
+require("idea/rating")
+require("idea/create_rating")
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

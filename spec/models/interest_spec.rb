@@ -5,7 +5,7 @@ RSpec.describe Interest, type: :model do
 
   describe 'Message validation' do
     let(:idea) { create(:idea) }
-    let(:sponsor) { create(:user, email: 'sponsor@sponsor.com', user_type: 'sponsor') }
+    let(:sponsor) { create(:sponsor) }
     let(:message) { 'q w e r t y u i o p l k j a' }
 
     context 'has more than 10 words' do

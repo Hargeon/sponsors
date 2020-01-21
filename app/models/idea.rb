@@ -10,6 +10,10 @@ class Idea < ApplicationRecord
   has_many :members, through: :local_members
   has_many :require_helps, through: :local_require_helps
   has_many :interests, dependent: :destroy
+  has_many :views, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :dislikes, dependent: :destroy
+  has_many :ratings, dependent: :destroy
 
   accepts_nested_attributes_for :local_industries, allow_destroy: true
   accepts_nested_attributes_for :local_members, allow_destroy: true
@@ -27,4 +31,14 @@ class Idea < ApplicationRecord
   validates :local_members, presence: true
   validates :local_districts, presence: true
   validates :local_require_helps, presence: true
+
+  before_create :set_active
+
+  scope :active, -> { where(active: true) }
+
+  private
+
+  def set_active
+    self.active = true
+  end
 end

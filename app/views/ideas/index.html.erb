@@ -7,18 +7,9 @@
         <div class="card mb-4 shadow-sm">
 
           <h5 class="card-header">
-            <%= idea.name %>
-          </h5>
-
-          <div class="card-body">
-
-            <p class="card-text">
-              <%= idea.description %>
-            </p>
+            <%= link_to  idea.name, idea_path(idea), class: "btn btn-outline-dark" %>
 
             <div class="btn-group">
-              <%= link_to  'View', idea_path(idea), class: "btn btn-sm btn-outline-secondary" %>
-
               <% if can?(:update, Idea) %>
                 <%= link_to  "Edit", edit_idea_path(idea), class: "btn btn-outline-warning"  %>
               <% end %>
@@ -27,6 +18,22 @@
                 <%= link_to  "Delete", idea_path(idea), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
               <% end %>
 
+            </div>
+          </h5>
+
+          <div class="card-body">
+
+            <p class="card-text">
+              <%= idea.description %>
+            </p>
+
+            <div class="text-muted">
+              <%= idea.likes.count %> likes
+              <%= idea.dislikes.count %> dislikes
+            </div>
+
+            <div class="text-muted">
+              <%= idea.views.count %> reviewed
             </div>
           </div>
 

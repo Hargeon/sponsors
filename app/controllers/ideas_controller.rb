@@ -6,9 +6,9 @@ class IdeasController < ApplicationController
   end
 
   def show
-    @idea = Idea.find(params[:id])
     @interests = @idea.interests.includes(:user)
     @local_members = @idea.local_members.includes(:member)
+    ViewService.new(current_user, @idea).find_or_create
   end
 
   def new
@@ -41,6 +41,7 @@ class IdeasController < ApplicationController
     @idea = current_user.ideas.new(idea_params.merge(association_params))
     @local_members = @idea.local_members.includes(:member)
     if @idea.save
+      SendMailsToSponsorsWorker.perform_async(@idea.id)
       redirect_to idea_path(@idea)
     else
       render :new
