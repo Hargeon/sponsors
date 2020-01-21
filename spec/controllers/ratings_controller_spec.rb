@@ -106,7 +106,7 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
         expect(response.status).to eq(400)
       end
 
-      it 'has a All points must be clicked response body' do
+      it 'has an "All points must be clicked" response body' do
         expect(response.body).to eq(expected_body)
       end
 
@@ -129,7 +129,7 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
       expect(response.status).to eq(403)
     end
 
-    it 'should has an error response body' do
+    it 'has a message error response body' do
       expect(response.body).to eq(expected_body)
     end
 

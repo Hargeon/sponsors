@@ -24,7 +24,7 @@ class RatingServise
     sum = 0
     count = 0
     ratings.each do |rating|
-      sum += (rating.attraction + rating.strategy + rating.competitiveness + rating.finance) / 4
+      sum += (rating.attraction + rating.strategy + rating.competitiveness + rating.finance).to_f / 4
       count += 1
     end
 
