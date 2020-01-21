@@ -29,19 +29,15 @@ function successResponse(response) {
   $('.stars').remove();
   $('.rating-item.average').addClass('exclude');
 
-  let all_stars = document.querySelector('.all-stars');
-  let ratingsItem = all_stars.querySelectorAll('.rating-item.average.exclude')
-
-  for(let i = 0; i < Math.floor(response.average_rating); i++) {
-    ratingsItem[i].classList.remove('exclude');
-  }
+  let average_rating = Math.floor(response.average_rating)
+  $('.rating-item.average').slice(0, average_rating).removeClass('exclude')
 
   $('.average-rating').text(`${response.average_rating} Average rating`);
   $('.count-votes').text(`${response.count_votes} votes`);
 }
 
 function attraction() {
-  return $('#attraction .current-active').data('rate')
+  return $('#attraction .current-active').data('rate');
 }
 
 function strategy() {

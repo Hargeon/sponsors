@@ -71,7 +71,7 @@ function dislike() {
 function removeDislike(response) {
   $('#dislike').data('id', '');
   $('#dislike').data('action', 'add');
-  $('#dislike').removeClass('btn-outline-danger').addClass('btn-outline-warning')
+  $('#dislike').removeClass('btn-outline-danger').addClass('btn-outline-warning');
   $('#dislike-count').text(response.dislike_count);
 }
 
