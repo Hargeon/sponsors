@@ -16,8 +16,31 @@
     </h1>
     <p class="text-muted">
       <%= @idea.created_at.to_date %> by
-      <%= link_to @idea.user.name, businessman_path(@idea.user) %>
+      <%= link_to @idea.user.name, businessman_path(@idea.user) %> <br>
+      <%= @idea.views.count %> reviewed
     </p>
+
+    <% if can?(:create, Like) %>
+      <%= hidden_field_tag 'idea_id', "#{@idea.id}" %>
+
+      <div class="btn-group">
+
+        <div>
+          <%= like_button(@idea) %>
+        </div>
+
+        <div>
+          <%= dislike_button(@idea) %>
+        </div>
+
+      </div>
+
+    <% end %>
+
+    <br>
+
+    <span id="like-count"><%= @idea.likes.count %></span> likes
+    <span id="dislike-count"><%= @idea.dislikes.count %></span> dislikes
 
     <p>
       <h4>Description:</h4>
@@ -72,7 +95,6 @@
     <% if current_user&.businessman? && (current_user&.id == @idea.user.id) %>
       <%= render 'responded', interests: @interests %>
     <% end %>
-    <br>
 
     <% if can?(:create, Interest) %>
       <% unless user_was_interested?(@idea) %>
@@ -84,7 +106,8 @@
         </div>
       <% end %>
     <% end %>
-    <br>
 
+    <hr>
+    <%= render 'rating' %>
   </div>
 </div>

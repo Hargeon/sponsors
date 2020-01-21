@@ -1,0 +1,61 @@
+<div class="row">
+  <% average_rating = RatingService.average_rating(@idea) %>
+  <div class="col-md-6">
+    <div class="all-stars">
+      <% 5.times do |i| %>
+        <% if i < average_rating.to_i %>
+          <div class="rating-item average"></div>
+          <% else %>
+          <div class="rating-item average exclude"></div>
+        <% end %>
+      <% end %>
+    </div>
+
+      <h4 class="average-rating"><%= average_rating %> Average rating</h4>
+      <h4 class="count-votes"> <%= RatingService.count_votes(@idea) %> votes </h4>
+  </div>
+
+  <div class="col-md-6">
+    <% if RatingService.can_create_rating?(current_user, @idea.id) %>
+      <div class="stars">
+        Offer attractiveness:
+        <div class="rating" id="attraction">
+          <div class="rating-item active" data-rate="1"></div>
+          <div class="rating-item" data-rate="2"></div>
+          <div class="rating-item" data-rate="3"></div>
+          <div class="rating-item" data-rate="4"></div>
+          <div class="rating-item" data-rate="5"></div>
+        </div>
+
+        Implementation strategy:
+        <div class="rating" id="strategy">
+          <div class="rating-item active" data-rate="1"></div>
+          <div class="rating-item" data-rate="2"></div>
+          <div class="rating-item" data-rate="3"></div>
+          <div class="rating-item" data-rate="4"></div>
+          <div class="rating-item" data-rate="5"></div>
+        </div>
+
+        Competitiveness:
+        <div class="rating" id="competitiveness">
+          <div class="rating-item active" data-rate="1"></div>
+          <div class="rating-item" data-rate="2"></div>
+          <div class="rating-item" data-rate="3"></div>
+          <div class="rating-item" data-rate="4"></div>
+          <div class="rating-item" data-rate="5"></div>
+        </div>
+
+        Financial attractiveness:
+        <div class="rating" id="finance">
+          <div class="rating-item active" data-rate="1"></div>
+          <div class="rating-item" data-rate="2"></div>
+          <div class="rating-item" data-rate="3"></div>
+          <div class="rating-item" data-rate="4"></div>
+          <div class="rating-item" data-rate="5"></div>
+        </div>
+
+        <button id="create-rating" class="btn btn-outline-primary">Share</button>
+      </div>
+    <% end %>
+  </div>
+</div>

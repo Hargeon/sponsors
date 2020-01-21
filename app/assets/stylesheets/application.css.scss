@@ -13,6 +13,40 @@
  * require_tree .
  *= require_self
  */
+.all-stars {
+  display: flex;
+}
+
+.rating {
+  display: flex;
+}
+
+.rating-item{
+  width: 40px;
+  height: 40px;
+  background-image: url('fav.png');
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+.rating-item.active {
+  background-size: cover;
+  background-image: url('star.png');
+  background-position: center;
+}
+
+.rating-item.average {
+  cursor: default;
+  background-size: cover;
+  background-image: url('star.png');
+  background-position: center;
+}
+
+.rating-item.average.exclude {
+  visibility: hidden;
+}
 
 .registration {
   margin: auto;
