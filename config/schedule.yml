@@ -1,0 +1,7 @@
+hide_ideas:
+  cron: '0 0 * * *'
+  class: 'HideOldIdeasWorker'
+
+send_mail_businessmen:
+  cron: '0 0 * * *'
+  class: 'SendMailsToBusinessmenOldIdeaWorker'

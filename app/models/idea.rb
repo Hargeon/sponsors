@@ -33,6 +33,7 @@ class Idea < ApplicationRecord
   validates :local_require_helps, presence: true
 
   before_create :set_active
+  before_create :set_active_time
 
   scope :active, -> { where(active: true) }
 
@@ -40,5 +41,9 @@ class Idea < ApplicationRecord
 
   def set_active
     self.active = true
+  end
+
+  def set_active_time
+    self.active_time = Time.current
   end
 end

@@ -13,6 +13,8 @@ class SponsorsController < ApplicationController
 
   def show
     @interests = @user.interests.includes(idea: :user)
+                                .where('ideas.active = ?', true)
+                                .references(:idea)
   end
 
   private
