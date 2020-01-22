@@ -3,6 +3,8 @@ FactoryBot.define do
     name { 'Simple name' }
     description { 'one two three fout five six seven eight nine ten' }
     plan { 'one two three fout five six seven eight nine ten' }
+    active { true }
+    active_time { Time.current }
 
     before :create do |idea|
       idea.industries << create(:industry)

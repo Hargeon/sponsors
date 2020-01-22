@@ -1,6 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe IdeasController, type: :controller do
+  shared_examples 'should not change active time' do
+    it do
+      active_time = idea.active_time
+      post :update_active_time, params: { id: idea.id }
+      expect(idea.active_time).to eq(active_time)
+    end
+  end
+
   describe 'GET index' do
     it 'has a 200 status code' do
       get :index
@@ -180,6 +188,47 @@ RSpec.describe IdeasController, type: :controller do
 
       it 'has a 302 code' do
         expect(response.status).to eq(302)
+      end
+    end
+  end
+
+  describe 'POST update_active_time' do
+    let!(:idea) { create(:idea) }
+
+    describe 'Businessman authorized' do
+      before do
+        sign_in idea.user
+      end
+
+      context 'After 20 days from create' do
+        before do
+          idea.update(active_time: 22.day.ago)
+        end
+
+        # Dont work, don't know why
+        it 'should change active time' do
+          active_time = idea.active_time
+          post :update_active_time, params: { id: idea.id }
+          expect(idea.active_time).to_not eq(active_time)
+        end
+      end
+
+      context 'Before 20 days from create' do
+        it_behaves_like 'should not change active time'
+      end
+    end
+
+    describe 'Businessman not authorized' do
+      context 'Before 20 days from create' do
+        it_behaves_like 'should not change active time'
+      end
+
+      context 'After 20 days from create' do
+        before do
+          idea.update(active_time: 22.day.ago)
+        end
+
+        it_behaves_like 'should not change active time'
       end
     end
   end
