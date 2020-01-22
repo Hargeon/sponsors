@@ -31,7 +31,7 @@ class Ability
       end
 
       can :update_active_time, Idea do |idea|
-        (idea.user == user) && ((idea.active_time < 20.day.ago) || (idea.active == false) )
+        (idea.user == user) && idea.update_active_period?
       end
 
     elsif user.sponsor?

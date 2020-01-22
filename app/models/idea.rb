@@ -23,6 +23,8 @@ class Idea < ApplicationRecord
   COUNT_WORDS_OF_PLAN = 10
   COUNT_WORDS_OF_DESCRIPTION = 10
   MINIMUM_LENGTH_OF_NAME = 4
+  ACTIVE_TIME_PERIOD = 30
+  ACTIVE_NOTIFICATION_PERIOD = 10
 
   validates :name, length: { minimum: MINIMUM_LENGTH_OF_NAME }
   validates :plan, count_words: { minimum: COUNT_WORDS_OF_PLAN }
@@ -36,6 +38,19 @@ class Idea < ApplicationRecord
   before_create :set_active_time
 
   scope :active, -> { where(active: true) }
+  scope :active_period, (lambda do
+    where('active_time < ? AND active = ?', ACTIVE_TIME_PERIOD.day.ago, true)
+  end)
+
+  scope :notification_period, (lambda do
+    where('active_time < ? AND active = ?',
+          (ACTIVE_TIME_PERIOD - ACTIVE_NOTIFICATION_PERIOD).day.ago,
+          true)
+  end)
+
+  def update_active_period?
+    self.active_time < (ACTIVE_TIME_PERIOD - ACTIVE_NOTIFICATION_PERIOD).day.ago
+  end
 
   private
 

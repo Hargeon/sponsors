@@ -13,7 +13,7 @@
         <% end %>
 
         <% if can?(:update_active_time, @idea) %>
-          <%= link_to 'Increase activity time', update_active_time_idea_path(@idea),method: :patch, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-success' %>
+          <%= link_to 'Increase activity time', update_active_time_idea_path(@idea),method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-success' %>
         <% end %>
 
       </div>

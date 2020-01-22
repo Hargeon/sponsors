@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :ideas do
     member do
-      patch 'update_active_time'
+      post 'update_active_time'
     end
   end
 
