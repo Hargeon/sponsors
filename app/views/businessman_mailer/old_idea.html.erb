@@ -1,0 +1,7 @@
+<h1>Hello <%= @user.name %>.</h1>
+<p>
+  Your idea <%= @idea.name %> will soon become inactive.
+</p>
+<p>
+  Visit <%= link_to @idea.name, idea_url(@idea) %> to change it.
+</p>

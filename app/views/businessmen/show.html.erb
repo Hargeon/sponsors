@@ -31,7 +31,9 @@
 
       <div class="modal-body">
         <% @user.ideas.each do |idea| %>
-          <h2><%= link_to idea.name, idea_path(idea), class: 'btn btn-outline-primary' %></h2>
+          <% if can?(:read, idea) %>
+            <h2><%= link_to idea.name, idea_path(idea), class: 'btn btn-outline-primary' %></h2>
+          <% end %>
         <% end %>
       </div>
 
