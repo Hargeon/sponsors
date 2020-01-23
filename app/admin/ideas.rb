@@ -5,50 +5,96 @@ ActiveAdmin.register Idea do
                 local_require_helps_attributes: [:id, :require_help_id, :_destroy],
                 local_members_attributes: [:id, :amount, :member_id, :_destroy]
 
+  controller do
+    def scoped_collection
+      super.includes :user, :industries, :districts, :require_helps
+    end
+  end
+
   index do
     selectable_column
     column :id
     column :user
     column :name
-    column :description
-    column :plan
     column :industries
     column :districts
     column :require_helps
+
     column :members do |idea|
-      idea.local_members.map do |local_member|
+      local_members = idea.local_members.includes(:member)
+      local_members.map do |local_member|
         name = local_member.member.name
         "#{name} #{local_member.amount}"
       end
     end
+
+    column :description
+    column :plan
+    column :active
+    column :created_at
+
     actions
   end
 
   show do |idea|
     attributes_table do
+      row :id
       row :user
       row :name
       row :description
       row :plan
 
-      row :industries do |idea|
+      row :industries do
         idea.industries.map(&:name)
       end
 
-      row :districts do |idea|
+      row :districts do
         idea.districts.map(&:name)
       end
 
-      row :require_helps do |idea|
+      row :require_helps do
         idea.require_helps.map(&:name)
       end
 
-      row :members do |idea|
-        idea.local_members.map do |local_member|
+      row :members do
+        local_members = idea.local_members.includes(:member)
+        local_members.map do |local_member|
           name = local_member.member.name
           "#{name} #{local_member.amount}"
         end
       end
+
+      row 'Sympathy' do
+        "#{idea.likes.count} likes, #{idea.dislikes.count} dislikes, " +
+          "#{RatingService.average_rating(idea)} average rating, " +
+          "#{RatingService.count_votes(idea)} votes"
+      end
+
+      row 'Views' do
+        idea.views.count
+      end
+
+      interests = idea.interests.includes(:user)
+
+      row 'Interests' do
+        interests.map do |interest|
+          link_to interest.user.email, admin_user_path(interest.user)
+        end
+      end
+
+      row 'Messages' do
+        interests.map do |interest|
+          "#{interest.user.email} - #{interest.message}"
+        end
+      end
+
+      row 'Active from' do
+        idea.active_time
+      end
+
+      row :active
+
+      row :created_at
     end
   end
 
