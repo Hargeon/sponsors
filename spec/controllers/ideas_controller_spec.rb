@@ -205,11 +205,10 @@ RSpec.describe IdeasController, type: :controller do
           idea.update(active_time: 22.day.ago)
         end
 
-        # Dont work, don't know why
         it 'should change active time' do
           active_time = idea.active_time
           post :update_active_time, params: { id: idea.id }
-          expect(idea.active_time).to_not eq(active_time)
+          expect(idea.reload.active_time).to_not eq(active_time)
         end
       end
 

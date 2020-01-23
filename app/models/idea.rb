@@ -59,6 +59,6 @@ class Idea < ApplicationRecord
   end
 
   def set_active_time
-    self.active_time = Time.current
+    self.active_time = Time.zone.now
   end
 end

@@ -50,7 +50,7 @@ class IdeasController < ApplicationController
 
   def update_active_time
     idea = Idea.find(params[:id])
-    idea.update!(active_time: Time.current, active: true)
+    idea.update!(active_time: Time.zone.now, active: true)
     redirect_to idea_path(idea)
   end
 
