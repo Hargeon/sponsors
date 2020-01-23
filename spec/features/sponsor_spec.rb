@@ -21,7 +21,7 @@ RSpec.describe 'Actions with sponsor' do
           click_button 'Look'
         end
 
-        scenario 'should display idea wich like the sponsor' do
+        scenario 'should display idea which like the sponsor' do
           user.interests.each do |interest|
             expect(page).to have_content(interest.idea.name)
           end
