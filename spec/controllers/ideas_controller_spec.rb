@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe IdeasController, type: :controller do
   shared_examples 'should not change active time' do
     it do
-      active_time = idea.active_time
+      active_time = idea.active_time.to_date
       post :update_active_time, params: { id: idea.id }
-      expect(idea.active_time).to eq(active_time)
+      expect(idea.reload.active_time.to_date).to eq(active_time)
     end
   end
 
@@ -205,10 +205,9 @@ RSpec.describe IdeasController, type: :controller do
           idea.update(active_time: 22.day.ago)
         end
 
-        it 'should change active time' do
-          active_time = idea.active_time
+        it 'should change active time to current date' do
           post :update_active_time, params: { id: idea.id }
-          expect(idea.reload.active_time).to_not eq(active_time)
+          expect(idea.reload.active_time.to_date).to eq(Time.zone.now.to_date)
         end
       end
 
