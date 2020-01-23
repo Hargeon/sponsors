@@ -12,6 +12,10 @@ class Ability
     end
 
     if user.businessman?
+      can :read, Idea do |idea|
+        (idea.user == user) && (idea.active == false)
+      end
+
       can :read, Interest do |interest|
         user.ideas.find(interest.idea_id).present?
       end
@@ -24,6 +28,10 @@ class Ability
 
       can :destroy, Idea do |idea|
         idea.user == user
+      end
+
+      can :update_active_time, Idea do |idea|
+        (idea.user == user) && idea.update_active_period?
       end
 
     elsif user.sponsor?

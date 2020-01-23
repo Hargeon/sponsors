@@ -26,6 +26,7 @@ gem 'devise'
 gem 'phonelib'
 gem 'cancancan'
 gem 'sidekiq'
+gem 'sidekiq-cron'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
