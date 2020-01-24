@@ -1,10 +1,11 @@
 ActiveAdmin.register Rating do
-  permit_params :user_id, :idea_id, :attraction,
-                :strategy, :competitiveness, :finance
+  includes(:user, :idea)
 
-  controller do
-    def scoped_collection
-      super.includes :user, :idea
-    end
-  end
+  actions :show, :index
+
+  filter :attraction
+  filter :strategy
+  filter :competitiveness
+  filter :finance
+  filter :created_at
 end

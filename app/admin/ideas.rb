@@ -1,21 +1,15 @@
 ActiveAdmin.register Idea do
-  permit_params :name, :description, :plan, :user_id, :active, :active_time,
-                local_industries_attributes: [:id, :industry_id, :_destroy],
-                local_districts_attributes: [:id, :district_id, :_destroy],
-                local_require_helps_attributes: [:id, :require_help_id, :_destroy],
-                local_members_attributes: [:id, :amount, :member_id, :_destroy]
+  includes(:user, :industries, :districts, :require_helps)
+
+  permit_params :name, :description, :plan, :active, :active_time
+
+  actions :all, except: [:new]
 
   scope :all
   scope :active
   scope :inactive
   scope :active_period
   scope :notification_period
-
-  controller do
-    def scoped_collection
-      super.includes :user, :industries, :districts, :require_helps
-    end
-  end
 
   index do
     selectable_column
@@ -52,19 +46,19 @@ ActiveAdmin.register Idea do
 
       row :industries do
         idea.industries.map do |industry|
-          link_to industry.name, admin_industry_path(industry)
+          link_to(industry.name, admin_industry_path(industry))
         end
       end
 
       row :districts do
         idea.districts.map do |district|
-          link_to district.name, admin_district_path(district)
+          link_to(district.name, admin_district_path(district))
         end
       end
 
       row :require_helps do
         idea.require_helps.map do |help|
-          link_to help.name, admin_require_help_path(help)
+          link_to(help.name, admin_require_help_path(help))
         end
       end
 
@@ -97,7 +91,7 @@ ActiveAdmin.register Idea do
       panel 'Interests' do
         table_for idea.interests.includes(:user) do
           column 'Names' do |interest|
-            link_to interest.user.email, admin_idea_path(interest.user)
+            link_to(interest.user.email, admin_idea_path(interest.user))
           end
 
           column 'Messages' do |interest|
@@ -120,37 +114,11 @@ ActiveAdmin.register Idea do
     f.semantic_errors *f.object.errors.keys
 
     f.inputs do
-      f.input :user
       f.input :name
       f.input :description
       f.input :plan
       f.input :active
       f.input :active_time
-    end
-
-    f.inputs do
-      f.has_many :local_industries, allow_destroy: true do |n_f|
-        n_f.input :industry
-      end
-    end
-
-    f.inputs do
-      f.has_many :local_districts, allow_destroy: true do |n_f|
-        n_f.input :district
-      end
-    end
-
-    f.inputs do
-      f.has_many :local_require_helps, allow_destroy: true do |n_f|
-        n_f.input :require_help
-      end
-    end
-
-    f.inputs do
-      f.has_many :local_members, allow_destroy: true do |a|
-        a.input :amount
-        a.input :member
-      end
     end
 
     f.actions
