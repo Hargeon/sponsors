@@ -38,14 +38,13 @@ class Idea < ApplicationRecord
   before_create :set_active_time
 
   scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
   scope :active_period, (lambda do
-    where('active_time < ? AND active = ?', ACTIVE_TIME_PERIOD.day.ago, true)
+    active.where('active_time < ?', ACTIVE_TIME_PERIOD.day.ago)
   end)
 
   scope :notification_period, (lambda do
-    where('active_time < ? AND active = ?',
-          (ACTIVE_TIME_PERIOD - ACTIVE_NOTIFICATION_PERIOD).day.ago,
-          true)
+    active.where('active_time < ? ', (ACTIVE_TIME_PERIOD - ACTIVE_NOTIFICATION_PERIOD).day.ago,)
   end)
 
   def update_active_period?

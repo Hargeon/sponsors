@@ -34,4 +34,5 @@ class User < ApplicationRecord
   validates :user_type, presence: true
 
   scope :sponsors, -> { where(user_type: :sponsor) }
+  scope :businessmen, -> { where(user_type: :businessman) }
 end
