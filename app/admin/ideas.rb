@@ -1,9 +1,15 @@
 ActiveAdmin.register Idea do
-  permit_params :name, :description, :plan, :user_id,
+  permit_params :name, :description, :plan, :user_id, :active, :active_time,
                 local_industries_attributes: [:id, :industry_id, :_destroy],
                 local_districts_attributes: [:id, :district_id, :_destroy],
                 local_require_helps_attributes: [:id, :require_help_id, :_destroy],
                 local_members_attributes: [:id, :amount, :member_id, :_destroy]
+
+  scope :all
+  scope :active
+  scope :inactive
+  scope :active_period
+  scope :notification_period
 
   controller do
     def scoped_collection
@@ -45,15 +51,21 @@ ActiveAdmin.register Idea do
       row :plan
 
       row :industries do
-        idea.industries.map(&:name)
+        idea.industries.map do |industry|
+          link_to industry.name, admin_industry_path(industry)
+        end
       end
 
       row :districts do
-        idea.districts.map(&:name)
+        idea.districts.map do |district|
+          link_to district.name, admin_district_path(district)
+        end
       end
 
       row :require_helps do
-        idea.require_helps.map(&:name)
+        idea.require_helps.map do |help|
+          link_to help.name, admin_require_help_path(help)
+        end
       end
 
       row :members do
@@ -74,20 +86,6 @@ ActiveAdmin.register Idea do
         idea.views.count
       end
 
-      interests = idea.interests.includes(:user)
-
-      row 'Interests' do
-        interests.map do |interest|
-          link_to interest.user.email, admin_user_path(interest.user)
-        end
-      end
-
-      row 'Messages' do
-        interests.map do |interest|
-          "#{interest.user.email} - #{interest.message}"
-        end
-      end
-
       row 'Active from' do
         idea.active_time
       end
@@ -95,6 +93,18 @@ ActiveAdmin.register Idea do
       row :active
 
       row :created_at
+
+      panel 'Interests' do
+        table_for idea.interests.includes(:user) do
+          column 'Names' do |interest|
+            link_to interest.user.email, admin_idea_path(interest.user)
+          end
+
+          column 'Messages' do |interest|
+            interest.message
+          end
+        end
+      end
     end
   end
 
@@ -114,6 +124,8 @@ ActiveAdmin.register Idea do
       f.input :name
       f.input :description
       f.input :plan
+      f.input :active
+      f.input :active_time
     end
 
     f.inputs do
@@ -133,12 +145,14 @@ ActiveAdmin.register Idea do
         n_f.input :require_help
       end
     end
+
     f.inputs do
       f.has_many :local_members, allow_destroy: true do |a|
         a.input :amount
         a.input :member
       end
     end
+
     f.actions
   end
 end
