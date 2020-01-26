@@ -11,6 +11,8 @@ class Ability
       idea.active == true
     end
 
+    can :search, Idea
+
     if user.businessman?
       can :read, Idea do |idea|
         (idea.user == user) && (idea.active == false)

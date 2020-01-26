@@ -27,6 +27,11 @@
               <%= link_to  "New Idea", new_idea_path, class: 'btn btn-outline-success' %>
             <% end %>
           <% end %>
+
+          <%= form_for :term, url: search_ideas_path do |form| %>
+            <%= text_field_tag :term, params[:term]%>
+            <%= form.submit %>
+          <% end %>
         </ul>
       </div>
       <% if user_signed_in? %>

@@ -1,4 +1,7 @@
 class Idea < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   belongs_to :user
 
   has_many :local_require_helps, dependent: :destroy

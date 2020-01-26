@@ -1,0 +1,16 @@
+<div class="wrap-contanier">
+  <div class="container">
+    <% @ideas.each do |idea| %>
+      <p>
+        <%= link_to idea.name, controller: 'ideas', action: 'show', id: idea.id %>
+        <p class="text-muted">
+          <%= idea.created_at.to_date %>
+        </p>
+        <p>
+          <%= idea.description %>
+        </p>
+      </p>
+      <hr>
+    <% end %>
+  </div>
+</div>

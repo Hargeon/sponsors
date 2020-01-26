@@ -54,6 +54,10 @@ class IdeasController < ApplicationController
     redirect_to idea_path(idea)
   end
 
+  def search
+    @ideas = Idea.search(params[:term])
+  end
+
   private
 
   def idea_params
