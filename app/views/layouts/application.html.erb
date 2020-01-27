@@ -30,7 +30,7 @@
 
           <%= form_for :term, url: search_ideas_path do |form| %>
             <%= text_field_tag :term, params[:term]%>
-            <%= form.submit %>
+            <%= form.submit 'Search' %>
           <% end %>
         </ul>
       </div>

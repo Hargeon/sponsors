@@ -2,6 +2,14 @@ class Idea < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  mapping do
+    indexes :id
+    indexes :name
+    indexes :description
+    indexes :plan
+    indexes :created_at
+  end
+
   belongs_to :user
 
   has_many :local_require_helps, dependent: :destroy
@@ -52,6 +60,41 @@ class Idea < ApplicationRecord
 
   def update_active_period?
     self.active_time < (ACTIVE_TIME_PERIOD - ACTIVE_NOTIFICATION_PERIOD).day.ago
+  end
+
+  def as_indexed_json(options = {})
+    self.as_json(
+      include: {
+        user: { only: [:id, :name] },
+        industries: { only: [:name] },
+        districts: { only: [:name] },
+        require_helps: { only: [:name] },
+        members: { only: [:name] }
+      }
+    )
+  end
+
+  def self.search(query)
+    __elasticsearch__.search(
+      {
+        query: {
+          bool: {
+            must: [
+              {
+                multi_match: {
+                  query: query,
+                  fields: [:id, :name, :description, :plan, :created_at]
+                }
+              },
+              {
+                match: {
+                  active: true
+                }
+              }
+            ]
+          }
+        }
+      })
   end
 
   private

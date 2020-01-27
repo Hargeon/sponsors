@@ -56,6 +56,8 @@ class IdeasController < ApplicationController
 
   def search
     @ideas = Idea.search(params[:term])
+
+    @ideas = IdeaSearchService.new(params[:term]).find if @ideas.size < 5
   end
 
   private
