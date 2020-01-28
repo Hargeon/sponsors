@@ -29,4 +29,9 @@ class IdeaSearchService
         .or(Idea.where('LOWER(description) LIKE LOWER(?)', "%#{@term}%"))
         .or(Idea.where('LOWER(plan) LIKE LOWER(?)', "%#{@term}%"))
   end
+
+  def order_by_created_at
+    ideas = find
+    ideas.sort { |a, b| b.created_at <=> a.created_at }
+  end
 end

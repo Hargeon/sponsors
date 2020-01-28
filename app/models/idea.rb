@@ -3,11 +3,25 @@ class Idea < ApplicationRecord
   include Elasticsearch::Model::Callbacks
 
   mapping do
-    indexes :id
     indexes :name
     indexes :description
     indexes :plan
-    indexes :created_at
+
+    indexes :industries, type: :object do
+      indexes :name
+    end
+
+    indexes :districts, type: :object do
+      indexes :name
+    end
+
+    indexes :require_helps, type: :object do
+      indexes :name
+    end
+
+    indexes :members, type: :object do
+      indexes :name
+    end
   end
 
   belongs_to :user
@@ -65,7 +79,6 @@ class Idea < ApplicationRecord
   def as_indexed_json(options = {})
     self.as_json(
       include: {
-        user: { only: [:id, :name] },
         industries: { only: [:name] },
         districts: { only: [:name] },
         require_helps: { only: [:name] },
@@ -83,7 +96,11 @@ class Idea < ApplicationRecord
               {
                 multi_match: {
                   query: query,
-                  fields: [:id, :name, :description, :plan, :created_at]
+                  fields: [
+                    :name, :description, :plan,
+                    'industries.name', 'districts.name', 'require_helps.name',
+                    'members.name'
+                  ]
                 }
               },
               {
@@ -93,8 +110,12 @@ class Idea < ApplicationRecord
               }
             ]
           }
-        }
-      })
+        },
+        sort: [
+          { created_at: :desc }
+        ]
+      }
+    )
   end
 
   private
