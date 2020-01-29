@@ -57,7 +57,7 @@ class IdeasController < ApplicationController
   def search
     @ideas = Idea.search(params[:term])
 
-    @ideas = IdeaSearchService.new(params[:term]).order_by_created_at if @ideas.size < 5
+    #@ideas = IdeaSearchService.new(params[:term]).order_by_created_at if @ideas.size < 5
   end
 
   private

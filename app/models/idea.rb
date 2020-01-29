@@ -8,19 +8,19 @@ class Idea < ApplicationRecord
     indexes :plan
 
     indexes :industries, type: :object do
-      indexes :name
+      indexes :name, type: 'completion'
     end
 
     indexes :districts, type: :object do
-      indexes :name
+      indexes :name, type: 'completion'
     end
 
     indexes :require_helps, type: :object do
-      indexes :name
+      indexes :name, type: 'completion'
     end
 
     indexes :members, type: :object do
-      indexes :name
+      indexes :name, type: 'completion'
     end
   end
 
@@ -116,6 +116,19 @@ class Idea < ApplicationRecord
         ]
       }
     )
+  end
+
+  def self.suggest(query)
+    __elasticsearch__.search(
+      suggest: {
+        text: query,
+        industry_suggestions: {
+          completion: {
+            field: 'industries.name',
+            skip_duplicates: true
+          }
+        }
+      })
   end
 
   private
