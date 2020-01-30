@@ -125,7 +125,29 @@ class Idea < ApplicationRecord
         industry_suggestions: {
           completion: {
             field: 'industries.name',
-            skip_duplicates: true
+            skip_duplicates: true,
+            size: 3
+          }
+        },
+        district_suggestions: {
+          completion: {
+            field: 'districts.name',
+            skip_duplicates: true,
+            size: 3
+          }
+        },
+        help_suggestions: {
+          completion: {
+            field: 'require_helps.name',
+            skip_duplicates: true,
+            size: 3
+          }
+        },
+        member_suggestions: {
+          completion: {
+            field: 'members.name',
+            skip_duplicates: true,
+            size: 3
           }
         }
       })

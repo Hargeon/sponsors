@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :likes, only: [:create, :destroy]
       resources :dislikes, only: [:create, :destroy]
       resources :ratings, only: [:create]
+      resources :autofills, only: [:create]
     end
   end
 end
