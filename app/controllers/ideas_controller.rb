@@ -1,6 +1,8 @@
 class IdeasController < ApplicationController
   load_and_authorize_resource
 
+  ELASTICSEARCH_MIN_SIZE = 5
+
   def index
     @ideas = IdeasQueries.new(current_user).find
   end
@@ -57,7 +59,9 @@ class IdeasController < ApplicationController
   def search
     @ideas = Idea.search(params[:term])
 
-    @ideas = IdeaSearchService.new(params[:term]).order_by_created_at if @ideas.size < 5
+    if @ideas.size < ELASTICSEARCH_MIN_SIZE
+      @ideas = IdeaSearchService.new(params[:term]).order_by_created_at
+    end
   end
 
   private

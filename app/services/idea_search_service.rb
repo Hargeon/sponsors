@@ -1,7 +1,6 @@
 class IdeaSearchService
   def initialize(term)
     @term = term
-    @ideas = []
   end
 
   def find
