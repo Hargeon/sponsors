@@ -1,11 +1,11 @@
 class AutofillSerializer
-  def initialize(term)
-    @term = term
+  def initialize(union)
+    @union = union
   end
 
   def as_json(*)
     {
-      "suggestions": SearchService.new(@term).union
+      "suggestions": @union
     }
   end
 end

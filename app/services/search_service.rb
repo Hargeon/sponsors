@@ -4,7 +4,7 @@ class SearchService
     'help_suggestions',
     'industry_suggestions',
     'member_suggestions'
-  ]
+  ].freeze
 
   def initialize(term)
     @term = term
