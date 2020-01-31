@@ -64,6 +64,9 @@ class IdeasController < ApplicationController
     end
   end
 
+  def sort
+  end
+
   private
 
   def idea_params
