@@ -11,10 +11,13 @@ $(document).ready(function() {
         data: data,
         dataType: 'JSON',
         success: function(response) {
-          console.log(response);
-          $('#search').mbAutocomplete({
-            data: response.suggestions
-          })
+          let option = '';
+
+          for(let i = 0; i < response.suggestions.length; i++) {
+            option += `<option value="${response.suggestions[i]}">`;
+          }
+
+          $('#autofill').html(option);
         }
       })
     }
