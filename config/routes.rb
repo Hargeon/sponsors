@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     member do
       post 'update_active_time'
     end
+
+    collection do
+      post 'search'
+    end
   end
 
   resources :interests, only: [:create, :new]
@@ -21,6 +25,7 @@ Rails.application.routes.draw do
       resources :likes, only: [:create, :destroy]
       resources :dislikes, only: [:create, :destroy]
       resources :ratings, only: [:create]
+      resources :autofills, only: [:create]
     end
   end
 end
