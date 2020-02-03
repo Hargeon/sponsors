@@ -1,6 +1,7 @@
 class Idea < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  extend ElasticQueries
 
   mapping do
     indexes :name
@@ -87,70 +88,16 @@ class Idea < ApplicationRecord
     )
   end
 
-  def self.search(query)
-    __elasticsearch__.search(
-      {
-        query: {
-          bool: {
-            must: [
-              {
-                multi_match: {
-                  query: query,
-                  fields: [
-                    :name, :description, :plan,
-                    'industries.name', 'districts.name', 'require_helps.name',
-                    'members.name'
-                  ]
-                }
-              },
-              {
-                match: {
-                  active: true
-                }
-              }
-            ]
-          }
-        },
-        sort: [
-          { created_at: :desc }
-        ]
-      }
-    )
+  def self.search(term)
+    __elasticsearch__.search(full_text_search(term))
   end
 
-  def self.suggest(query)
-    __elasticsearch__.search(
-      suggest: {
-        text: query,
-        industry_suggestions: {
-          completion: {
-            field: 'industries.name',
-            skip_duplicates: true,
-            size: 3
-          }
-        },
-        district_suggestions: {
-          completion: {
-            field: 'districts.name',
-            skip_duplicates: true,
-            size: 3
-          }
-        },
-        help_suggestions: {
-          completion: {
-            field: 'require_helps.name',
-            skip_duplicates: true,
-            size: 3
-          }
-        },
-        member_suggestions: {
-          completion: {
-            field: 'members.name',
-            skip_duplicates: true,
-            size: 3
-          }
-        }
-      })
+  def self.suggest(term)
+    __elasticsearch__.search(suggest_tags(term))
+  end
+
+  def self.filter(query)
+    __elasticsearch__.search(query)
   end
 
   private

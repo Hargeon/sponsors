@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     collection do
       post 'search'
-      post 'sort'
+      post 'filter'
     end
   end
 

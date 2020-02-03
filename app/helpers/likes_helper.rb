@@ -32,4 +32,8 @@ module LikesHelper
                class: like_btn_class(idea),
                data: { id: like_data_id(idea), action: like_data_action(idea) })
   end
+
+  def likes_count(idea_id)
+    Like.where(idea_id: idea_id).count
+  end
 end
