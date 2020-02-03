@@ -1,6 +1,29 @@
 class FilterIdeasQueries
+  QUERY = {
+    query: {
+      bool: {
+        must: []
+      }
+    },
+    sort: [
+      { created_at: :desc }
+    ]
+  }.freeze
+
   def initialize(criteria_hash)
-    @matching = [
+    @criteria_hash = criteria_hash
+  end
+
+  def elastic_query
+    query = QUERY
+    query[:query][:bool][:must] = setup_matching
+    query
+  end
+
+  private
+
+  def setup_matching
+    matching = [
       {
         match: {
           active: true
@@ -8,39 +31,16 @@ class FilterIdeasQueries
       }
     ]
 
-    @query = {
-      query: {
-        bool: {
-          must: []
+    criteria_array = @criteria_hash.to_unsafe_h.map do |key, value|
+      next if value.blank?
+
+      {
+        match: {
+          "#{key}.name" => value
         }
-      },
-      sort: [
-        { created_at: :desc }
-      ]
-    }
-
-    @criteria_hash = criteria_hash
-  end
-
-  def elastic_query
-    @criteria_hash.each do |key, value|
-      add_to_query_array(value, key + '.name')
+      }
     end
 
-    @query[:query][:bool][:must] = @matching
-
-    @query
-  end
-
-  private
-
-  def add_to_query_array(term, name)
-    return if term.blank?
-
-    @matching << {
-      match: {
-        name => term
-      }
-    }
+    matching + criteria_array.compact
   end
 end
