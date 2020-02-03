@@ -1,21 +1,22 @@
 <%= render 'carousel' %>
 
 <div class="container">
+  <%= render 'filter' %>
   <div class="row">
     <% @ideas.each do |idea| %>
       <div class="col-md-4">
         <div class="card mb-4 shadow-sm">
 
           <h5 class="card-header">
-            <%= link_to  idea.name, idea_path(idea), class: "btn btn-outline-dark" %>
+            <%= link_to  idea.name, idea_path(idea.id), class: "btn btn-outline-dark" %>
 
             <div class="btn-group">
               <% if can?(:update, Idea) %>
-                <%= link_to  "Edit", edit_idea_path(idea), class: "btn btn-outline-warning"  %>
+                <%= link_to  "Edit", edit_idea_path(idea.id), class: "btn btn-outline-warning"  %>
               <% end %>
 
               <% if can?(:destroy, Idea) %>
-                <%= link_to  "Delete", idea_path(idea), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
+                <%= link_to  "Delete", idea_path(idea.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
               <% end %>
 
             </div>
@@ -28,12 +29,12 @@
             </p>
 
             <div class="text-muted">
-              <%= idea.likes.count %> likes
-              <%= idea.dislikes.count %> dislikes
+              <%= likes_count(idea.id) %> likes
+              <%= dislikes_count(idea.id) %> dislikes
             </div>
 
             <div class="text-muted">
-              <%= idea.views.count %> reviewed
+              <%= views_count(idea.id) %> reviewed
             </div>
           </div>
 

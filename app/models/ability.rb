@@ -12,6 +12,7 @@ class Ability
     end
 
     can :search, Idea
+    can :filter, Idea
 
     if user.businessman?
       can :read, Idea do |idea|

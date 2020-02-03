@@ -62,6 +62,18 @@ class IdeasController < ApplicationController
     if @ideas.size < ELASTICSEARCH_MIN_SIZE
       @ideas = IdeaSearchService.new(params[:term]).order_by_created_at
     end
+
+    render 'index'
+  end
+
+  def filter
+    criteria_hash = params['category']
+
+    query = FilterIdeasQueries.new(criteria_hash).elastic_query
+
+    @ideas = Idea.filter(query)
+
+    render 'index'
   end
 
   private
