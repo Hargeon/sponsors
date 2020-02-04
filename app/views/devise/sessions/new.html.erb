@@ -1,24 +1,23 @@
 <div class="registration">
-<h1>Sign in</h1>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: t(:email) %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: 'Password' %>
+    <%= f.password_field :password, autocomplete: "current-password", class: 'form-control', placeholder: t(:password) %>
   </div>
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= t(:remember) %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Sign in", class: 'btn btn-outline-success' %>
+    <%= f.submit t(:sign_in), class: 'btn btn-outline-success' %>
   </div>
 <% end %>
 <!--

@@ -29,9 +29,9 @@
             </p>
 
             <div class="text-muted">
-              <%= likes_count(idea.id) %> <%= t(:likes) %> |
-              <%= dislikes_count(idea.id) %> <%= t(:dislikes) %> |
-              <%= views_count(idea.id) %> <%= t(:reviewed) %>
+              <%= t(:likes) %> <%= likes_count(idea.id) %> |
+              <%= t(:dislikes) %> <%= dislikes_count(idea.id) %> |
+              <%= t(:reviewed) %> <%= views_count(idea.id) %>
             </div>
 
           </div>

@@ -52,6 +52,7 @@ ru:
   password_confirmation: 'Подтвердите пароль'
   businessman: 'Бизнесмен'
   sponsor: 'Спонсор'
+  remember: 'Запомнить'
   old_idea:
     greeting: 'Привет %{name}.'
     idea: 'Ваша идея %{name} скоро станет неактивной.'

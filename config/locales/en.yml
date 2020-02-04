@@ -52,6 +52,7 @@ en:
   password_confirmation: 'Password confirmation'
   businessman: 'Businessman'
   sponsor: 'Sponsor'
+  remember: 'Remember'
   old_idea:
     greeting: 'Hello %{name}.'
     idea: 'Your idea %{name} will soon become inactive.'

@@ -42,8 +42,8 @@
       </p>
     <% end %>
 
-    <span id="like-count"><%= @idea.likes.count %></span> <%= t(:likes) %>
-    <span id="dislike-count"><%= @idea.dislikes.count %></span> <%= t(:dislikes) %>
+    <%= t(:likes) %> <span id="like-count"><%= @idea.likes.count %></span> |
+    <%= t(:dislikes) %> <span id="dislike-count"><%= @idea.dislikes.count %></span>
 
     <p>
       <h4><%= t(:description) %>:</h4>
