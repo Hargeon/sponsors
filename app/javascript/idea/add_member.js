@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('.member').bind('click', function () {
-    let id = this.id.substr(this.id.length - 1);
+    let id = this.id.substr(this.id.indexOf('_') + 1);
     let name = this.innerText;
     p_id = `p_${id}`
     if(document.getElementById(p_id) === null){
