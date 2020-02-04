@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-md-3">
           <p>
-            Industries: <br>
+            <%= t(:industries) %>: <br>
             <%= f.collection_select(:local_industries, Industry.all, :id, :name, { include_hidden: false },
                 { multiple: true,  name: 'idea[local_industries_attributes][][industry_id]', class: 'custom-select'}) %>
           </p>
@@ -17,7 +17,7 @@
 
         <div class="col-md-3">
           <p>
-            Districts: <br>
+            <%= t(:districts) %>: <br>
             <%= f.collection_select(:local_districts, District.all, :id, :name, { include_hidden: false },
                 { multiple: true, name: 'idea[local_districts_attributes][][district_id]', class: 'custom-select'}) %>
           </p>
@@ -25,7 +25,7 @@
 
         <div class="col-md-3">
           <p>
-            We need: <br>
+            <%= t(:require_helps) %>: <br>
             <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name, { include_hidden: false },
                 { multiple: true, name: 'idea[local_require_helps_attributes][][require_help_id]', class: 'custom-select'}) %>
           </p>
@@ -33,12 +33,12 @@
       </div>
 
       <p>
-        Members: <br>
+        <%= t(:members) %>: <br>
         <%= render  "members" %>
       </p>
 
       <p>
-        <%= f.submit class: 'btn btn-outline-primary' %>
+        <%= f.submit t(:create), class: 'btn btn-outline-primary' %>
       </p>
     <% end %>
 

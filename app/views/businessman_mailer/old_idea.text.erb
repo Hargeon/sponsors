@@ -1,5 +1,5 @@
-Hello <%= @user.name %>.
+<%= t('old_idea.greeting', name: @user.name) %>
 
-Your idea <%= @idea.name %> will soon become inactive.
+<%= t('old_idea.greeting', name: @user.name) %>
 
-Visit <%= link_to @idea.name, idea_url(@idea) %> to change it.
+<%= link_to t(:visit), idea_url(@idea) %>

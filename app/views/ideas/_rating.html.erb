@@ -11,14 +11,14 @@
       <% end %>
     </div>
 
-      <h4 class="average-rating"><%= average_rating %> Average rating</h4>
-      <h4 class="count-votes"> <%= RatingService.count_votes(@idea) %> votes </h4>
+      <h4 class="average-rating"><%= t(:average_rating) %> <%= average_rating %></h4>
+      <h4 class="count-votes"><%= t(:count_votes) %> <%= RatingService.count_votes(@idea) %></h4>
   </div>
 
   <div class="col-md-6">
     <% if RatingService.can_create_rating?(current_user, @idea.id) %>
       <div class="stars">
-        Offer attractiveness:
+       <%= t(:offer_attractiveness) %>:
         <div class="rating" id="attraction">
           <div class="rating-item active" data-rate="1"></div>
           <div class="rating-item" data-rate="2"></div>
@@ -27,7 +27,7 @@
           <div class="rating-item" data-rate="5"></div>
         </div>
 
-        Implementation strategy:
+        <%= t(:implementation_strategy) %>:
         <div class="rating" id="strategy">
           <div class="rating-item active" data-rate="1"></div>
           <div class="rating-item" data-rate="2"></div>
@@ -36,7 +36,7 @@
           <div class="rating-item" data-rate="5"></div>
         </div>
 
-        Competitiveness:
+        <%= t(:competitiveness) %>:
         <div class="rating" id="competitiveness">
           <div class="rating-item active" data-rate="1"></div>
           <div class="rating-item" data-rate="2"></div>
@@ -45,7 +45,7 @@
           <div class="rating-item" data-rate="5"></div>
         </div>
 
-        Financial attractiveness:
+        <%= t(:financial_attractiveness) %>:
         <div class="rating" id="finance">
           <div class="rating-item active" data-rate="1"></div>
           <div class="rating-item" data-rate="2"></div>
@@ -54,7 +54,7 @@
           <div class="rating-item" data-rate="5"></div>
         </div>
 
-        <button id="create-rating" class="btn btn-outline-primary">Share</button>
+        <button id="create-rating" class="btn btn-outline-primary"><%= t(:share) %></button>
       </div>
     <% end %>
   </div>

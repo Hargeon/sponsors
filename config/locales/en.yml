@@ -1,33 +1,49 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  edit: 'Edit'
+  delete: 'Delete'
+  create: 'Create'
+  date: 'Date added'
+  description: 'Description'
+  reviewed: 'Reviewed'
+  likes: 'Likes'
+  dislikes: 'Dislikes'
+  average_rating: 'Average rating'
+  count_votes: 'Count votes'
+  message: 'Message'
+  look: 'Look'
+  title: 'Title'
+  name: 'Name'
+  email: 'Email'
+  age: 'Age'
+  phone: 'Phone'
+  ideas: 'Ideas'
+  close: 'Close'
+  support: 'Support'
+  industries: 'Industries'
+  districts: 'Districts'
+  members: 'Members'
+  can_help: 'Can help'
+  require_helps: 'Require helps'
+  plan: 'Plan'
+  change_search_criteria: 'Сhange search criteria'
+  back: 'Back'
+  update: 'Update'
+  find_help: 'Find help for your ideas'
+  sign_up_businessman: 'Sign up like a Businessman. You can show your ideas worlds. We can help you find sponsors.'
+  help_businessmen: 'Help our businessmen'
+  sign_up_sponsor: 'Sign up like a Sponsor. Help implement ideas.'
+  filter: 'Filter'
+  offer_attractiveness: ' Offer attractiveness'
+  implementation_strategy: 'Implementation strategy'
+  competitiveness: 'Competitiveness'
+  financial_attractiveness: 'Financial attractiveness'
+  share: 'Share'
+  responded: 'Responded'
+  sponsors: 'Sponsors'
+  respond: 'Respond'
+  visit: 'Visit to change it.'
+  old_idea:
+    greeting: 'Hello %{name}.'
+    idea: 'Your idea %{name} will soon become inactive.'
+  new_idea:
+    greeting: 'Hello. We have a new Idea'

@@ -3,25 +3,25 @@
     <hr>
     <p>
       <%= link_to idea.name, idea_path(idea), class: 'btn btn-outline-secondary' %>
-      <%= link_to 'Edit', edit_idea_path(idea), class: 'btn btn-outline-warning' %>
-      <%= link_to 'Delete', idea_path(idea), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
+      <%= link_to t(:edit), edit_idea_path(idea), class: 'btn btn-outline-warning' %>
+      <%= link_to t(:delete), idea_path(idea), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
 
       <p class="text-muted">
-        Date:  <%= idea.created_at.to_date %>
+        <%= t(:date) %>:  <%= idea.created_at.to_date %>
       </p>
 
       <p>
-        Description: <br>
+        <%= t(:description) %>: <br>
         <%= idea.description %>
       </p>
     </p>
 
     <p>
-      Reviewed: <%= idea.views.count %> |
-      Likes: <%= idea.likes.count %> |
-      Dislikes: <%= idea.dislikes.count %> |
-      Average rating: <%= RatingService.average_rating(idea) %> |
-      Count votes: <%= RatingService.count_votes(idea) %>
+      <%= t(:reviewed) %>: <%= idea.views.count %> |
+      <%= t(:likes) %>: <%= idea.likes.count %> |
+      <%= t(:dislikes) %>: <%= idea.dislikes.count %> |
+      <%= t(:average_rating) %>: <%= RatingService.average_rating(idea) %> |
+      <%= t(:count_votes) %>: <%= RatingService.count_votes(idea) %>
     </p>
 
     <ul>
@@ -29,7 +29,7 @@
         <li>
           <p>
             <%= link_to interest.user.email, sponsor_path(interest.user) %>
-            Message: <%= interest.message %>
+            <%= t(:message) %>: <%= interest.message %>
           </p>
         </li>
       <% end %>

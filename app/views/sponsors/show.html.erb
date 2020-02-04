@@ -5,9 +5,9 @@
     <hr>
 
     <h1>
-      Support:
+      <%= t(:support) %>:
       <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">
-        Look
+        <%= t(:look) %>
       </button>
     </h1>
 
@@ -15,7 +15,7 @@
 
     <div class="row">
       <div class="col-md-4">
-        <h4>Industries: </h4>
+        <h4><%= t(:industries) %>: </h4>
         <ul>
           <% @user.industries.each do |industry| %>
             <li><%= industry.name %></li>
@@ -24,7 +24,7 @@
       </div>
 
       <div class="col-md-4">
-        <h4>Districts:</h4>
+        <h4><%= t(:districts) %>:</h4>
         <ul>
           <% @user.districts.each do |district| %>
             <li><%= district.name %></li>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="col-md-4">
-        <h4>Can Help:</h4>
+        <h4><%= t(:can_help) %>:</h4>
         <ul>
           <% @user.require_helps.each do |need| %>
             <li><%= need.name %></li>
@@ -43,7 +43,7 @@
     </div>
 
     <% if can?(:update, @user) %>
-      <h4><%= link_to 'Сhange search criteria', edit_sponsor_path(@user), class: 'btn btn-outline-primary' %></h4>
+      <h4><%= link_to t(:change_search_criteria), edit_sponsor_path(@user), class: 'btn btn-outline-primary' %></h4>
     <% end %>
 
     <% if current_user&.id == @user.id %>
@@ -57,7 +57,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Sponsors</h5>
+        <h5 class="modal-title"><%= t(:ideas) %></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -70,7 +70,7 @@
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t(:close) %></button>
       </div>
     </div>
   </div>
