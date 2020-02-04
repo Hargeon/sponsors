@@ -39,4 +39,4 @@
 
 <hr>
 
-<%= link_to 'Review', idea_url(@idea) %>
+<%= link_to t(:look), idea_url(locale: I18n.locale, id: @idea.id) %>

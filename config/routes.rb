@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :businessmen, only: [:show]
     root 'ideas#index'
   end
+
   mount Sidekiq::Web => '/sidekiq'
   namespace 'api' do
     namespace 'v1' do

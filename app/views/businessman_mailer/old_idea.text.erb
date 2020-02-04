@@ -2,4 +2,4 @@
 
 <%= t('old_idea.greeting', name: @user.name) %>
 
-<%= link_to t(:visit), idea_url(@idea) %>
+<%= link_to t(:visit), idea_url(locale: I18n.locale, id: @idea.id) %>

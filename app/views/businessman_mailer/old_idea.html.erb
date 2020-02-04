@@ -3,5 +3,5 @@
   <%= t('old_idea.idea', name: @idea.name) %>
 </p>
 <p>
-  <%= link_to t(:visit), idea_url(@idea) %>
+  <%= link_to t(:visit), idea_url(locale: I18n.locale, id: @idea.id) %>
 </p>
