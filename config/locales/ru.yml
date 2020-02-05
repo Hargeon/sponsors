@@ -53,8 +53,63 @@ ru:
   businessman: 'Бизнесмен'
   sponsor: 'Спонсор'
   remember: 'Запомнить'
+  sign_out: 'Вы хотите выйти?'
+  sure: 'Вы уверены?'
   old_idea:
     greeting: 'Привет %{name}.'
     idea: 'Ваша идея %{name} скоро станет неактивной.'
   new_idea:
     greeting: 'Привет. У нас есть новая идея'
+  errors:
+    messages:
+        not_saved: '%{count} ошибок не позволили этому пользователю сохраниться'
+  activerecord:
+    attributes:
+      user:
+        email: 'Почта'
+        password: 'Пароль'
+        name: 'Имя'
+        age: 'Возраст'
+        phone: 'Телефон'
+      idea:
+        name: 'Название'
+        description: 'Описание'
+        plan: 'План'
+        local_industries: 'Отрасли'
+        local_members: 'Сотрудники'
+        local_districts: 'Местоположения'
+        local_require_helps: 'Требуемая помощь'
+      interest:
+        message: 'Сообщение'
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: 'не может быть пустой'
+            password:
+              blank: 'не может быть пустым'
+            name:
+              blank: 'не может быть пустым'
+              too_short: 'слишком короткое(миниму %{count} символа)'
+            age:
+              blank: 'не может быть пустым'
+              not_a_number: 'не является числом'
+            phone:
+              blank: 'не может быть пустым'
+              invalid: 'не валидный'
+        idea:
+          count_words: 'имеет меньше %{size} слов'
+          attributes:
+            name:
+              too_short: 'слишком короткое'
+            local_industries:
+              blank: 'не могут быть пустыми'
+            local_members:
+              blank: 'не могут быть пустыми'
+            local_districts:
+              blank: 'не могут быть пустыми'
+            local_require_helps:
+              blank: 'не может быть пустой'
+        interest:
+          count_words: 'имеет меньше %{size} слов'

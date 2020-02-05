@@ -16,7 +16,7 @@
               <% end %>
 
               <% if can?(:destroy, Idea) %>
-                <%= link_to t(:delete), idea_path(idea.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
+                <%= link_to t(:delete), idea_path(idea.id), method: :delete, data: { confirm: t(:sure) }, class: "btn btn-outline-danger"  %>
               <% end %>
 
             </div>

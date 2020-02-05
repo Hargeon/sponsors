@@ -9,11 +9,11 @@
         <% end %>
 
         <% if can?(:destroy, Idea) %>
-          <%= link_to  t(:delete), idea_path(@idea), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
+          <%= link_to  t(:delete), idea_path(@idea), method: :delete, data: { confirm: t(:sure) }, class: "btn btn-outline-danger"  %>
         <% end %>
 
         <% if can?(:update_active_time, @idea) %>
-          <%= link_to 'Increase activity time', update_active_time_idea_path(@idea),method: :post, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-success' %>
+          <%= link_to 'Increase activity time', update_active_time_idea_path(@idea),method: :post, data: { confirm: t(:sure) }, class: 'btn btn-outline-success' %>
         <% end %>
 
       </div>

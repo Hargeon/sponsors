@@ -53,8 +53,23 @@ en:
   businessman: 'Businessman'
   sponsor: 'Sponsor'
   remember: 'Remember'
+  sign_out: 'Do you want log out?'
+  sure: 'Are you sure?'
   old_idea:
     greeting: 'Hello %{name}.'
     idea: 'Your idea %{name} will soon become inactive.'
   new_idea:
     greeting: 'Hello. We have a new Idea'
+  activerecord:
+    attributes:
+      idea:
+        local_industries: 'Industries'
+        local_members: 'Members'
+        local_districts: 'Districts'
+        local_require_helps: 'Require help'
+    errors:
+      models:
+        idea:
+          count_words: 'need has at least %{size} words'
+        interest:
+          count_words: 'need has at least %{size} words'

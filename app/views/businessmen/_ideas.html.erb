@@ -4,7 +4,7 @@
     <p>
       <%= link_to idea.name, idea_path(idea), class: 'btn btn-outline-secondary' %>
       <%= link_to t(:edit), edit_idea_path(idea), class: 'btn btn-outline-warning' %>
-      <%= link_to t(:delete), idea_path(idea), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %>
+      <%= link_to t(:delete), idea_path(idea), method: :delete, data: { confirm: t(:sure) }, class: 'btn btn-outline-danger' %>
 
       <p class="text-muted">
         <%= t(:date) %>:  <%= idea.created_at.to_date %>

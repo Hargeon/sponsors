@@ -43,7 +43,7 @@
         <% else %>
           <%= link_to current_user.email, businessman_path(current_user), class: "btn btn-outline-light" %>
         <% end %>
-        <%= link_to t(:log_out), destroy_user_session_path, method: :delete, data: { confirm: "Do you want log out?" }, class: "btn btn-outline-danger" %>
+        <%= link_to t(:log_out), destroy_user_session_path, method: :delete, data: { confirm: t(:sign_out) }, class: "btn btn-outline-danger" %>
       <% else %>
         <%= link_to t(:sign_in), new_user_session_path, class: "btn btn-outline-warning" %>
         <%= link_to t(:sign_up), new_user_registration_path, class: "btn btn-outline-danger" %>
