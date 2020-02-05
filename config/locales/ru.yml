@@ -1,4 +1,7 @@
 ru:
+  formtastic:
+    create: 'Создать'
+    update: 'Обновить'
   edit: 'Изменить'
   delete: 'Удалить'
   create: 'Создать'
@@ -8,6 +11,7 @@ ru:
   likes: 'Лайков'
   dislikes: 'Дислайков'
   average_rating: 'Средний рейтинг'
+  ratings: 'Рейтингов'
   count_votes: 'Количество голосов'
   message: 'Сообщение'
   look: 'Посмотреть'
@@ -55,6 +59,20 @@ ru:
   remember: 'Запомнить'
   sign_out: 'Вы хотите выйти?'
   sure: 'Вы уверены?'
+  sympathy: 'Симпатии'
+  active_from: 'Активная с'
+  active_admin:
+    scopes:
+      all: 'Все'
+      active: 'Активные'
+      inactive: 'Неактивные'
+      active_period: 'Активный период'
+      notification_period: 'Период оповещений'
+      sponsors: 'Спонсора'
+      businessmen: 'Бизнесмены'
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
   old_idea:
     greeting: 'Привет %{name}.'
     idea: 'Ваша идея %{name} скоро станет неактивной.'
@@ -64,6 +82,15 @@ ru:
     messages:
         not_saved: '%{count} ошибок не позволили этому пользователю сохраниться'
   activerecord:
+    models:
+      idea: 'Идеи'
+      district: 'Местоположения'
+      industry: 'Отрасли'
+      rating: 'Рейтинг'
+      member: 'Сотрудники'
+      require_help: 'Требуемая помощь'
+      admin_user: 'Администраторы'
+      interest: 'Интересы'
     attributes:
       user:
         email: 'Почта'
@@ -71,6 +98,10 @@ ru:
         name: 'Имя'
         age: 'Возраст'
         phone: 'Телефон'
+        user_type: 'Тип пользователя'
+        districts: 'Местоположения'
+        industries: 'Отрасли'
+        require_helps: 'Помощь'
       idea:
         name: 'Название'
         description: 'Описание'
@@ -79,8 +110,44 @@ ru:
         local_members: 'Сотрудники'
         local_districts: 'Местоположения'
         local_require_helps: 'Требуемая помощь'
+        districts: 'Местоположения'
+        industries: 'Отрасли'
+        members: 'Сотрудники'
+        require_helps: 'Требуемая помощь'
+        user: 'Создатель'
+        active: 'Активная'
+        created_at: 'Создана'
+        active_time: 'Активна с'
+      admin_user:
+        email: 'Почта'
+        created_at: 'Создан'
+        password: 'Пароль'
+        password_confirmation: 'Подтвердите пароль'
+      district:
+        name: 'Название'
+        created_at: 'Дата создания'
+        updated_at: 'Дата обновления'
+      industry:
+        name: 'Название'
+        created_at: 'Дата создания'
+        updated_at: 'Дата обновления'
       interest:
         message: 'Сообщение'
+      rating:
+        attraction: 'Привлекательность'
+        strategy: 'Стратегия'
+        competitiveness: 'Конкурентоспособность'
+        finance: 'Финансовость'
+        idea: 'Идея'
+        user: 'Пользователь'
+        created_at: 'Дата создания'
+        updated_at: 'Дата обновления'
+      member:
+        name: 'Название'
+        created_at: 'Дата создания'
+      require_help:
+        name: 'Название'
+        created_at: 'Дата создания'
     errors:
       models:
         user:

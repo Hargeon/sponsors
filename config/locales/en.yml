@@ -55,6 +55,11 @@ en:
   remember: 'Remember'
   sign_out: 'Do you want log out?'
   sure: 'Are you sure?'
+  sympathy: 'Sympathy'
+  active_from: 'Active from'
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
   old_idea:
     greeting: 'Hello %{name}.'
     idea: 'Your idea %{name} will soon become inactive.'

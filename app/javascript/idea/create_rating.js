@@ -32,8 +32,8 @@ function successResponse(response) {
   let average_rating = Math.floor(response.average_rating)
   $('.rating-item.average').slice(0, average_rating).removeClass('exclude')
 
-  $('.average-rating').text(`${response.average_rating} Average rating`);
-  $('.count-votes').text(`${response.count_votes} votes`);
+  $('.average-rating').text(`${parseFloat(response.average_rating)}`);
+  $('.count-votes').text(`${response.count_votes}`);
 }
 
 function attraction() {

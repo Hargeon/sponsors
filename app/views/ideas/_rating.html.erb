@@ -10,9 +10,13 @@
         <% end %>
       <% end %>
     </div>
-
-      <h4 class="average-rating"><%= t(:average_rating) %> <%= average_rating %></h4>
-      <h4 class="count-votes"><%= t(:count_votes) %> <%= RatingService.count_votes(@idea) %></h4>
+ 
+    <div style="display: flex;">
+      <h4><%= t(:average_rating) %>:</h4><h4 class="average-rating"><%= average_rating %></h4>
+    </div>
+    <div style="display: flex;">
+      <h4><%= t(:count_votes) %>:</h4><h4 class="count-votes"><%= RatingService.count_votes(@idea) %></h4>
+    </div>
   </div>
 
   <div class="col-md-6">
