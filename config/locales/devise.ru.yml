@@ -41,10 +41,10 @@ ru:
     failure:
       already_authenticated: Вы уже вошли в систему.
       inactive: Ваша учетная запись еще не активирована.
-      invalid: Неправильный %{authentication_keys} или пароль.
+      invalid: Неправильная %{authentication_keys} или пароль.
       last_attempt: У вас осталась последняя попытка ввода пароля до блокировки учетной записи.
       locked: Ваша учетная запись заблокирована.
-      not_found_in_database: Неправильный %{authentication_keys} или пароль.
+      not_found_in_database: Неправильная %{authentication_keys} или пароль.
       timeout: Ваш сеанс закончился. Пожалуйста, войдите в систему снова.
       unauthenticated: Вам необходимо войти в систему или зарегистрироваться.
       unconfirmed: Вы должны подтвердить вашу учетную запись.

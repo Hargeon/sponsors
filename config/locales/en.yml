@@ -56,6 +56,8 @@ en:
   sign_out: 'Do you want log out?'
   sure: 'Are you sure?'
   sympathy: 'Sympathy'
+  current_password: 'Current password'
+  lang: 'Language'
   active_from: 'Active from'
   time:
     formats:
@@ -72,8 +74,34 @@ en:
         local_members: 'Members'
         local_districts: 'Districts'
         local_require_helps: 'Require help'
+      user:
+        email: 'Email'
+        password: 'Password'
+        name: 'Name'
+        age: 'Age'
+        phone: 'Phone'
+        user_type: 'User type'
+        districts: 'Districts'
+        industries: 'Industries'
+        require_helps: 'Help'
+        current_password: 'Current password'
     errors:
       models:
+        user:
+          attributes:
+            email:
+              blank: "can't be blank"
+            password:
+              blank: "can't be blank"
+            name:
+              blank: "can't be blank"
+              too_short: 'too short(minimum %{count} characters)'
+            age:
+              blank: "can't be blank"
+              not_a_number: 'is not a number'
+            phone:
+              blank: "can't be blank"
+              invalid: 'invalid'
         idea:
           count_words: 'need has at least %{size} words'
         interest:

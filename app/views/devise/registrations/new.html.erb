@@ -2,7 +2,7 @@
 <h2><%= t(:sign_up) %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render 'partials/error', record: resource %>
 
   <div class="field">
     <%= f.text_field :name, class: 'form-control', placeholder: t(:name) %>

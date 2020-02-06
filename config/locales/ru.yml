@@ -60,6 +60,8 @@ ru:
   sign_out: 'Вы хотите выйти?'
   sure: 'Вы уверены?'
   sympathy: 'Симпатии'
+  current_password: 'Текущий пароль'
+  lang: 'Язык'
   active_from: 'Активная с'
   active_admin:
     scopes:
