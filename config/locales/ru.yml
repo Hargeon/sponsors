@@ -150,8 +150,14 @@ ru:
       require_help:
         name: 'Название'
         created_at: 'Дата создания'
+      local_members:
+        amount: 'Количество сотрудников'
     errors:
       models:
+        local_member:
+          attributes:
+            amount:
+              greater_than_or_equal_to: 'не может быть равным %{value}'
         user:
           attributes:
             email:
@@ -167,6 +173,13 @@ ru:
             phone:
               blank: 'не может быть пустым'
               invalid: 'не валидный'
+            current_password:
+              blank: 'не валидный'
+            password_confirmation:
+              confirmation: 'не соответствует паролю'
+            password:
+              too_short: 'слишком короткий(миниму %{count} символов)'
+              blank: 'не может быть пустым'
         idea:
           count_words: 'имеет меньше %{size} слов'
           attributes:

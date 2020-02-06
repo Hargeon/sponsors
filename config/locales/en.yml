@@ -74,6 +74,9 @@ en:
         local_members: 'Members'
         local_districts: 'Districts'
         local_require_helps: 'Require help'
+        name: 'Title'
+        plan: 'Plan'
+        description: 'Description'
       user:
         email: 'Email'
         password: 'Password'
@@ -85,8 +88,15 @@ en:
         industries: 'Industries'
         require_helps: 'Help'
         current_password: 'Current password'
+        password_confirmation: 'Password confirmation'
+      local_members:
+        amount: 'Amount of members'
     errors:
       models:
+        local_member:
+          attributes:
+            amount:
+              greater_than_or_equal_to: "can't equal %{value}"
         user:
           attributes:
             email:
@@ -102,7 +112,25 @@ en:
             phone:
               blank: "can't be blank"
               invalid: 'invalid'
+            current_password:
+              blank: 'invalid'
+            password_confirmation:
+              confirmation: 'is invalid'
+            password:
+              too_short: 'need has at least %{count} characters'
+              blank: "can't be blank"
         idea:
           count_words: 'need has at least %{size} words'
+          attributes:
+            name:
+              too_short: 'is too short'
+            local_industries:
+              blank: "can't be blank"
+            local_members:
+              blank: "can't be blank"
+            local_districts:
+              blank: "can't be blank"
+            local_require_helps:
+              blank: "can't be blank"
         interest:
           count_words: 'need has at least %{size} words'

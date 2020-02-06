@@ -3,4 +3,6 @@
 <h1><%= t(:age) %>: <%= user.age %></h1>
 <h1><%= t(:phone) %>: <%= user.phone %></h1>
 
-<%= link_to t(:edit), edit_user_registration_path, class: 'btn btn-outline-primary' %>
+<% if current_user&.id == user.id %>
+  <%= link_to t(:edit), edit_user_registration_path, class: 'btn btn-outline-primary' %>
+<% end %>
