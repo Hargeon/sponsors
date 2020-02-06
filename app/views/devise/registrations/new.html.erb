@@ -29,6 +29,10 @@
   </div>
 
   <div class="field">
+    <%= f.select :locale, I18n.available_locales, {}, {class: "custom-select mr-sm-2"} %>
+   </div>
+
+  <div class="field">
    <%= f.select :user_type, User.user_types.keys.map { |key| [t("#{key}"), key] }, {}, {class: "custom-select mr-sm-2"} %>
   </div>
 
