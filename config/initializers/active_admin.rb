@@ -1,4 +1,11 @@
 ActiveAdmin.setup do |config|
+  def change_locale
+    sign_out(:user) unless current_user.nil?
+
+    I18n.locale = current_admin_user.locale
+  end
+
+  config.before_action :change_locale
   # == Site Title
   #
   # Set the title that is displayed on the main layout
