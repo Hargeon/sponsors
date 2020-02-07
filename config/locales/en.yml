@@ -1,5 +1,9 @@
 en:
+  formtastic:
+    create: 'Create'
+    update: 'Update'
   edit: 'Edit'
+  lang_switch: 'Ru'
   delete: 'Delete'
   create: 'Create'
   date: 'Date added'
@@ -8,6 +12,7 @@ en:
   likes: 'Likes'
   dislikes: 'Dislikes'
   average_rating: 'Average rating'
+  ratings: 'Ratings'
   count_votes: 'Count votes'
   message: 'Message'
   look: 'Look'
@@ -59,6 +64,15 @@ en:
   current_password: 'Current password'
   lang: 'Language'
   active_from: 'Active from'
+  active_admin:
+    scopes:
+      all: 'All'
+      active: 'Active'
+      inactive: 'Inactive'
+      active_period: 'Active period'
+      notification_period: 'Notification period'
+      sponsors: 'Sponsors'
+      businessmen: 'Businessmen'
   time:
     formats:
       long: "%Y-%m-%d %H:%M:%S"
@@ -67,9 +81,27 @@ en:
     idea: 'Your idea %{name} will soon become inactive.'
   new_idea:
     greeting: 'Hello. We have a new Idea'
+  errors:
+    messages:
+        not_saved: '%{count} errors prohibited this user from being saved'
   activerecord:
+    models:
+      idea: 'Ideas'
+      district: 'Districts'
+      industry: 'Industries'
+      rating: 'Ratings'
+      member: 'Members'
+      require_help: 'Require helps'
+      admin_user:
+        few: Admin
+        many: Admins
+        one: Admin
+        other: Admins
+      interest: 'Interests'
+      user: 'Users'
     attributes:
       idea:
+        name: 'Title'
         local_industries: 'Industries'
         local_members: 'Members'
         local_districts: 'Districts'
@@ -77,6 +109,14 @@ en:
         name: 'Title'
         plan: 'Plan'
         description: 'Description'
+        districts: 'Districts'
+        industries: 'Industries'
+        members: 'Members'
+        require_helps: 'Require helps'
+        user: 'Creater'
+        active: 'Active'
+        created_at: 'Created at'
+        active_time: 'Active from'
       user:
         email: 'Email'
         password: 'Password'
@@ -89,10 +129,54 @@ en:
         require_helps: 'Help'
         current_password: 'Current password'
         password_confirmation: 'Password confirmation'
+        created_at: 'Created at'
+      local_members:
+        amount: 'Amount of members'
+      admin_user:
+        email: 'Email'
+        created_at: 'Created at'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+      district:
+        name: 'Title'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+      industry:
+        name: 'Title'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+      interest:
+        message: 'Message'
+      rating:
+        attraction: 'Attraction'
+        strategy: 'Strategy'
+        competitiveness: 'Competitiveness'
+        finance: 'Finance'
+        idea: 'Idea'
+        user: 'User'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+      member:
+        name: 'Title'
+        created_at: 'Created at'
+      require_help:
+        name: 'Title'
+        created_at: 'Created at'
       local_members:
         amount: 'Amount of members'
     errors:
       models:
+        admin_user:
+          attributes:
+            email:
+              invalid: 'invalid'
+            password:
+              blank: "can't be blank"
+              too_short: 'too short'
+            locale:
+              inclusion: 'not included in the list'
+            password_confirmation:
+              confirmation: 'invalid'
         local_member:
           attributes:
             amount:
@@ -113,7 +197,8 @@ en:
               blank: "can't be blank"
               invalid: 'invalid'
             current_password:
-              blank: 'invalid'
+              blank: "can't be blank"
+              invalid: 'invalid'
             password_confirmation:
               confirmation: 'is invalid'
             password:

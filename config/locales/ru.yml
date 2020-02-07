@@ -3,6 +3,7 @@ ru:
     create: 'Создать'
     update: 'Обновить'
   edit: 'Изменить'
+  lang_switch: 'En'
   delete: 'Удалить'
   create: 'Создать'
   date: 'Дата добавления'
@@ -91,7 +92,11 @@ ru:
       rating: 'Рейтинг'
       member: 'Сотрудники'
       require_help: 'Требуемая помощь'
-      admin_user: 'Администраторы'
+      admin_user:
+        few: Админов
+        many: Админов
+        one: Админ
+        other: Админы
       interest: 'Интересы'
     attributes:
       user:
@@ -104,6 +109,8 @@ ru:
         districts: 'Местоположения'
         industries: 'Отрасли'
         require_helps: 'Помощь'
+        current_password: 'Текущий пароль'
+        password_confirmation: 'Подтверждение пароля'
       idea:
         name: 'Название'
         description: 'Описание'
@@ -154,6 +161,17 @@ ru:
         amount: 'Количество сотрудников'
     errors:
       models:
+        admin_user:
+          attributes:
+            email:
+              invalid: 'не валидный'
+            password:
+              blank: 'не может быть пустой'
+              too_short: 'силшком короткий'
+            locale:
+              inclusion: 'не включён в лист возможных'
+            password_confirmation:
+              confirmation: 'не валидный'
         local_member:
           attributes:
             amount:
@@ -174,7 +192,8 @@ ru:
               blank: 'не может быть пустым'
               invalid: 'не валидный'
             current_password:
-              blank: 'не валидный'
+              blank: 'не может быть пустым'
+              invalid: 'не валидный'
             password_confirmation:
               confirmation: 'не соответствует паролю'
             password:

@@ -20,9 +20,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    I18n.locale = params[:user][:locale]
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -37,7 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-
+ 
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -48,6 +49,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phone, :locale])
+  end
+
+  def after_update_path_for(resource)
+    if resource.sponsor?
+      sponsor_path(id: resource.id, locale: resource.locale)
+    else
+      businessman_path(id: resource.id, locale: resource.locale)
+    end
   end
 
   # The path used after sign up.
