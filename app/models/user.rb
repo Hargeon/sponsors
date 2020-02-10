@@ -22,9 +22,9 @@ class User < ApplicationRecord
   enum user_type: [:businessman, :sponsor]
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  #:lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable, :async,
+         :recoverable, :rememberable, :validatable, :confirmable
 
   validates :name, :age, :phone, presence: true
   validates :name, length: { minimum: MINIMUM_NAME_LENGTH }
