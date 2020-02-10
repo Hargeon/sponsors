@@ -32,4 +32,8 @@ module DislikesHelper
                class: dislike_btn_class(idea),
                data: { id: dislike_data_id(idea), action: dislike_data_action(idea) })
   end
+
+  def dislikes_count(idea_id)
+    Dislike.where(idea_id: idea_id).count
+  end
 end

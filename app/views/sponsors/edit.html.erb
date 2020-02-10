@@ -1,14 +1,14 @@
 <div class="wrap-contanier">
   <div class="container">
 
-    <h1>Set up search criteria</h1>
+    <h1><%= t(:change_search_criteria) %></h1>
 
     <%= render 'partials/error', record: @user %>
 
     <%= form_for @user, url: sponsor_path(@user) do |f| %>
 
       <p>
-        <h3>Industries:</h3>
+        <h3><%= t(:industries) %>:</h3>
         <%= f.collection_select(:sponsor_industries, Industry.all, :id, :name,
             { include_hidden: false, selected: @user.industries.map(&:id) },
             { multiple: true,  name: 'user[sponsor_industries_attributes][][industry_id]', class: 'custom-select'}) %>
@@ -17,7 +17,7 @@
       </p>
 
       <p>
-        <h3>Sponsor help:</h3>
+        <h3><%= t(:can_help) %>:</h3>
         <%= f.collection_select(:sponsor_helps, RequireHelp.all, :id, :name,
             { include_hidden: false, selected: @user.require_helps.map(&:id) },
             { multiple: true,  name: 'user[sponsor_helps_attributes][][require_help_id]', class: 'custom-select'}) %>
@@ -26,7 +26,7 @@
       </p>
 
       <p>
-        <h3>Districts:</h3>
+        <h3><%= t(:districts) %>:</h3>
         <%= f.collection_select(:sponsor_districts, District.all, :id, :name,
             { include_hidden: false, selected: @user.districts.map(&:id) },
             { multiple: true, name: 'user[sponsor_districts_attributes][][district_id]', class: 'custom-select' }) %>
@@ -37,10 +37,10 @@
       <%= f.hidden_field :name, value: @user.name %>
 
       <p>
-        <%= f.submit class: 'btn btn-outline-primary' %>
+        <%= f.submit t(:update),class: 'btn btn-outline-primary' %>
       </p>
 
     <% end %>
-    <%= link_to 'Back', sponsor_path(@user), class: 'btn btn-outline-secondary' %>
+    <%= link_to t(:back), sponsor_path(@user), class: 'btn btn-outline-secondary' %>
   </div>
 </div>

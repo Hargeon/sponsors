@@ -3,24 +3,24 @@
   <%= link_to interest.idea.name, idea_path(interest.idea), class: 'btn btn-outline-secondary' %> <br>
 
   <p class="text-muted">
-    Date: <%= interest.idea.created_at.to_date %> by
+    <%= t(:date) %>: <%= interest.idea.created_at.to_date %>
     <%= link_to interest.idea.user.email, businessman_path(interest.idea.user) %>
   </p>
 
-  Description:
+  <%= t(:description) %>:
   <p>
      <%= interest.idea.description %>
   </p>
 
   <p>
-    Message: <%= interest.message %>
+    <%= t(:message) %>: <%= interest.message %>
   </p>
 
   <p>
-    Reviewed: <%= interest.idea.views.count %> |
-    Likes: <%= interest.idea.likes.count %> |
-    Dislikes: <%= interest.idea.dislikes.count %> |
-    Average rating: <%= RatingService.average_rating(interest.idea) %> |
-    Count votes: <%= RatingService.count_votes(interest.idea) %>
+    <%= t(:reviewed) %>: <%= interest.idea.views.count %> |
+    <%= t(:likes) %>: <%= interest.idea.likes.count %> |
+    <%= t(:dislikes) %>: <%= interest.idea.dislikes.count %> |
+    <%= t(:average_rating) %>: <%= RatingService.average_rating(interest.idea) %> |
+    <%= t(:count_votes) %>: <%= RatingService.count_votes(interest.idea) %>
   </p>
 <% end %>

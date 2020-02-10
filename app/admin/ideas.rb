@@ -70,17 +70,17 @@ ActiveAdmin.register Idea do
         end
       end
 
-      row 'Sympathy' do
+      row t(:sympathy) do
         "#{idea.likes.count} likes, #{idea.dislikes.count} dislikes, " +
           "#{RatingService.average_rating(idea)} average rating, " +
           "#{RatingService.count_votes(idea)} votes"
       end
 
-      row 'Views' do
+      row t(:reviewed) do
         idea.views.count
       end
 
-      row 'Active from' do
+      row t(:active_from) do
         idea.active_time
       end
 
@@ -88,13 +88,13 @@ ActiveAdmin.register Idea do
 
       row :created_at
 
-      panel 'Interests' do
+      panel t('activerecord.models.interest') do
         table_for idea.interests.includes(:user) do
-          column 'Names' do |interest|
+          column t(:name) do |interest|
             link_to(interest.user.email, admin_idea_path(interest.user))
           end
 
-          column 'Messages' do |interest|
+          column t(:message) do |interest|
             interest.message
           end
         end

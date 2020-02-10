@@ -14,40 +14,43 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div>
-        <span class="notice text-warning"><%= notice %></span>
-        <span class="alert text-danger"><%= alert %></span>
-      </div>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <%= link_to 'Home', ideas_path, class: 'btn btn-outline-light' %>
+          <%= link_to t(:home), ideas_path, class: 'btn btn-outline-light' %>
 
           <% if user_signed_in? %>
-            <% if can?(:create, Idea) %>
-              <%= link_to  "New Idea", new_idea_path, class: 'btn btn-outline-success' %>
+            <% if current_user.sponsor? %>
+              <li class="nav-item active"><%= link_to current_user.email, sponsor_path(current_user), class: "nav-link" %></li>
+            <% else %>
+              <li class="nav-item active"><%= link_to current_user.email, businessman_path(current_user), class: "nav-link" %></li>
+              <li class="nav-item active"><%= link_to t(:create_idea), new_idea_path, class: 'nav-link' %></li>
+            <% end %>
+              <li class="nav-item"><%= link_to t(:log_out), destroy_user_session_path, method: :delete, data: { confirm: t(:sign_out) }, class: "nav-link" %></li>
+          <% else %>
+            <li class="nav-item active"><%= link_to t(:sign_in), new_user_session_path, class: "nav-link" %></li>
+            <li class="nav-item active"><%= link_to t(:sign_up), new_user_registration_path, class: "nav-link" %></li>
+            <% if params[:locale].nil? or params[:locale] == 'ru' %>
+              <li class="nav-item"><%= link_to 'En', root_path(locale: 'en'), class: 'nav-link' %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to 'Ru', root_path(locale: 'ru'), class: 'nav-link' %></li>
             <% end %>
           <% end %>
 
-          <%= form_for :term, url: search_ideas_path, html: { class: "form-inline my-2 my-lg-0" } do |form| %>
-            <%= text_field_tag :term, params[:term], class: 'form-control mr-sm-2', id: 'search', autocomplete: 'off', list: 'autofill' %>
-            <%= form.submit 'Search', class: 'btn btn-outline-success my-2 my-sm-0' %>
-          <% end %>
-
-          <datalist id="autofill"></datalist>
-
         </ul>
-      </div>
-      <% if user_signed_in? %>
-        <% if current_user.sponsor? %>
-          <%= link_to current_user.email, sponsor_path(current_user), class: "btn btn-outline-light" %>
-        <% else %>
-          <%= link_to current_user.email, businessman_path(current_user), class: "btn btn-outline-light" %>
+
+        <div>
+          <span class="notice text-warning"><%= notice %></span>
+          <span class="alert text-danger"><%= alert %></span>
+        </div>
+
+        <%= form_for :term, url: search_ideas_path, html: { class: "form-inline my-2 my-lg-0" } do |form| %>
+          <%= text_field_tag :term, params[:term], class: 'form-control mr-sm-2', id: 'search', autocomplete: 'off', list: 'autofill', placeholder: t(:search) %>
+          <%= form.submit t(:search), class: 'btn btn-outline-success my-2 my-sm-0' %>
         <% end %>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { confirm: "Do you want log out?" }, class: "btn btn-outline-danger" %>
-      <% else %>
-        <%= link_to "Sign in", new_user_session_path, class: "btn btn-outline-warning" %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-danger" %>
-      <% end %>
+
+        <datalist id="autofill"></datalist>
+
+      </div>
     </nav>
 
     <div class="content">

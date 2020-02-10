@@ -27,7 +27,7 @@ ActiveAdmin.register User do
       row :user_type
       row :created_at
 
-      row 'Reviewed ideas' do
+      row t(:reviewed) do
         user.views.count
       end
 
@@ -36,30 +36,30 @@ ActiveAdmin.register User do
         row :require_helps
         row :districts
 
-        row 'Activity' do
-          "#{user.likes.count} likes, #{user.dislikes.count} dislikes, #{user.ratings.count} ratings"
+        row t(:sympathy) do
+          "#{user.likes.count} #{t(:likes)}, #{user.dislikes.count} #{t(:dislikes)}, #{user.ratings.count} #{t(:ratings)}"
         end
 
-        panel 'Interests' do
+        panel t('activerecord.models.interest') do
           table_for user.interests.includes(:idea) do
-            column 'Ideas' do |interest|
+            column t('activerecord.models.idea') do |interest|
               link_to(interest.idea.name, admin_idea_path(interest.idea))
             end
 
-            column 'Messages' do |interest|
+            column t(:message) do |interest|
               interest.message
             end
           end
         end
 
       elsif user.businessman?
-        panel 'Ideas' do
+        panel t('activerecord.models.idea') do
           table_for user.ideas.includes(:interests) do
-            column 'Names' do |idea|
+            column t(:title) do |idea|
               link_to(idea.name, admin_idea_path(idea))
             end
 
-            column 'Messages' do |idea|
+            column t(:message) do |idea|
               idea.interests.map(&:message)
             end
           end

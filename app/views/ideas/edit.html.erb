@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-md-4">
       <p>
-        Industries: <br>
+        <%= t(:industries) %>: <br>
         <%= f.collection_select(:local_industries, Industry.all, :id, :name,
         { include_hidden: false, selected: @idea.industries.map(&:id) },
         { multiple: true, name: 'idea[local_industries_attributes][][industry_id]', class: 'custom-select' }) %>
@@ -20,7 +20,7 @@
 
     <div class="col-md-4">
       <p>
-        Districts: <br>
+        <%= t(:districts) %>: <br>
         <%= f.collection_select(:local_districts, District.all, :id, :name,
         { include_hidden: false, selected: @idea.districts.map(&:id) },
         { multiple: true, name: 'idea[local_districts_attributes][][district_id]', class: 'custom-select' }) %>
@@ -31,7 +31,7 @@
 
     <div class="col-md-4">
       <p>
-        We need: <br>
+        <%= t(:require_helps) %>: <br>
         <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name,
         { include_hidden: false, selected: @idea.require_helps.map(&:id) },
         { multiple: true, name: 'idea[local_require_helps_attributes][][require_help_id]', class: 'custom-select' }) %>
@@ -43,14 +43,14 @@
 
 
   <p>
-    Members: <br>
+    <%= t(:members) %>: <br>
     <%= render  "members"%>
 
     <%= hidden_field_tag 'idea[local_members_attributes][][exist]', 'exist' %>
   </p>
 
   <p>
-    <%= f.submit class: 'btn btn-outline-primary' %>
+    <%= f.submit t(:update), class: 'btn btn-outline-primary' %>
   </p>
 <% end %>
 

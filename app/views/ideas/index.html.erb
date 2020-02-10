@@ -1,21 +1,22 @@
 <%= render 'carousel' %>
 
 <div class="container">
+  <%= render 'filter' %>
   <div class="row">
     <% @ideas.each do |idea| %>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="card mb-4 shadow-sm">
 
           <h5 class="card-header">
-            <%= link_to  idea.name, idea_path(idea), class: "btn btn-outline-dark" %>
+            <%= link_to  idea.name, idea_path(idea.id), class: "btn btn-outline-dark" %>
 
             <div class="btn-group">
               <% if can?(:update, Idea) %>
-                <%= link_to  "Edit", edit_idea_path(idea), class: "btn btn-outline-warning"  %>
+                <%= link_to  t(:edit), edit_idea_path(idea.id), class: "btn btn-outline-warning"  %>
               <% end %>
 
               <% if can?(:destroy, Idea) %>
-                <%= link_to  "Delete", idea_path(idea), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger"  %>
+                <%= link_to t(:delete), idea_path(idea.id), method: :delete, data: { confirm: t(:sure) }, class: "btn btn-outline-danger"  %>
               <% end %>
 
             </div>
@@ -28,13 +29,11 @@
             </p>
 
             <div class="text-muted">
-              <%= idea.likes.count %> likes
-              <%= idea.dislikes.count %> dislikes
+              <%= t(:likes) %> <%= likes_count(idea.id) %> |
+              <%= t(:dislikes) %> <%= dislikes_count(idea.id) %> |
+              <%= t(:reviewed) %> <%= views_count(idea.id) %>
             </div>
 
-            <div class="text-muted">
-              <%= idea.views.count %> reviewed
-            </div>
           </div>
 
         </div>
