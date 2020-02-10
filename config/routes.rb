@@ -3,7 +3,11 @@ require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
   scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
-    devise_for :users, controllers: { registrations: 'users/registrations' }
+    devise_for :users, controllers: {
+      registrations: 'users/registrations',
+      omniauth_callbacks: 'users/omniauth_callbacks'
+    }
+
     devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
     resources :ideas do
@@ -22,6 +26,9 @@ Rails.application.routes.draw do
     resources :businessmen, only: [:show]
     root 'ideas#index'
   end
+
+  get 'auth/:provider/callback', to: 'sessions#googleAuth'
+  get 'auth/failure', to: redirect('/')
 
   mount Sidekiq::Web => '/sidekiq'
   namespace 'api' do
