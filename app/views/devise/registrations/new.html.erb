@@ -1,39 +1,43 @@
 <div class="registration">
-<h2>Sign up</h2>
+<h2><%= t(:sign_up) %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render 'partials/error', record: resource %>
 
   <div class="field">
-    <%= f.text_field :name, class: 'form-control', placeholder: 'Name' %>
+    <%= f.text_field :name, class: 'form-control', placeholder: t(:name) %>
   </div>
 
   <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: t(:email) %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: 'Password' %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: t(:password) %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: 'Password confirmation' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: t(:password_confirmation) %>
   </div>
 
   <div class="field">
-    <%= f.text_field :age, class: 'form-control', placeholder: 'Age' %>
+    <%= f.text_field :age, class: 'form-control', placeholder: t(:age) %>
   </div>
 
   <div class="field">
-    <%= f.text_field :phone, class: 'form-control', placeholder: 'Phone' %>
+    <%= f.text_field :phone, class: 'form-control', placeholder: t(:phone) %>
   </div>
 
   <div class="field">
-   <%= f.select :user_type, User.user_types.keys, {}, {class: "custom-select mr-sm-2"} %>
+    <%= f.select :locale, I18n.available_locales, {}, {class: "custom-select mr-sm-2"} %>
+   </div>
+
+  <div class="field">
+   <%= f.select :user_type, User.user_types.keys.map { |key| [t("#{key}"), key] }, {}, {class: "custom-select mr-sm-2"} %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up", class: 'btn btn-outline-success' %>
+    <%= f.submit t(:create), class: 'btn btn-outline-success' %>
   </div>
 <% end %>
 

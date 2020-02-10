@@ -1,18 +1,18 @@
-<h1>Hello We have a new Idea</h1>
+<h1><%= t('new_idea.greeting') %></h1>
 
 <h2><%= @idea.name %></h2>
 
-Description:
+<%= t(:description) %>:
 <p>
   <%= @idea.description %>
 </p>
 
-Plan:
+<%= t(:plan) %>:
 <p>
   <%= @idea.plan %>
 </p>
 
-Industries:
+<%= t(:industries) %>:
 <ul>
   <% @idea.industries.each do |industry| %>
     <li><%= industry.name %></li>
@@ -21,7 +21,7 @@ Industries:
 
 <hr>
 
-District:
+<%= t(:districts) %>:
 <ul>
   <% @idea.districts.each do |district| %>
     <li><%= district.name %></li>
@@ -30,7 +30,7 @@ District:
 
 <hr>
 
-Require help:
+<%= t(:require_helps) %>:
 <ul>
   <% @idea.require_helps.each do |help| %>
     <li><%= help.name %></li>
@@ -39,4 +39,4 @@ Require help:
 
 <hr>
 
-<%= link_to 'Review', idea_url(@idea) %>
+<%= link_to t(:look), idea_url(locale: I18n.locale, id: @idea.id) %>

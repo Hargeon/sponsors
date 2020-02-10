@@ -1,4 +1,8 @@
-<h1>Name: <%= user.name %></h1>
-<h1>Email: <%= user.email %></h1>
-<h1>Age: <%= user.age %></h1>
-<h1>Phone: <%= user.phone %></h1>
+<h1><%= t(:name) %>: <%= user.name %></h1>
+<h1><%= t(:email) %>: <%= user.email %></h1>
+<h1><%= t(:age) %>: <%= user.age %></h1>
+<h1><%= t(:phone) %>: <%= user.phone %></h1>
+
+<% if current_user&.id == user.id %>
+  <%= link_to t(:edit), edit_user_registration_path, class: 'btn btn-outline-primary' %>
+<% end %>

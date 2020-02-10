@@ -1,24 +1,26 @@
-Hello We have a new Idea
+<%= t('new_idea.greeting') %>
 
 <%= @idea.name %>
 
-Plan:
+<%= t(:description) %>:
+  <%= @idea.description %>
+
+<%= t(:plan) %>:
   <%= @idea.plan %>
 
-
-Industries:
+<%= t(:industries) %>:
 <% @idea.industries.each do |industry| %>
   --<%= industry.name %></li>
 <% end %>
 
-District:
+<%= t(:districts) %>:
 <% @idea.districts.each do |district| %>
   --<li><%= district.name %></li>
 <% end %>
 
-Require help:
+<%= t(:require_helps) %>:
 <% @idea.require_helps.each do |help| %>
   --<li><%= help.name %></li>
 <% end %>
 
-<%= link_to 'Review', idea_url(@idea) %>
+<%= link_to t(:look), idea_url(locale: I18n.locale, id: @idea.id) %>

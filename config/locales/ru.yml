@@ -1,0 +1,216 @@
+ru:
+  formtastic:
+    create: 'Создать'
+    update: 'Обновить'
+  edit: 'Изменить'
+  lang_switch: 'En'
+  delete: 'Удалить'
+  create: 'Создать'
+  date: 'Дата добавления'
+  description: 'Описание'
+  reviewed: 'Просмотров'
+  likes: 'Лайков'
+  dislikes: 'Дислайков'
+  average_rating: 'Средний рейтинг'
+  ratings: 'Рейтингов'
+  count_votes: 'Количество голосов'
+  message: 'Сообщение'
+  look: 'Посмотреть'
+  title: 'Название'
+  name: 'Имя'
+  email: 'Почта'
+  age: 'Возраст'
+  phone: 'Телефон'
+  ideas: 'Идеи'
+  close: 'Закрыть'
+  support: 'Помогает'
+  industries: 'Отрасли'
+  districts: 'Местоположения'
+  members: 'Сотрудники'
+  can_help: 'Могу помочь'
+  require_helps: 'Требуется помощь'
+  plan: 'План'
+  change_search_criteria: 'Изменить критерии поиска'
+  back: 'Назад'
+  update: 'Обновить'
+  find_help: 'Найдём помощь для твоих идей'
+  sign_up_businessman: 'Регестрируйся как бизнесмен. Ты можешь показать свою идею миру. Мы можем поможь тебе найти спонсоров.'
+  help_businessmen: 'Помоги нашим бизнесменам'
+  sign_up_sponsor: 'Регистрируйся как спонсор. Помоги воплотить идеи в жизнь.'
+  filter: 'Отфильтровать'
+  offer_attractiveness: 'Привлекательность предложения'
+  implementation_strategy: 'Cтратегия внедрения'
+  competitiveness: 'Конкурентоспособность'
+  financial_attractiveness: 'Финансовая привлекательность'
+  share: 'Поделиться'
+  responded: 'Откликнулись'
+  sponsors: 'Спонсора'
+  respond: 'Откликнуться'
+  visit: 'Перейди, чтобы изменить это.'
+  home: 'Идеи'
+  create_idea: 'Новая идея'
+  search: 'Поиск'
+  log_out: 'Выйти'
+  sign_in: 'Войти'
+  sign_up: 'Регистрация'
+  password: 'Пароль'
+  password_confirmation: 'Подтвердите пароль'
+  businessman: 'Бизнесмен'
+  sponsor: 'Спонсор'
+  remember: 'Запомнить'
+  sign_out: 'Вы хотите выйти?'
+  sure: 'Вы уверены?'
+  sympathy: 'Симпатии'
+  current_password: 'Текущий пароль'
+  lang: 'Язык'
+  active_from: 'Активная с'
+  active_admin:
+    scopes:
+      all: 'Все'
+      active: 'Активные'
+      inactive: 'Неактивные'
+      active_period: 'Активный период'
+      notification_period: 'Период оповещений'
+      sponsors: 'Спонсора'
+      businessmen: 'Бизнесмены'
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
+  old_idea:
+    greeting: 'Привет %{name}.'
+    idea: 'Ваша идея %{name} скоро станет неактивной.'
+  new_idea:
+    greeting: 'Привет. У нас есть новая идея'
+  errors:
+    messages:
+        not_saved: '%{count} ошибок не позволили этому пользователю сохраниться'
+  activerecord:
+    models:
+      idea: 'Идеи'
+      district: 'Местоположения'
+      industry: 'Отрасли'
+      rating: 'Рейтинг'
+      member: 'Сотрудники'
+      require_help: 'Требуемая помощь'
+      admin_user:
+        few: Админов
+        many: Админов
+        one: Админ
+        other: Админы
+      interest: 'Интересы'
+    attributes:
+      user:
+        email: 'Почта'
+        password: 'Пароль'
+        name: 'Имя'
+        age: 'Возраст'
+        phone: 'Телефон'
+        user_type: 'Тип пользователя'
+        districts: 'Местоположения'
+        industries: 'Отрасли'
+        require_helps: 'Помощь'
+        current_password: 'Текущий пароль'
+        password_confirmation: 'Подтверждение пароля'
+      idea:
+        name: 'Название'
+        description: 'Описание'
+        plan: 'План'
+        local_industries: 'Отрасли'
+        local_members: 'Сотрудники'
+        local_districts: 'Местоположения'
+        local_require_helps: 'Требуемая помощь'
+        districts: 'Местоположения'
+        industries: 'Отрасли'
+        members: 'Сотрудники'
+        require_helps: 'Требуемая помощь'
+        user: 'Создатель'
+        active: 'Активная'
+        created_at: 'Создана'
+        active_time: 'Активна с'
+      admin_user:
+        email: 'Почта'
+        created_at: 'Создан'
+        password: 'Пароль'
+        password_confirmation: 'Подтвердите пароль'
+      district:
+        name: 'Название'
+        created_at: 'Дата создания'
+        updated_at: 'Дата обновления'
+      industry:
+        name: 'Название'
+        created_at: 'Дата создания'
+        updated_at: 'Дата обновления'
+      interest:
+        message: 'Сообщение'
+      rating:
+        attraction: 'Привлекательность'
+        strategy: 'Стратегия'
+        competitiveness: 'Конкурентоспособность'
+        finance: 'Финансовость'
+        idea: 'Идея'
+        user: 'Пользователь'
+        created_at: 'Дата создания'
+        updated_at: 'Дата обновления'
+      member:
+        name: 'Название'
+        created_at: 'Дата создания'
+      require_help:
+        name: 'Название'
+        created_at: 'Дата создания'
+      local_members:
+        amount: 'Количество сотрудников'
+    errors:
+      models:
+        admin_user:
+          attributes:
+            email:
+              invalid: 'не валидный'
+            password:
+              blank: 'не может быть пустой'
+              too_short: 'силшком короткий'
+            locale:
+              inclusion: 'не включён в лист возможных'
+            password_confirmation:
+              confirmation: 'не валидный'
+        local_member:
+          attributes:
+            amount:
+              greater_than_or_equal_to: 'не может быть равным %{value}'
+        user:
+          attributes:
+            email:
+              blank: 'не может быть пустой'
+            password:
+              blank: 'не может быть пустым'
+            name:
+              blank: 'не может быть пустым'
+              too_short: 'слишком короткое(миниму %{count} символа)'
+            age:
+              blank: 'не может быть пустым'
+              not_a_number: 'не является числом'
+            phone:
+              blank: 'не может быть пустым'
+              invalid: 'не валидный'
+            current_password:
+              blank: 'не может быть пустым'
+              invalid: 'не валидный'
+            password_confirmation:
+              confirmation: 'не соответствует паролю'
+            password:
+              too_short: 'слишком короткий(миниму %{count} символов)'
+              blank: 'не может быть пустым'
+        idea:
+          count_words: 'имеет меньше %{size} слов'
+          attributes:
+            name:
+              too_short: 'слишком короткое'
+            local_industries:
+              blank: 'не могут быть пустыми'
+            local_members:
+              blank: 'не могут быть пустыми'
+            local_districts:
+              blank: 'не могут быть пустыми'
+            local_require_helps:
+              blank: 'не может быть пустой'
+        interest:
+          count_words: 'имеет меньше %{size} слов'

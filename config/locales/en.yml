@@ -1,33 +1,221 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  formtastic:
+    create: 'Create'
+    update: 'Update'
+  edit: 'Edit'
+  lang_switch: 'Ru'
+  delete: 'Delete'
+  create: 'Create'
+  date: 'Date added'
+  description: 'Description'
+  reviewed: 'Reviewed'
+  likes: 'Likes'
+  dislikes: 'Dislikes'
+  average_rating: 'Average rating'
+  ratings: 'Ratings'
+  count_votes: 'Count votes'
+  message: 'Message'
+  look: 'Look'
+  title: 'Title'
+  name: 'Name'
+  email: 'Email'
+  age: 'Age'
+  phone: 'Phone'
+  ideas: 'Ideas'
+  close: 'Close'
+  support: 'Support'
+  industries: 'Industries'
+  districts: 'Districts'
+  members: 'Members'
+  can_help: 'Can help'
+  require_helps: 'Require helps'
+  plan: 'Plan'
+  change_search_criteria: 'Сhange search criteria'
+  back: 'Back'
+  update: 'Update'
+  find_help: 'Find help for your ideas'
+  sign_up_businessman: 'Sign up like a Businessman. You can show your ideas worlds. We can help you find sponsors.'
+  help_businessmen: 'Help our businessmen'
+  sign_up_sponsor: 'Sign up like a Sponsor. Help implement ideas.'
+  filter: 'Filter'
+  offer_attractiveness: ' Offer attractiveness'
+  implementation_strategy: 'Implementation strategy'
+  competitiveness: 'Competitiveness'
+  financial_attractiveness: 'Financial attractiveness'
+  share: 'Share'
+  responded: 'Responded'
+  sponsors: 'Sponsors'
+  respond: 'Respond'
+  visit: 'Visit to change it.'
+  home: 'Ideas'
+  create_idea: 'New Idea'
+  search: 'Search'
+  log_out: 'Log out'
+  sign_in: 'Sign in'
+  sign_up: 'Sign up'
+  password: 'Password'
+  password_confirmation: 'Password confirmation'
+  businessman: 'Businessman'
+  sponsor: 'Sponsor'
+  remember: 'Remember'
+  sign_out: 'Do you want log out?'
+  sure: 'Are you sure?'
+  sympathy: 'Sympathy'
+  current_password: 'Current password'
+  lang: 'Language'
+  active_from: 'Active from'
+  active_admin:
+    scopes:
+      all: 'All'
+      active: 'Active'
+      inactive: 'Inactive'
+      active_period: 'Active period'
+      notification_period: 'Notification period'
+      sponsors: 'Sponsors'
+      businessmen: 'Businessmen'
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
+  old_idea:
+    greeting: 'Hello %{name}.'
+    idea: 'Your idea %{name} will soon become inactive.'
+  new_idea:
+    greeting: 'Hello. We have a new Idea'
+  errors:
+    messages:
+        not_saved: '%{count} errors prohibited this user from being saved'
+  activerecord:
+    models:
+      idea: 'Ideas'
+      district: 'Districts'
+      industry: 'Industries'
+      rating: 'Ratings'
+      member: 'Members'
+      require_help: 'Require helps'
+      admin_user:
+        few: Admin
+        many: Admins
+        one: Admin
+        other: Admins
+      interest: 'Interests'
+      user: 'Users'
+    attributes:
+      idea:
+        name: 'Title'
+        local_industries: 'Industries'
+        local_members: 'Members'
+        local_districts: 'Districts'
+        local_require_helps: 'Require help'
+        name: 'Title'
+        plan: 'Plan'
+        description: 'Description'
+        districts: 'Districts'
+        industries: 'Industries'
+        members: 'Members'
+        require_helps: 'Require helps'
+        user: 'Creater'
+        active: 'Active'
+        created_at: 'Created at'
+        active_time: 'Active from'
+      user:
+        email: 'Email'
+        password: 'Password'
+        name: 'Name'
+        age: 'Age'
+        phone: 'Phone'
+        user_type: 'User type'
+        districts: 'Districts'
+        industries: 'Industries'
+        require_helps: 'Help'
+        current_password: 'Current password'
+        password_confirmation: 'Password confirmation'
+        created_at: 'Created at'
+      local_members:
+        amount: 'Amount of members'
+      admin_user:
+        email: 'Email'
+        created_at: 'Created at'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+      district:
+        name: 'Title'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+      industry:
+        name: 'Title'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+      interest:
+        message: 'Message'
+      rating:
+        attraction: 'Attraction'
+        strategy: 'Strategy'
+        competitiveness: 'Competitiveness'
+        finance: 'Finance'
+        idea: 'Idea'
+        user: 'User'
+        created_at: 'Created at'
+        updated_at: 'Updated at'
+      member:
+        name: 'Title'
+        created_at: 'Created at'
+      require_help:
+        name: 'Title'
+        created_at: 'Created at'
+      local_members:
+        amount: 'Amount of members'
+    errors:
+      models:
+        admin_user:
+          attributes:
+            email:
+              invalid: 'invalid'
+            password:
+              blank: "can't be blank"
+              too_short: 'too short'
+            locale:
+              inclusion: 'not included in the list'
+            password_confirmation:
+              confirmation: 'invalid'
+        local_member:
+          attributes:
+            amount:
+              greater_than_or_equal_to: "can't equal %{value}"
+        user:
+          attributes:
+            email:
+              blank: "can't be blank"
+            password:
+              blank: "can't be blank"
+            name:
+              blank: "can't be blank"
+              too_short: 'too short(minimum %{count} characters)'
+            age:
+              blank: "can't be blank"
+              not_a_number: 'is not a number'
+            phone:
+              blank: "can't be blank"
+              invalid: 'invalid'
+            current_password:
+              blank: "can't be blank"
+              invalid: 'invalid'
+            password_confirmation:
+              confirmation: 'is invalid'
+            password:
+              too_short: 'need has at least %{count} characters'
+              blank: "can't be blank"
+        idea:
+          count_words: 'need has at least %{size} words'
+          attributes:
+            name:
+              too_short: 'is too short'
+            local_industries:
+              blank: "can't be blank"
+            local_members:
+              blank: "can't be blank"
+            local_districts:
+              blank: "can't be blank"
+            local_require_helps:
+              blank: "can't be blank"
+        interest:
+          count_words: 'need has at least %{size} words'
