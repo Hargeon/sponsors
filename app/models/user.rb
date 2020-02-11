@@ -25,7 +25,7 @@ class User < ApplicationRecord
   #:lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :async,
          :recoverable, :rememberable, :validatable, :confirmable,
-         :omniauthable, omniauth_providers: [:google_oauth2]
+         :omniauthable, omniauth_providers: [:facebook]
 
   validates :name, :age, :phone, presence: true
   validates :name, length: { minimum: MINIMUM_NAME_LENGTH }
@@ -37,17 +37,16 @@ class User < ApplicationRecord
   scope :sponsors, -> { where(user_type: :sponsor) }
   scope :businessmen, -> { where(user_type: :businessman) }
 
-  def self.from_omniauth(access_token)
-    data = access_token.info
-    user = User.where(email: data['email']).first
-
-    unless user
-      user = User.create(name: data['name'],
-        email: data['email'],
-        password: Devise.friendly_token[0,20]
-      )
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.password = Devise.friendly_token[0, 20]
+      user.age = 20
+      user.name = 'CHECK'
+      user.phone = '+375295666512'
+      user.user_type = 'businessman'
     end
-
-    user
   end
 end

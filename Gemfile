@@ -31,8 +31,7 @@ gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
