@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :omni_registrations, only: [:create]
     resources :interests, only: [:create, :new]
     resources :sponsors, only: [:show, :edit, :update]
     resources :businessmen, only: [:show]
