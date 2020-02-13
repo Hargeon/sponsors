@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one_attached :avatar
   has_many :ideas, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_many :sponsor_industries, dependent: :destroy

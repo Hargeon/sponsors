@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'activerecord-session_store'
+gem 'aws-sdk-s3', require: false
 gem 'devise'
 gem 'devise-async'
 gem 'figaro'
