@@ -7,7 +7,7 @@ RSpec.describe 'Actions with businessman' do
       let(:user) { idea.user }
 
       before do
-        visit businessman_path(user)
+        visit businessman_path(id: user)
       end
 
       it_behaves_like 'user show page' do

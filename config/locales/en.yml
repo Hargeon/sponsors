@@ -2,6 +2,7 @@ en:
   formtastic:
     create: 'Create'
     update: 'Update'
+  facebook: "Your facebook account don't have email. Create email and repeate registration"
   edit: 'Edit'
   lang_switch: 'Ru'
   delete: 'Delete'
@@ -189,7 +190,7 @@ en:
               blank: "can't be blank"
             name:
               blank: "can't be blank"
-              too_short: 'too short(minimum %{count} characters)'
+              too_short: 'is too short (minimum is %{count} characters)'
             age:
               blank: "can't be blank"
               not_a_number: 'is not a number'
@@ -200,7 +201,7 @@ en:
               blank: "can't be blank"
               invalid: 'invalid'
             password_confirmation:
-              confirmation: 'is invalid'
+              confirmation: "doesn't match Password"
             password:
               too_short: 'need has at least %{count} characters'
               blank: "can't be blank"
@@ -208,7 +209,7 @@ en:
           count_words: 'need has at least %{size} words'
           attributes:
             name:
-              too_short: 'is too short'
+              too_short: 'is too short (minimum is %{count} characters)'
             local_industries:
               blank: "can't be blank"
             local_members:

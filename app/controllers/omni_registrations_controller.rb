@@ -1,12 +1,15 @@
 class OmniRegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
+    @auth = session['omni.auth']
+    @user.skip_confirmation!
     if @user.save
       sign_in(@user)
+      session['omni.auth'] = nil
+      redirect_to root_path
     else
-      flash[:notice] = 'OOps'
+      render 'users/omniauth_callbacks/facebook'
     end
-    redirect_to root_path
   end
 
   private

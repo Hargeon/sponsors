@@ -22,7 +22,7 @@ RSpec.describe 'Actions with idea' do
         idea = create(:idea)
         user = idea.user
         login_as(user, scope: :user)
-        visit edit_idea_path(idea)
+        visit edit_idea_path(id: idea.id)
       end
 
       it_behaves_like 'idea fill inputs'
@@ -40,7 +40,7 @@ RSpec.describe 'Actions with idea' do
     feature 'Edit idea' do
       scenario 'Should display You are not authorized to access this page.' do
         idea = create(:idea)
-        visit edit_idea_path(idea)
+        visit edit_idea_path(id: idea.id)
         expect(page).to have_content('You are not authorized to access this page.')
       end
     end

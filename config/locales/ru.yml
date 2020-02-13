@@ -2,6 +2,7 @@ ru:
   formtastic:
     create: 'Создать'
     update: 'Обновить'
+  facebook: 'У вашего facebook аккаунта нету почты. Создайте её и повторите регистрацию'
   edit: 'Изменить'
   lang_switch: 'En'
   delete: 'Удалить'
@@ -193,7 +194,7 @@ ru:
               invalid: 'не валидный'
             current_password:
               blank: 'не может быть пустым'
-              invalid: 'не валидный'
+              invalid: 'не совпадает с паролем'
             password_confirmation:
               confirmation: 'не соответствует паролю'
             password:
@@ -203,7 +204,7 @@ ru:
           count_words: 'имеет меньше %{size} слов'
           attributes:
             name:
-              too_short: 'слишком короткое'
+              too_short: 'слишком короткое (минимум %{count} символов)'
             local_industries:
               blank: 'не могут быть пустыми'
             local_members:

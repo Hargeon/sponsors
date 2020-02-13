@@ -9,43 +9,43 @@ RSpec.describe 'User authorization' do
     end
 
     scenario 'with correct params' do
-      click_button 'Sign up'
-      expect(page).to have_link('Log out')
+      click_button 'Create'
+      expect(page).to have_content('A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.')
     end
 
     scenario 'with uncorrect name' do
       fill_in 'Name', with: ''
-      click_button 'Sign up'
+      click_button 'Create'
       expect(page).to have_content("Name can't be blank")
     end
 
     scenario 'with uncorrect email' do
       fill_in 'Email', with: ''
-      click_button 'Sign up'
+      click_button 'Create'
       expect(page).to have_content("Email can't be blank")
     end
 
     scenario 'with uncorrect password' do
       fill_in 'Password', with: ''
-      click_button 'Sign up'
+      click_button 'Create'
       expect(page).to have_content("Password can't be blank")
     end
 
     scenario 'with uncorrect password confirmation' do
       fill_in 'Password confirmation', with: ''
-      click_button 'Sign up'
+      click_button 'Create'
       expect(page).to have_content("Password confirmation doesn't match Password")
     end
 
     scenario 'with uncorrect age' do
       fill_in 'Age', with: ''
-      click_button 'Sign up'
+      click_button 'Create'
       expect(page).to have_content("Age can't be blank")
     end
 
     scenario 'with uncorrect phone' do
       fill_in 'Phone', with: ''
-      click_button 'Sign up'
+      click_button 'Create'
       expect(page).to have_content("Phone can't be blank")
     end
   end

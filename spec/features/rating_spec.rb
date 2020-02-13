@@ -12,38 +12,38 @@ RSpec.describe 'Add rating' do
   feature 'Sponsor authorized', js: true do
     before do
       login_as(second_sponsor, scope: :user)
-      visit idea_path(idea)
+      visit idea_path(id: idea.id)
     end
 
     feature 'With valid params' do
       before do
-        find(:xpath, '/html/body/div/div/div/div[5]/div[2]/div/div[1]/div[4]').click
-        find(:xpath, '/html/body/div/div/div/div[5]/div[2]/div/div[2]/div[2]').click
-        find(:xpath, '/html/body/div/div/div/div[5]/div[2]/div/div[3]/div[4]').click
-        find(:xpath, '/html/body/div/div/div/div[5]/div[2]/div/div[4]/div[2]').click
+        find(:xpath, '/html/body/div/div/div/div[6]/div[2]/div/div[1]/div[4]').click
+        find(:xpath, '/html/body/div/div/div/div[6]/div[2]/div/div[2]/div[2]').click
+        find(:xpath, '/html/body/div/div/div/div[6]/div[2]/div/div[3]/div[4]').click
+        find(:xpath, '/html/body/div/div/div/div[6]/div[2]/div/div[4]/div[2]').click
         click_on 'Share'
       end
 
       scenario 'should display 3.25 Average rating' do
-        expect(page).to have_content('3.25 Average rating')
+        expect(page).to have_content("Average rating:\n3.25")
       end
 
       scenario 'should display 2 votes' do
-        expect(page).to have_content('2 votes')
+        expect(page).to have_content("Count votes:\n2")
       end
 
       scenario 'should display 3 stars' do
-        expect(page).to have_xpath('/html/body/div/div/div/div[5]/div[1]/div/div[3]')
+        expect(page).to have_xpath('/html/body/div/div/div/div[6]/div[1]/div[1]/div[3]')
       end
 
       scenario 'should not display 4 stars' do
-        expect(page).to have_no_xpath('/html/body/div/div/div/div[5]/div[1]/div/div[4]')
+        expect(page).to have_no_xpath('/html/body/div/div/div/div[6]/div[1]/div[1]/div[4]')
       end
     end
 
     feature 'With invalid params' do
       before do
-        find(:xpath, '/html/body/div/div/div/div[5]/div[2]/div/div[1]/div[4]').click
+        find(:xpath, '/html/body/div/div/div/div[6]/div[2]/div/div[1]/div[4]').click
         click_on 'Share'
       end
 
@@ -56,7 +56,7 @@ RSpec.describe 'Add rating' do
 
   feature 'Sponsor not authorized' do
     before do
-      visit idea_path(idea)
+      visit idea_path(id: idea.id)
     end
 
     scenario 'should not display attraction' do

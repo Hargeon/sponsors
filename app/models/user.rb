@@ -36,17 +36,4 @@ class User < ApplicationRecord
 
   scope :sponsors, -> { where(user_type: :sponsor) }
   scope :businessmen, -> { where(user_type: :businessman) }
-
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.password = Devise.friendly_token[0, 20]
-      user.age = 20
-      user.name = 'CHECK'
-      user.phone = '+375295666512'
-      user.user_type = 'businessman'
-    end
-  end
 end
