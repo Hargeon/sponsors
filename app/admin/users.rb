@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  actions :index, :show
+  actions :index, :show, :destroy
 
   scope :all
   scope :sponsors

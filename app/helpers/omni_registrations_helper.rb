@@ -1,0 +1,2 @@
+module OmniRegistrationsHelper
+end

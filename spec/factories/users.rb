@@ -8,6 +8,10 @@ FactoryBot.define do
     phone { '+375291236542' }
     user_type { 'businessman' }
 
+    before :create do |user|
+      user.skip_confirmation!
+    end
+
     factory :sponsor do
       user_type { 'sponsor' }
     end

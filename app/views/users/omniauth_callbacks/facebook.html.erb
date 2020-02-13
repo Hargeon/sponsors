@@ -1,0 +1,43 @@
+<div class="wrap-contanier">
+  <div class="container">
+    <%= form_for @user , url: omni_registrations_path do |f| %>
+      <%= render 'partials/error', record: @user %>
+
+      <%= f.hidden_field :email, value: @auth['info']['email'] %>
+      <%= f.hidden_field :password, value: Devise.friendly_token[0, 20] %>
+      <%= f.hidden_field :provider, value: @auth['provider'] %>
+      <%= f.hidden_field :uid, value: @auth['uid'] %>
+      <%= f.hidden_field :name, value: @auth['info']['name'] %>
+
+      <div class="field">
+        <%= f.label :age %>
+        <%= f.text_field :age, class: 'form-control', placeholder: t(:age) %>
+      </div>
+
+      <br>
+
+      <div class="field">
+        <%= f.label :phone %>
+        <%= f.text_field :phone, class: 'form-control', placeholder: t(:phone) %>
+      </div>
+
+      <br>
+
+      <div class="field">
+        <%= f.select :locale, I18n.available_locales, {}, {class: "custom-select mr-sm-2"} %>
+      </div>
+
+      <br>
+
+      <div class="field">
+       <%= f.select :user_type, User.user_types.keys.map { |key| [t("#{key}"), key] }, {}, {class: "custom-select mr-sm-2"} %>
+      </div>
+
+      <br>
+
+      <div class="actions">
+        <%= f.submit t(:create), class: 'btn btn-outline-success' %>
+      </div>
+    <% end %>
+  </div>
+</div>

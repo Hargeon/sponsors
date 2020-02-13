@@ -20,15 +20,18 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'activerecord-session_store'
+gem 'devise'
+gem 'devise-async'
 gem 'figaro'
 gem 'activeadmin'
-gem 'devise'
 gem 'phonelib'
 gem 'cancancan'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
+gem 'omniauth-facebook'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -2,7 +2,11 @@ ActiveAdmin.setup do |config|
   def change_locale
     sign_out(:user) unless current_user.nil?
 
-    I18n.locale = current_admin_user.locale
+    unless current_admin_user.nil?
+      I18n.locale = current_admin_user.locale
+    else
+      I18n.locale = params[:locale] || I18n.default_locale
+    end
   end
 
   config.before_action :change_locale

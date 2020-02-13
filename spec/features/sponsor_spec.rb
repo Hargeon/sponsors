@@ -9,7 +9,7 @@ RSpec.describe 'Actions with sponsor' do
     feature 'Show page' do
       before do
         user.interests.create(idea_id: idea.id, message: message)
-        visit sponsor_path(user)
+        visit sponsor_path(id: user.id)
       end
 
       it_behaves_like 'user show page' do
@@ -38,7 +38,7 @@ RSpec.describe 'Actions with sponsor' do
     feature 'Show page' do
       before do
         user.interests.create(idea_id: idea.id, message: message)
-        visit sponsor_path(user)
+        visit sponsor_path(id: user.id)
       end
 
       scenario 'should display Change search criteria' do
@@ -51,7 +51,7 @@ RSpec.describe 'Actions with sponsor' do
           select Industry.first.name, from: 'user_sponsor_industries'
           select RequireHelp.first.name , from: 'user_sponsor_helps'
           select District.first.name, from: 'user_sponsor_districts'
-          click_on 'Update User'
+          click_on 'Update'
         end
 
         scenario 'should display industries' do
@@ -63,21 +63,21 @@ RSpec.describe 'Actions with sponsor' do
         end
 
         scenario 'should display helps' do
-          expect(page).to have_content("Can Help:\n#{user.industries.first.name}")
+          expect(page).to have_content("Can help:\n#{user.industries.first.name}")
         end
       end
     end
 
     feature 'Like and Dislike' do
       before do
-        visit idea_path(idea)
+        visit idea_path(id: idea.id)
       end
 
       feature 'Add like without dislike' do
         feature 'Add like' do
           scenario 'should display 1 likes' do
             click_on 'Like'
-            expect(page).to have_content('1 likes')
+            expect(page).to have_content('Likes 1')
           end
         end
 
@@ -85,7 +85,7 @@ RSpec.describe 'Actions with sponsor' do
           scenario 'should display 0 likes' do
             click_on 'Like'
             click_on 'Like'
-            expect(page).to have_content('0 likes')
+            expect(page).to have_content('Likes 0')
           end
         end
       end
@@ -94,7 +94,7 @@ RSpec.describe 'Actions with sponsor' do
         feature 'Add dislike' do
           scenario 'should display 1 dislikes' do
             click_on 'Dislike'
-            expect(page).to have_content('1 dislikes')
+            expect(page).to have_content('Dislikes 1')
           end
         end
 
@@ -102,7 +102,7 @@ RSpec.describe 'Actions with sponsor' do
           scenario 'should display 0 dislikes' do
             click_on 'Dislike'
             click_on 'Dislike'
-            expect(page).to have_content('0 dislikes')
+            expect(page).to have_content('Dislikes 0')
           end
         end
       end
@@ -114,11 +114,11 @@ RSpec.describe 'Actions with sponsor' do
         end
 
         scenario 'should display 1 likes' do
-          expect(page).to have_content('1 likes')
+          expect(page).to have_content('Likes 1')
         end
 
         scenario 'should display 0 dislikes' do
-          expect(page).to have_content('0 dislikes')
+          expect(page).to have_content('Dislikes 0')
         end
       end
 
@@ -129,11 +129,11 @@ RSpec.describe 'Actions with sponsor' do
         end
 
         scenario 'should display 1 dislikes' do
-          expect(page).to have_content('1 dislikes')
+          expect(page).to have_content('Dislikes 1')
         end
 
         scenario 'should display 0 likes' do
-          expect(page).to have_content('0 likes')
+          expect(page).to have_content('Dislikes 0')
         end
       end
     end

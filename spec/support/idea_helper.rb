@@ -1,6 +1,6 @@
 module IdeaHelper
   def fill_idea_inputs(idea)
-    fill_in 'Name', with: idea.name
+    fill_in 'Title', with: idea.name
     fill_in 'Description', with: idea.description
     fill_in 'Plan', with: idea.plan
     select_associations_inputs
