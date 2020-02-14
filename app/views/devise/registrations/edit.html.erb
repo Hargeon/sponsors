@@ -5,12 +5,7 @@
       <%= render 'partials/error', record: resource %>
 
       <div class="field">
-        <%= t(:name) %> <br>
-        <%= f.text_field :name, class: 'form-control' %>
-      </div>
-
-      <div class="field">
-        <%= t(:password) %> (<%= t('devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it') %>) <br />
+        <%= t(:password) %><br />
         <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
       </div>
 
@@ -24,21 +19,6 @@
         <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
       </div>
 
-      <div class="field">
-        <%= t(:lang) %> <br>
-        <%= f.select :locale, I18n.available_locales, {}, {class: "custom-select mr-sm-2"} %>
-      </div>
-
-      <div class="field">
-        <%= t(:phone) %> <br>
-        <%= f.text_field :phone, class: 'form-control' %>
-      </div>
-
-      <div>
-        <%= f.label :avatar %> <br>
-        <%= f.file_field :avatar %>
-      </div>
-
       <br>
 
       <div class="actions">
@@ -46,12 +26,6 @@
       </div>
 
     <% end %>
-
-    <hr>
-
-    <h3><%= t('devise.registrations.edit.cancel_my_account') %></h3>
-
-    <p><%= button_to t('devise.registrations.edit.cancel_my_account'), registration_path(resource_name), data: { confirm: t(:sure) }, method: :delete, class: 'btn btn-outline-danger' %></p>
 
   </div>
 </div>

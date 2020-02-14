@@ -3,6 +3,7 @@ ru:
     create: 'Создать'
     update: 'Обновить'
   facebook: 'У вашего facebook аккаунта нету почты. Создайте её и повторите регистрацию'
+  edit_password: 'Изменить пароль'
   edit: 'Изменить'
   lang_switch: 'En'
   delete: 'Удалить'

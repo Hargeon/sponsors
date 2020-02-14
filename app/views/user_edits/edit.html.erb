@@ -1,0 +1,59 @@
+<div class="wrap-contanier">
+  <div class="container">
+
+    <%= form_for @user, url: user_edit_path(id: @user.id) do |f| %>
+      <%= render 'partials/error', record: @user %>
+
+      <div class="field">
+        <%= t(:name) %> <br>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= t(:lang) %> <br>
+        <%= f.select :locale, I18n.available_locales, {}, {class: "custom-select mr-sm-2"} %>
+      </div>
+
+      <div class="field">
+        <%= t(:phone) %> <br>
+        <%= f.text_field :phone, class: 'form-control' %>
+      </div>
+<!--
+      <div>
+        <%= f.label :avatar %> <br>
+        <%= f.file_field :avatar, accept: 'image/png,image/gif,image/jpeg' %>
+      </div>
+    -->
+    <br>
+
+    <div class="input-group">
+      <span class="input-group-btn">
+        <span class="btn btn-small btn-primary btn-inverse" id="browseBtn">Browse</span>
+        <%= f.file_field :avatar, id: 'fileField', style: "display: none;", accept: 'image/png,image/gif,image/jpeg' %>
+      </span>
+      <span class="form-control"></span>
+    </div>
+
+      <br>
+
+      <div class="actions">
+        <%= f.submit t(:update), class: 'btn btn-outline-success' %>
+      </div>
+
+    <% end %>
+
+    <br>
+
+    <% if @user.provider.nil? %>
+      <%= link_to t(:edit_password), edit_user_registration_path, class: 'btn btn-outline-primary' %>
+    <% end %>
+
+    <hr>
+
+    <h3><%= t('devise.registrations.edit.cancel_my_account') %></h3>
+
+
+
+    <p><%= button_to t('devise.registrations.edit.cancel_my_account'), registration_path(@user), data: { confirm: t(:sure) }, method: :delete, class: 'btn btn-outline-danger' %></p>
+  </div>
+</div>

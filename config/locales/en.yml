@@ -3,6 +3,7 @@ en:
     create: 'Create'
     update: 'Update'
   facebook: "Your facebook account don't have email. Create email and repeate registration"
+  edit_password: 'Edit password'
   edit: 'Edit'
   lang_switch: 'Ru'
   delete: 'Delete'

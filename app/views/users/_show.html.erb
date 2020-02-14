@@ -16,5 +16,5 @@
 <br>
 
 <% if current_user&.id == user.id %>
-  <%= link_to t(:edit), edit_user_registration_path, class: 'btn btn-outline-primary' %>
+  <%= link_to t(:edit), edit_user_edit_path(id: user.id), class: 'btn btn-outline-primary' %>
 <% end %>
