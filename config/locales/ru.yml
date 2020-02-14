@@ -101,6 +101,7 @@ ru:
       interest: 'Интересы'
     attributes:
       user:
+        avatar: 'Аватар'
         email: 'Почта'
         password: 'Пароль'
         name: 'Имя'

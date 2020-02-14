@@ -17,6 +17,6 @@ class OmniRegistrationsController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :age, :phone, :user_type,
                                  :locale, :email, :password,
-                                 :provider, :uid)
+                                 :provider, :uid, :avatar)
   end
 end

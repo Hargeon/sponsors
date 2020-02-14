@@ -119,6 +119,7 @@ en:
         created_at: 'Created at'
         active_time: 'Active from'
       user:
+        avatar: 'Avatar'
         email: 'Email'
         password: 'Password'
         name: 'Name'

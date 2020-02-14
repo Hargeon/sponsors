@@ -1,7 +1,19 @@
-<h1><%= t(:name) %>: <%= user.name %></h1>
-<h1><%= t(:email) %>: <%= user.email %></h1>
-<h1><%= t(:age) %>: <%= user.age %></h1>
-<h1><%= t(:phone) %>: <%= user.phone %></h1>
+<div class="row">
+  <% if user.avatar.attached? %>
+    <div class="col-lg-6">
+      <%= image_tag user.avatar.variant(resize_to_limit: [400, 400]) %>
+    </div>
+  <% end %>
+
+  <div class = "col-lg-6">
+    <h1><%= t(:name) %>: <%= user.name %></h1>
+    <h1><%= t(:email) %>: <%= user.email %></h1>
+    <h1><%= t(:age) %>: <%= user.age %></h1>
+    <h1><%= t(:phone) %>: <%= user.phone %></h1>
+  </div>
+</div>
+
+<br>
 
 <% if current_user&.id == user.id %>
   <%= link_to t(:edit), edit_user_registration_path, class: 'btn btn-outline-primary' %>
