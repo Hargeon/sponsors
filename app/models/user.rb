@@ -19,7 +19,9 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :sponsor_helps, allow_destroy: true
 
   MINIMUM_NAME_LENGTH = 4
+  MAXIMUN_LENGTH_OF_NAME = 15
   MINIMUM_AGE = 12
+  MAXIMUM_AGE = 150
 
   enum user_type: [:businessman, :sponsor]
 
@@ -30,8 +32,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
   validates :name, :age, :phone, presence: true
-  validates :name, length: { minimum: MINIMUM_NAME_LENGTH }
-  validates :age, numericality: { greater_than_or_equal_to: MINIMUM_AGE }
+  validates :name, length: { minimum: MINIMUM_NAME_LENGTH, maximum: MAXIMUN_LENGTH_OF_NAME }
+  validates :age, numericality: { greater_than_or_equal_to: MINIMUM_AGE, less_than: MAXIMUM_AGE }
   validates :age, numericality: { only_integer: true }
   validates :phone, phone: true
   validates :user_type, presence: true

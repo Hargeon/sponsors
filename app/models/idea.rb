@@ -48,17 +48,21 @@ class Idea < ApplicationRecord
 
   COUNT_WORDS_OF_PLAN = 10
   COUNT_WORDS_OF_DESCRIPTION = 10
+  MAXIMUM_LENGHT_OF_CONTEXT = 1000
   MINIMUM_LENGTH_OF_NAME = 4
+  MAXIMUN_LENGTH_OF_NAME = 25
   ACTIVE_TIME_PERIOD = 30
   ACTIVE_NOTIFICATION_PERIOD = 10
 
-  validates :name, length: { minimum: MINIMUM_LENGTH_OF_NAME }
+  validates :name, length: { minimum: MINIMUM_LENGTH_OF_NAME, maximum: MAXIMUN_LENGTH_OF_NAME }
   validates :plan, count_words: { minimum: COUNT_WORDS_OF_PLAN }
   validates :description, count_words: { minimum: COUNT_WORDS_OF_DESCRIPTION }
   validates :local_industries, presence: true
   validates :local_members, presence: true
   validates :local_districts, presence: true
   validates :local_require_helps, presence: true
+  validates :plan, length: { maximum: MAXIMUM_LENGHT_OF_CONTEXT }
+  validates :description, length: { maximum: MAXIMUM_LENGHT_OF_CONTEXT }
 
   before_create :set_active
   before_create :set_active_time

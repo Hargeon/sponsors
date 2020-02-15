@@ -5,6 +5,9 @@ RSpec.describe Idea, type: :model do
     let(:idea) { create(:idea) }
 
     it { should validate_length_of(:name).is_at_least(4) }
+    it { should validate_length_of(:name).is_at_most(25) }
+    it { should validate_length_of(:description).is_at_most(1000) }
+    it { should validate_length_of(:plan).is_at_most(1000) }
 
     it 'should be valid' do
       expect(idea.valid?).to eq(true)
