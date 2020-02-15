@@ -2,6 +2,9 @@ ru:
   formtastic:
     create: 'Создать'
     update: 'Обновить'
+  facebook: 'У вашего facebook аккаунта нету почты. Создайте её и повторите регистрацию'
+  edit_password: 'Изменить пароль'
+  browse: 'Аватар'
   edit: 'Изменить'
   lang_switch: 'En'
   delete: 'Удалить'
@@ -100,6 +103,7 @@ ru:
       interest: 'Интересы'
     attributes:
       user:
+        avatar: 'Аватар'
         email: 'Почта'
         password: 'Пароль'
         name: 'Имя'
@@ -175,7 +179,7 @@ ru:
         local_member:
           attributes:
             amount:
-              greater_than_or_equal_to: 'не может быть равным %{value}'
+              greater_than_or_equal_to: 'должен быть больше или равен %{count}'
         user:
           attributes:
             email:
@@ -188,12 +192,13 @@ ru:
             age:
               blank: 'не может быть пустым'
               not_a_number: 'не является числом'
+              greater_than_or_equal_to: 'должен быть больше или равен %{count}'
             phone:
               blank: 'не может быть пустым'
               invalid: 'не валидный'
             current_password:
               blank: 'не может быть пустым'
-              invalid: 'не валидный'
+              invalid: 'не совпадает с паролем'
             password_confirmation:
               confirmation: 'не соответствует паролю'
             password:
@@ -203,7 +208,7 @@ ru:
           count_words: 'имеет меньше %{size} слов'
           attributes:
             name:
-              too_short: 'слишком короткое'
+              too_short: 'слишком короткое (минимум %{count} символов)'
             local_industries:
               blank: 'не могут быть пустыми'
             local_members:

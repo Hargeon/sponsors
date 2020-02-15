@@ -4,25 +4,25 @@ RSpec.shared_examples 'idea fill inputs' do
 
     shared_examples 'page has correct message' do |message|
       scenario "should display #{message}" do
-        click_button 'commit'
+        find(:xpath, '/html/body/div/div/div/form/p[6]/input').click
         expect(page).to have_content(message)
       end
     end
 
     feature 'with correct params' do
       scenario 'should redirect to show' do
-        click_button 'commit'
+        find(:xpath, '/html/body/div/div/div/form/p[6]/input').click
         idea = Idea.first
-        expect(page).to have_current_path(idea_path(idea))
+        expect(page).to have_current_path(idea_path(id: idea.id, locale: 'en'))
       end
     end
 
     feature 'with incorrect name' do
       before do
-        fill_in('Name', with: '')
+        fill_in('Title', with: '')
       end
 
-      include_examples 'page has correct message', 'Name is too short (minimum is 4 characters)'
+      include_examples 'page has correct message', 'Title is too short (minimum is 4 characters)'
     end
 
     feature 'with incorrect description' do
@@ -38,7 +38,7 @@ RSpec.shared_examples 'idea fill inputs' do
         click_button Member.first.name
       end
 
-      include_examples 'page has correct message', "Local members can't be blank"
+      include_examples 'page has correct message', "Members can't be blank"
     end
 
     feature 'with incorrect amount of members' do
@@ -46,7 +46,7 @@ RSpec.shared_examples 'idea fill inputs' do
         fill_in 'idea[local_members_attributes][][amount]', with: amount
       end
 
-      include_examples 'page has correct message', 'Local members amount must be greater than or equal to 0'
+      include_examples 'page has correct message', 'Amount of members must be greater than or equal to 0'
     end
 
     feature 'without industries' do
@@ -54,7 +54,7 @@ RSpec.shared_examples 'idea fill inputs' do
         unselect 'Some name', from: 'idea_local_industries'
       end
 
-      include_examples 'page has correct message', "Local industries can't be blank"
+      include_examples 'page has correct message', "Industries can't be blank"
     end
 
     feature 'without districts' do
@@ -62,7 +62,7 @@ RSpec.shared_examples 'idea fill inputs' do
         unselect 'Some name', from: 'idea_local_districts'
       end
 
-      include_examples 'page has correct message', "Local districts can't be blank"
+      include_examples 'page has correct message', "Districts can't be blank"
     end
 
     feature 'without require helps' do
@@ -70,7 +70,7 @@ RSpec.shared_examples 'idea fill inputs' do
         unselect 'Some name', from: 'idea_local_require_helps'
       end
 
-      include_examples 'page has correct message', "Local require helps can't be blank"
+      include_examples 'page has correct message', "Require help can't be blank"
     end
   end
 end

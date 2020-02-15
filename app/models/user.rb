@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_one_attached :avatar
+
   has_many :ideas, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_many :sponsor_industries, dependent: :destroy
@@ -22,9 +24,10 @@ class User < ApplicationRecord
   enum user_type: [:businessman, :sponsor]
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  #:lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable, :async,
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:facebook]
 
   validates :name, :age, :phone, presence: true
   validates :name, length: { minimum: MINIMUM_NAME_LENGTH }

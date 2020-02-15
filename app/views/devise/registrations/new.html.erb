@@ -36,12 +36,17 @@
    <%= f.select :user_type, User.user_types.keys.map { |key| [t("#{key}"), key] }, {}, {class: "custom-select mr-sm-2"} %>
   </div>
 
+  <div class="input-group">
+    <span class="input-group-btn">
+      <span class="btn btn-small btn-primary btn-inverse" id="browseBtn"><%= t(:browse) %></span>
+      <%= f.file_field :avatar, id: 'fileField', style: "display: none;", accept: 'image/png,image/gif,image/jpeg' %>
+    </span>
+    <span class="form-control"></span>
+  </div>
+
   <div class="actions">
     <%= f.submit t(:create), class: 'btn btn-outline-success' %>
   </div>
 <% end %>
 
-<!--
-<%= render "devise/shared/links" %>
--->
 </div>

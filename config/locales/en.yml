@@ -2,6 +2,9 @@ en:
   formtastic:
     create: 'Create'
     update: 'Update'
+  facebook: "Your facebook account don't have email. Create email and repeate registration"
+  edit_password: 'Edit password'
+  browse: 'Avatar'
   edit: 'Edit'
   lang_switch: 'Ru'
   delete: 'Delete'
@@ -118,6 +121,7 @@ en:
         created_at: 'Created at'
         active_time: 'Active from'
       user:
+        avatar: 'Avatar'
         email: 'Email'
         password: 'Password'
         name: 'Name'
@@ -180,7 +184,7 @@ en:
         local_member:
           attributes:
             amount:
-              greater_than_or_equal_to: "can't equal %{value}"
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
         user:
           attributes:
             email:
@@ -189,10 +193,11 @@ en:
               blank: "can't be blank"
             name:
               blank: "can't be blank"
-              too_short: 'too short(minimum %{count} characters)'
+              too_short: 'is too short (minimum is %{count} characters)'
             age:
               blank: "can't be blank"
               not_a_number: 'is not a number'
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
             phone:
               blank: "can't be blank"
               invalid: 'invalid'
@@ -200,7 +205,7 @@ en:
               blank: "can't be blank"
               invalid: 'invalid'
             password_confirmation:
-              confirmation: 'is invalid'
+              confirmation: "doesn't match Password"
             password:
               too_short: 'need has at least %{count} characters'
               blank: "can't be blank"
@@ -208,7 +213,7 @@ en:
           count_words: 'need has at least %{size} words'
           attributes:
             name:
-              too_short: 'is too short'
+              too_short: 'is too short (minimum is %{count} characters)'
             local_industries:
               blank: "can't be blank"
             local_members:
