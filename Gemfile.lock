@@ -233,6 +233,7 @@ GEM
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
+    pagy (3.7.3)
     pg (1.2.2)
     phonelib (0.6.41)
     polyamorous (2.3.2)
@@ -402,6 +403,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   omniauth-facebook
+  pagy
   pg (>= 0.18, < 2.0)
   phonelib
   puma (~> 3.11)
