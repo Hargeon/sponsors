@@ -4,7 +4,6 @@ RSpec.shared_examples 'idea fill inputs' do
 
     shared_examples 'page has correct message' do |message|
       scenario "should display #{message}" do
-        #click_button 'commit'
         find(:xpath, '/html/body/div/div/div/form/p[6]/input').click
         expect(page).to have_content(message)
       end
@@ -12,7 +11,6 @@ RSpec.shared_examples 'idea fill inputs' do
 
     feature 'with correct params' do
       scenario 'should redirect to show' do
-        #click_button 'commit'
         find(:xpath, '/html/body/div/div/div/form/p[6]/input').click
         idea = Idea.first
         expect(page).to have_current_path(idea_path(id: idea.id, locale: 'en'))

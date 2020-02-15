@@ -74,4 +74,27 @@ RSpec.describe 'User authorization' do
       expect(page).to have_content('Invalid Email or password')
     end
   end
+
+  describe 'Edit user' do
+    let(:user) { create(:user) }
+
+    before do
+      login_as(user, scope: :user)
+      visit edit_user_edit_path(id: user.id)
+    end
+
+    feature 'valid params' do
+      feature 'change name' do
+        let(:name) { 'qwerqwe' }
+
+        scenario 'should display new name' do
+          fill_in('Name', with: name)
+          expect(page).to have_content("Name: #{name}")
+        end
+      end
+    end
+
+    feature 'invalid params' do
+    end
+  end
 end

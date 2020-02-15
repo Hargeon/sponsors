@@ -20,6 +20,6 @@ class UserEditsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :phone, :locale, :avatar)
+    params.require(:user).permit(:name, :phone, :locale, :avatar, :age)
   end
 end

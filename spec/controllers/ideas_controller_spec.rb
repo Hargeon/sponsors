@@ -42,6 +42,27 @@ RSpec.describe IdeasController, type: :controller do
     end
   end
 
+  describe 'POST search' do
+    it 'has a 200 status code' do
+      post :search, params: { term: 'Med' }
+      expect(response.status).to eq(200)
+    end
+  end
+
+  describe 'POST filter' do
+    let!(:idea) { create(:idea) }
+
+    it 'has a 200 status code' do
+      post :filter, params: {
+        category: {
+          industries: idea.industries.first
+        }
+      }
+
+      expect(response.status).to eq(200)
+    end
+  end
+
   describe 'POST new' do
     let(:name) { 'Simple name' }
     let(:description) { 'one two three fout five six seven eight nine ten' }
