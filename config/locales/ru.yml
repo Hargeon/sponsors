@@ -189,10 +189,12 @@ ru:
             name:
               blank: 'не может быть пустым'
               too_short: 'слишком короткое(миниму %{count} символа)'
+              too_long: 'слишком длинное (максимум %{count} символов)'
             age:
               blank: 'не может быть пустым'
               not_a_number: 'не является числом'
               greater_than_or_equal_to: 'должен быть больше или равен %{count}'
+              less_than: 'должен быть меньше, чем %{count}'
             phone:
               blank: 'не может быть пустым'
               invalid: 'не валидный'
@@ -209,6 +211,7 @@ ru:
           attributes:
             name:
               too_short: 'слишком короткое (минимум %{count} символов)'
+              too_long: 'слишком длинное (максимум %{count} символов)'
             local_industries:
               blank: 'не могут быть пустыми'
             local_members:
@@ -217,5 +220,9 @@ ru:
               blank: 'не могут быть пустыми'
             local_require_helps:
               blank: 'не может быть пустой'
+            description:
+              too_long: 'слишком длинное (максимум %{count} символов)'
+            plan:
+              too_long: 'слишком длинный (максимум %{count} символов)'
         interest:
           count_words: 'имеет меньше %{size} слов'
