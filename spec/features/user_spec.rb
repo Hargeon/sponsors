@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'User authorization' do
+  shared_examples 'page has correct information' do |message|
+    scenario "should display #{message}" do
+      click_button 'Update'
+      expect(page).to have_content(message)
+    end
+  end
+
   describe 'Sign up' do
     before do
       user = build(:user)
@@ -72,6 +79,83 @@ RSpec.describe 'User authorization' do
       fill_in 'Password', with: ''
       click_button 'Sign in'
       expect(page).to have_content('Invalid Email or password')
+    end
+  end
+
+  describe 'Edit user' do
+    let(:user) { create(:user) }
+
+    before do
+      login_as(user, scope: :user)
+      visit edit_user_edit_path(id: user.id)
+    end
+
+    feature 'valid params' do
+      feature 'change name' do
+        before do
+          fill_in('Name', with: 'qwerqwe')
+        end
+
+        include_examples 'page has correct information', 'Name: qwerqwe'
+      end
+
+      feature 'change phone' do
+        let(:phone) { '+375297899654' }
+
+        before do
+          fill_in('Phone', with: '+375297899654')
+        end
+
+        include_examples 'page has correct information', 'Phone: +375297899654'
+      end
+
+      feature 'change age' do
+        before do
+          fill_in('Age', with: 27)
+        end
+
+        include_examples 'page has correct information', 'Age: 27'
+      end
+
+      feature 'change language' do
+        before do
+          select('ru', from: 'user_locale')
+        end
+
+        include_examples 'page has correct information', 'Имя: Some name'
+      end
+    end
+
+    feature 'invalid params' do
+      feature 'change name' do
+        let(:name) { 'q' }
+
+        before do
+          fill_in('Name', with: name)
+        end
+
+        include_examples 'page has correct information', 'Name is too short (minimum is 4 characters)'
+      end
+
+      feature 'change phone' do
+        let(:phone) { '+369414' }
+
+        before do
+          fill_in('Phone', with: phone)
+        end
+
+        include_examples 'page has correct information', 'Phone invalid'
+      end
+
+      feature 'change age' do
+        let(:age) { -1 }
+
+        before do
+          fill_in('Age', with: age)
+        end
+
+        include_examples 'page has correct information', 'Age must be greater than or equal to 12'
+      end
     end
   end
 end

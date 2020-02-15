@@ -4,7 +4,6 @@ RSpec.shared_examples 'idea fill inputs' do
 
     shared_examples 'page has correct message' do |message|
       scenario "should display #{message}" do
-        #click_button 'commit'
         find(:xpath, '/html/body/div/div/div/form/p[6]/input').click
         expect(page).to have_content(message)
       end
@@ -12,7 +11,6 @@ RSpec.shared_examples 'idea fill inputs' do
 
     feature 'with correct params' do
       scenario 'should redirect to show' do
-        #click_button 'commit'
         find(:xpath, '/html/body/div/div/div/form/p[6]/input').click
         idea = Idea.first
         expect(page).to have_current_path(idea_path(id: idea.id, locale: 'en'))
@@ -48,7 +46,7 @@ RSpec.shared_examples 'idea fill inputs' do
         fill_in 'idea[local_members_attributes][][amount]', with: amount
       end
 
-      include_examples 'page has correct message', "Amount of members can't equal -1"
+      include_examples 'page has correct message', 'Amount of members must be greater than or equal to 0'
     end
 
     feature 'without industries' do

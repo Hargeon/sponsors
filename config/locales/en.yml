@@ -3,6 +3,8 @@ en:
     create: 'Create'
     update: 'Update'
   facebook: "Your facebook account don't have email. Create email and repeate registration"
+  edit_password: 'Edit password'
+  browse: 'Avatar'
   edit: 'Edit'
   lang_switch: 'Ru'
   delete: 'Delete'
@@ -119,6 +121,7 @@ en:
         created_at: 'Created at'
         active_time: 'Active from'
       user:
+        avatar: 'Avatar'
         email: 'Email'
         password: 'Password'
         name: 'Name'
@@ -181,7 +184,7 @@ en:
         local_member:
           attributes:
             amount:
-              greater_than_or_equal_to: "can't equal %{value}"
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
         user:
           attributes:
             email:
@@ -194,6 +197,7 @@ en:
             age:
               blank: "can't be blank"
               not_a_number: 'is not a number'
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
             phone:
               blank: "can't be blank"
               invalid: 'invalid'

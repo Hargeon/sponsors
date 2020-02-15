@@ -1,58 +1,58 @@
 <div class="wrap-contanier">
   <div class="container">
-<%= render 'partials/error', record: @idea %>
+    <%= render 'partials/error', record: @idea %>
 
-<%= form_for @idea do |f| %>
+    <%= form_for @idea do |f| %>
 
-  <%= render  "plain_information", form: f %>
+      <%= render  "plain_information", form: f %>
 
-  <div class="row">
-    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-4">
+          <p>
+            <%= t(:industries) %>: <br>
+            <%= f.collection_select(:local_industries, Industry.all, :id, :name,
+            { include_hidden: false, selected: @idea.industries.map(&:id) },
+            { multiple: true, name: 'idea[local_industries_attributes][][industry_id]', class: 'custom-select' }) %>
+
+            <%= hidden_field_tag 'idea[local_industries_attributes][][exist]', 'exist' %>
+          </p>
+        </div>
+
+        <div class="col-md-4">
+          <p>
+            <%= t(:districts) %>: <br>
+            <%= f.collection_select(:local_districts, District.all, :id, :name,
+            { include_hidden: false, selected: @idea.districts.map(&:id) },
+            { multiple: true, name: 'idea[local_districts_attributes][][district_id]', class: 'custom-select' }) %>
+
+            <%= hidden_field_tag 'idea[local_districts_attributes][][exist]', 'exist' %>
+          </p>
+        </div>
+
+        <div class="col-md-4">
+          <p>
+            <%= t(:require_helps) %>: <br>
+            <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name,
+            { include_hidden: false, selected: @idea.require_helps.map(&:id) },
+            { multiple: true, name: 'idea[local_require_helps_attributes][][require_help_id]', class: 'custom-select' }) %>
+
+            <%= hidden_field_tag 'idea[local_require_helps_attributes][][exist]', 'exist' %>
+          </p>
+        </div>
+      </div>
+
+
       <p>
-        <%= t(:industries) %>: <br>
-        <%= f.collection_select(:local_industries, Industry.all, :id, :name,
-        { include_hidden: false, selected: @idea.industries.map(&:id) },
-        { multiple: true, name: 'idea[local_industries_attributes][][industry_id]', class: 'custom-select' }) %>
-  
-        <%= hidden_field_tag 'idea[local_industries_attributes][][exist]', 'exist' %>
-      </p>
-    </div>
+        <%= t(:members) %>: <br>
+        <%= render  "members"%>
 
-    <div class="col-md-4">
+        <%= hidden_field_tag 'idea[local_members_attributes][][exist]', 'exist' %>
+      </p>
+
       <p>
-        <%= t(:districts) %>: <br>
-        <%= f.collection_select(:local_districts, District.all, :id, :name,
-        { include_hidden: false, selected: @idea.districts.map(&:id) },
-        { multiple: true, name: 'idea[local_districts_attributes][][district_id]', class: 'custom-select' }) %>
-    
-        <%= hidden_field_tag 'idea[local_districts_attributes][][exist]', 'exist' %>
+        <%= f.submit t(:update), class: 'btn btn-outline-primary' %>
       </p>
-    </div>
-
-    <div class="col-md-4">
-      <p>
-        <%= t(:require_helps) %>: <br>
-        <%= f.collection_select(:local_require_helps, RequireHelp.all, :id, :name,
-        { include_hidden: false, selected: @idea.require_helps.map(&:id) },
-        { multiple: true, name: 'idea[local_require_helps_attributes][][require_help_id]', class: 'custom-select' }) %>
-    
-        <%= hidden_field_tag 'idea[local_require_helps_attributes][][exist]', 'exist' %>
-      </p>
-    </div>
-  </div>
-
-
-  <p>
-    <%= t(:members) %>: <br>
-    <%= render  "members"%>
-
-    <%= hidden_field_tag 'idea[local_members_attributes][][exist]', 'exist' %>
-  </p>
-
-  <p>
-    <%= f.submit t(:update), class: 'btn btn-outline-primary' %>
-  </p>
-<% end %>
+    <% end %>
 
   </div>
 </div>

@@ -35,6 +35,13 @@
 
       <br>
 
+      <div>
+        <%= f.label :avatar %> <br>
+        <%= f.file_field :avatar %>
+      </div>
+
+      <br>
+
       <div class="actions">
         <%= f.submit t(:create), class: 'btn btn-outline-success' %>
       </div>
