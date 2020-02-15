@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe 'User authorization' do
+  shared_examples 'page has correct message' do |message|
+    scenario "should display #{message}" do
+      click_button 'Update'
+      expect(page).to have_content(message)
+    end
+  end
+
   describe 'Sign up' do
     before do
       user = build(:user)
@@ -89,12 +96,72 @@ RSpec.describe 'User authorization' do
 
         scenario 'should display new name' do
           fill_in('Name', with: name)
+          click_button 'Update'
           expect(page).to have_content("Name: #{name}")
+        end
+      end
+
+      feature 'change phone' do
+        let(:phone) { '+375297899654' }
+
+        scenario 'should display new phone' do
+          fill_in('Phone', with: phone)
+          click_button 'Update'
+          expect(page).to have_content("Phone: #{phone}")
+        end
+      end
+
+      feature 'change age' do
+        let(:age) { 27 }
+
+        scenario 'should display new age' do
+          fill_in('Age', with: age)
+          click_button 'Update'
+          expect(page).to have_content("Age: #{age}")
+        end
+      end
+
+      feature 'change language' do
+        let(:lang) { 'ru' }
+
+        scenario 'should display information in russian' do
+          select(lang, from: 'user_locale')
+          click_button 'Update'
+          expect(page).to have_content("Имя: #{user.name}")
         end
       end
     end
 
     feature 'invalid params' do
+      feature 'change name' do
+        let(:name) { 'q' }
+
+        before do
+          fill_in('Name', with: name)
+        end
+
+        include_examples 'page has correct message', 'Name is too short (minimum is 4 characters)'
+      end
+
+      feature 'change phone' do
+        let(:phone) { '+369414' }
+
+        before do
+          fill_in('Phone', with: phone)
+        end
+
+        include_examples 'page has correct message', 'Phone invalid'
+      end
+
+      feature 'change age' do
+        let(:age) { -1 }
+
+        before do
+          fill_in('Age', with: age)
+        end
+
+        include_examples 'page has correct message', 'Age must be greater than or equal to 12'
+      end
     end
   end
 end

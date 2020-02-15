@@ -184,7 +184,7 @@ en:
         local_member:
           attributes:
             amount:
-              greater_than_or_equal_to: "can't equal %{value}"
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
         user:
           attributes:
             email:
@@ -197,6 +197,7 @@ en:
             age:
               blank: "can't be blank"
               not_a_number: 'is not a number'
+              greater_than_or_equal_to: "must be greater than or equal to %{count}"
             phone:
               blank: "can't be blank"
               invalid: 'invalid'

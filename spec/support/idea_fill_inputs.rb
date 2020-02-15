@@ -46,7 +46,7 @@ RSpec.shared_examples 'idea fill inputs' do
         fill_in 'idea[local_members_attributes][][amount]', with: amount
       end
 
-      include_examples 'page has correct message', "Amount of members can't equal -1"
+      include_examples 'page has correct message', 'Amount of members must be greater than or equal to 0'
     end
 
     feature 'without industries' do

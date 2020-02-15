@@ -5,22 +5,22 @@
       <%= render 'partials/error', record: @user %>
 
       <div class="field">
-        <%= t(:name) %> <br>
+        <%= f.label :name %> <br>
         <%= f.text_field :name, class: 'form-control' %>
       </div>
 
       <div class="field">
-        <%= t(:lang) %> <br>
+        <%= f.label :locale %> <br>
         <%= f.select :locale, I18n.available_locales, {}, {class: "custom-select mr-sm-2"} %>
       </div>
 
       <div class="field">
-        <%= t(:phone) %> <br>
+        <%= f.label :phone %> <br>
         <%= f.text_field :phone, class: 'form-control' %>
       </div>
 
       <div class="field">
-        <%= t(:age) %> <br>
+        <%= f.label :age %> <br>
         <%= f.text_field :age, class: 'form-control' %>
       </div>
 
