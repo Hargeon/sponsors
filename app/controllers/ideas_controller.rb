@@ -57,8 +57,11 @@ class IdeasController < ApplicationController
   end
 
   def search
-    @ideas = Idea.search(params[:term])
-    @pagy = Pagy.new_from_elasticsearch_rails(@ideas, items: 10)
+    @ideas = Idea.search(params[:term]).page(2).results
+#    count_pages = @ideas.raw_response['hits']['total']['value']
+#    count_pages = (count_pages.to_f / 10).ceil
+    #.page(count_pages)
+    @pagy = Pagy.new_from_elasticsearch_rails(@ideas)
 
     if @ideas.size < ELASTICSEARCH_MIN_SIZE
       @pagy, @ideas = pagy_array(IdeaSearchService.new(params[:term]).order_by_created_at, items: 10)
@@ -73,7 +76,8 @@ class IdeasController < ApplicationController
     query = FilterIdeasQueries.new(criteria_hash).elastic_query
 
     @ideas = Idea.filter(query)
-    @pagy = Pagy.new_from_elasticsearch_rails(@ideas, items: 10)
+    byebug
+    @pagy = Pagy.new_from_elasticsearch_rails(@ideas)
 
     render 'index'
   end
