@@ -116,14 +116,6 @@ RSpec.describe 'User authorization' do
 
         include_examples 'page has correct information', 'Age: 27'
       end
-
-      feature 'change language' do
-        before do
-          select('ru', from: 'user_locale')
-        end
-
-        include_examples 'page has correct information', 'Имя: Some name'
-      end
     end
 
     feature 'invalid params' do

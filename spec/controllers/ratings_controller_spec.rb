@@ -94,7 +94,7 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
 
       let(:expected_body) do
         {
-          'message': 'All points must be clicked'
+          'message': 'All stars must be clicked'
         }.to_json
       end
 
@@ -106,7 +106,7 @@ RSpec.describe Api::V1::RatingsController, type: :controller do
         expect(response.status).to eq(400)
       end
 
-      it 'has an "All points must be clicked" response body' do
+      it 'has an "All stars must be clicked" response body' do
         expect(response.body).to eq(expected_body)
       end
 
