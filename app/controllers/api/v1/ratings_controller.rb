@@ -8,7 +8,8 @@ module Api
         if @rating.save
           render json: RatingResponseSerializer.new(@rating), status: 200
         else
-          render json: { 'message': 'All points must be clicked' }, status: 400
+          I18n.locale = params[:locale]
+          render json: { 'message': I18n.t('stars') }, status: 400
         end
       end
 

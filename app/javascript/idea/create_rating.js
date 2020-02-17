@@ -10,7 +10,8 @@ function post() {
       competitiveness: competitiveness(),
       finance: finance(),
       idea_id: Number($('#idea_id').val())
-    }
+    },
+    locale: locale()
   };
 
   $.ajax({
@@ -50,4 +51,8 @@ function competitiveness() {
 
 function finance() {
   return $('#finance .current-active').data('rate');
+}
+
+function locale() {
+  return $('#lang').val()
 }
