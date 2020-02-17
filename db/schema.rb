@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_184028) do
+ActiveRecord::Schema.define(version: 2020_02_17_134255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "idea_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id"], name: "index_dislikes_on_idea_id"
+    t.index ["user_id"], name: "index_dislikes_on_user_id"
   end
 
   create_table "districts", force: :cascade do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "user_id"
     t.boolean "active"
     t.datetime "active_time"
+    t.index ["user_id"], name: "index_ideas_on_user_id"
   end
 
   create_table "industries", force: :cascade do |t|
@@ -85,6 +88,8 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "message"
+    t.index ["idea_id"], name: "index_interests_on_idea_id"
+    t.index ["user_id"], name: "index_interests_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -92,6 +97,8 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "idea_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id"], name: "index_likes_on_idea_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "local_districts", force: :cascade do |t|
@@ -99,6 +106,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "district_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id", "district_id"], name: "index_local_districts_on_idea_id_and_district_id"
   end
 
   create_table "local_industries", force: :cascade do |t|
@@ -106,6 +114,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "industry_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id", "industry_id"], name: "index_local_industries_on_idea_id_and_industry_id"
   end
 
   create_table "local_members", force: :cascade do |t|
@@ -114,6 +123,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "idea_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id", "member_id"], name: "index_local_members_on_idea_id_and_member_id"
   end
 
   create_table "local_require_helps", force: :cascade do |t|
@@ -121,6 +131,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "require_help_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id", "require_help_id"], name: "index_local_require_helps_on_idea_id_and_require_help_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -138,6 +149,8 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id"], name: "index_ratings_on_idea_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "require_helps", force: :cascade do |t|
@@ -151,6 +164,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "district_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "district_id"], name: "index_sponsor_districts_on_user_id_and_district_id"
   end
 
   create_table "sponsor_helps", force: :cascade do |t|
@@ -158,6 +172,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "require_help_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "require_help_id"], name: "index_sponsor_helps_on_user_id_and_require_help_id"
   end
 
   create_table "sponsor_industries", force: :cascade do |t|
@@ -165,6 +180,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "industry_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "industry_id"], name: "index_sponsor_industries_on_user_id_and_industry_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -194,6 +210,8 @@ ActiveRecord::Schema.define(version: 2020_02_13_184028) do
     t.integer "idea_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id"], name: "index_views_on_idea_id"
+    t.index ["user_id"], name: "index_views_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

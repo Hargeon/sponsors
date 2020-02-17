@@ -6,6 +6,7 @@ class OmniRegistrationsController < ApplicationController
     if @user.save
       sign_in(@user)
       session['omni.auth'] = nil
+      flash[:notice] = t('devise.registrations.signed_up')
       redirect_to root_path
     else
       render 'users/omniauth_callbacks/facebook'

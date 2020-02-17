@@ -46,6 +46,6 @@ class IdeasQueries
   def find
     return sort_by_sponsor_preferences if @current_user&.sponsor?
 
-    Idea.active.order(created_at: :desc)
+    Idea.active.order(created_at: :desc).to_a
   end
 end

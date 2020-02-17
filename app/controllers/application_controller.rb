@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+
   before_action :set_locale
 
   rescue_from CanCan::AccessDenied do |exception|

@@ -3,6 +3,7 @@ en:
     create: 'Create'
     update: 'Update'
   facebook: "Your facebook account don't have email. Create email and repeate registration"
+  stars: 'All stars must be clicked'
   edit_password: 'Edit password'
   browse: 'Avatar'
   edit: 'Edit'
@@ -134,6 +135,7 @@ en:
         current_password: 'Current password'
         password_confirmation: 'Password confirmation'
         created_at: 'Created at'
+        locale: 'Language'
       local_members:
         amount: 'Amount of members'
       admin_user:

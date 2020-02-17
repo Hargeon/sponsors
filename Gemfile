@@ -34,6 +34,7 @@ gem 'sidekiq-cron'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
 gem 'omniauth-facebook'
+gem 'pagy'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

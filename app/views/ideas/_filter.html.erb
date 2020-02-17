@@ -1,5 +1,5 @@
 <div class="sorting text-center">
-  <%= form_for :category, url: filter_ideas_path,  html: { class: "form-inline" } do |form| %>
+  <%= form_for :category, url: filter_ideas_path, method: :get,  html: { class: "form-inline" } do |form| %>
     <div class="col">
       <%= t(:industries) %> <br>
       <%= form.select :industries, Industry.all.map(&:name), {include_blank: true}, {class: 'custom-select'} %>
