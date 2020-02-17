@@ -115,6 +115,7 @@ ru:
         require_helps: 'Помощь'
         current_password: 'Текущий пароль'
         password_confirmation: 'Подтверждение пароля'
+        locale: 'Язык'
       idea:
         name: 'Название'
         description: 'Описание'

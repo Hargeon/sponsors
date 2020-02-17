@@ -92,16 +92,16 @@ class Idea < ApplicationRecord
     )
   end
 
-  def self.search(term)
-    __elasticsearch__.search(full_text_search(term))
+  def self.search(term, from)
+    __elasticsearch__.search(full_text_search(term), from: from)
   end
 
   def self.suggest(term)
     __elasticsearch__.search(suggest_tags(term))
   end
 
-  def self.filter(query)
-    __elasticsearch__.search(query)
+  def self.filter(query, from)
+    __elasticsearch__.search(query, from: from)
   end
 
   private

@@ -134,6 +134,7 @@ en:
         current_password: 'Current password'
         password_confirmation: 'Password confirmation'
         created_at: 'Created at'
+        locale: 'Language'
       local_members:
         amount: 'Amount of members'
       admin_user:
