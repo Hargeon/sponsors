@@ -29,7 +29,6 @@ ActiveAdmin.register Idea do
     end
 
     column :description
-    column :plan
     column :active
     column :created_at
 

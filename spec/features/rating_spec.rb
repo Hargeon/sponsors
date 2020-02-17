@@ -47,9 +47,9 @@ RSpec.describe 'Add rating' do
         click_on 'Share'
       end
 
-      scenario "should display 'All points must be clicked'" do
+      scenario "should display 'All stars must be clicked'" do
         text = page.driver.browser.switch_to.alert.text
-        expect(text).to eq('All points must be clicked')
+        expect(text).to eq('All stars must be clicked')
       end
     end
   end

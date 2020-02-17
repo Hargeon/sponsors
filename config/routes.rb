@@ -15,8 +15,8 @@ Rails.application.routes.draw do
       end
 
       collection do
-        post 'search'
-        post 'filter'
+        get 'search'
+        get 'filter'
       end
     end
 
