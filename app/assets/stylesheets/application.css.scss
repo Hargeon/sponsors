@@ -88,11 +88,11 @@
     height: 100%;
     background-size: cover;
     &.back-image-1{
-      background-image: image-url('businessman.jpg');
+      background-image: asset-url('businessman.jpg');
       background-position: center;
     }
     &.back-image-2{
-      background-image: image-url('sponsors.jpg');
+      background-image: asset-url('sponsors.jpg');
       background-position: center;
     }
   }
