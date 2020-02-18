@@ -6,7 +6,7 @@ class FilterIdeasQueries
       }
     },
     sort: [
-      { created_at: :desc }
+      { created_at: { order: :desc, unmapped_type: 'date' } }
     ]
   }.freeze
 
