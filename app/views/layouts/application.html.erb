@@ -21,9 +21,9 @@
 
           <% if user_signed_in? %>
             <% if current_user.sponsor? %>
-              <li class="nav-item active"><%= link_to current_user.email, sponsor_path(current_user), class: "nav-link" %></li>
+              <li class="nav-item active"><%= link_to t(:page), sponsor_path(current_user), class: "nav-link" %></li>
             <% else %>
-              <li class="nav-item active"><%= link_to current_user.email, businessman_path(current_user), class: "nav-link" %></li>
+              <li class="nav-item active"><%= link_to t(:page), businessman_path(current_user), class: "nav-link" %></li>
               <li class="nav-item active"><%= link_to t(:create_idea), new_idea_path, class: 'nav-link' %></li>
             <% end %>
               <li class="nav-item"><%= link_to t(:log_out), destroy_user_session_path, method: :delete, data: { confirm: t(:sign_out) }, class: "nav-link" %></li>
