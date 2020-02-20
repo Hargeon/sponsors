@@ -50,7 +50,7 @@ function addActiveClsForPrevStars(elements) {
 }
 
 function mouseOutCurrentActive(elements) {
-  for(let i = elements.length - 1; i > 0; i--) {
+  for(let i = elements.length - 1; i >= 0; i--) {
     if(elements[i].classList.contains('current-active')) {
       break;
     } else {

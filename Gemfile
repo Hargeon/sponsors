@@ -65,6 +65,7 @@ group :test do
   gem 'webdrivers'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'elasticsearch-extensions'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

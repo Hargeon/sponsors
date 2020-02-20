@@ -1,12 +1,13 @@
 <div class="wrap-contanier">
   <div class="container">
+    <%= link_to t(:back), :back, class: 'btn btn-outline-secondary' %>
     <%= render 'users/show', user: @user %>
 
     <hr>
 
     <h1>
       <%= t(:support) %>:
-      <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">
+      <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalInterests">
         <%= t(:look) %>
       </button>
     </h1>
@@ -53,7 +54,7 @@
   </div>
 </div>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="modalInterests">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

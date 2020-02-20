@@ -12,9 +12,9 @@ class SponsorsController < ApplicationController
   end
 
   def show
-    @interests = @user.interests.includes(idea: :user)
-                                .where('ideas.active = ?', true)
-                                .references(:idea)
+    @pagy, @interests = pagy(@user.interests.includes(idea: :user)
+                                      .where('ideas.active = ?', true)
+                                      .references(:idea), items: 5)
   end
 
   private

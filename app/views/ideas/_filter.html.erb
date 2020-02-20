@@ -1,28 +1,30 @@
 <div class="sorting text-center">
-  <%= form_for :category, url: filter_ideas_path, method: :get,  html: { class: "form-inline" } do |form| %>
-    <div class="col">
-      <%= t(:industries) %> <br>
-      <%= form.select :industries, Industry.all.map(&:name), {include_blank: true}, {class: 'custom-select'} %>
-    </div>
+    <%= form_for :category, url: filter_ideas_path, method: :get do |form| %>
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-2">
+        <%= t(:industries) %>
+        <%= form.select :industries, Industry.all.map(&:name), {include_blank: true}, {class: 'custom-select'} %>
+      </div>
 
-    <div class="col">
-      <%= t(:districts) %> <br>
-      <%= form.select :districts, District.all.map(&:name), {include_blank: true}, {class: 'custom-select'} %>
-    </div>
+      <div class="col-12 col-md-6 col-lg-2">
+        <%= t(:districts) %>
+        <%= form.select :districts, District.all.map(&:name), {include_blank: true}, {class: 'custom-select'} %>
+      </div>
 
-    <div class="col">
-      <%= t(:members) %> <br>
-      <%= form.select :members, Member.all.map(&:name), {include_blank: true}, {class: 'custom-select'} %>
-    </div>
+      <div class="col-12 col-md-6 col-lg-2">
+        <%= t(:members) %>
+        <%= form.select :members, Member.all.map(&:name), {include_blank: true}, {class: 'custom-select'} %>
+      </div>
 
-    <div class="col">
-      <%= t(:require_helps) %> <br>
-      <%= form.select :require_helps, RequireHelp.all.map(&:name), {include_blank: true}, {class: 'custom-select'} %>
-    </div>
+      <div class="col-12 col-md-6 col-lg-2">
+        <%= t(:require_helps) %>
+        <%= form.select :require_helps, RequireHelp.all.map(&:name), {include_blank: true}, {class: 'custom-select'} %>
+      </div>
 
-    <div>
-      <br>
-      <%= form.submit t(:filter), class: 'btn btn-outline-success' %>
-    </div>
-  <% end %>
+      <div class="col-12 col-md-12 col-lg-4">
+        <br>
+        <%= form.submit t(:filter), class: 'btn btn-outline-success btn-block' %>
+      </div>
+        </div>
+    <% end %>
 </div>

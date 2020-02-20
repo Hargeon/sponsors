@@ -9,6 +9,7 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/rails'
+require 'elasticsearch/extensions/test/cluster'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -63,8 +64,15 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  path = '~/elasticsearch-7.5.2/bin/elasticsearch'
+  test_cluster_hash = { port: 9250, nodes: 1, command: path }
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
+    unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250, command: path)
+      Elasticsearch::Model.client = Elasticsearch::Client.new(host: 'localhost:9250')
+      Elasticsearch::Extensions::Test::Cluster.start(test_cluster_hash)
+    end
   end
 
   config.before(:each) do
@@ -72,12 +80,14 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
-#  config.before(:each, js: true) do
-#    DatabaseCleaner.strategy = :truncation
-#  end
-
   config.after(:each) do
     DatabaseCleaner.clean
+  end
+
+  config.after(:suite) do
+    if Elasticsearch::Extensions::Test::Cluster.running?(on: 9250, command: path)
+      Elasticsearch::Extensions::Test::Cluster.stop(test_cluster_hash)
+    end
   end
 
   config.include ActiveJob::TestHelper
