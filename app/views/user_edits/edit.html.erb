@@ -1,5 +1,8 @@
 <div class="wrap-contanier">
   <div class="container">
+    <p>
+      <%= link_to t(:back), :back, class: 'btn btn-outline-secondary' %>
+    </p>
 
     <%= form_for @user, url: user_edit_path(id: @user.id) do |f| %>
       <%= render 'partials/error', record: @user %>

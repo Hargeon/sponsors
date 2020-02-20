@@ -29,7 +29,7 @@ RSpec.describe 'Add rating' do
       end
 
       scenario 'should display 2 votes' do
-        expect(page).to have_content("Count votes:\n2")
+        expect(page).to have_content("Number of votes:\n2")
       end
 
       scenario 'should display 3 stars' do

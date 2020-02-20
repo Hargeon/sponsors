@@ -64,8 +64,15 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  path = '~/elasticsearch-7.5.2/bin/elasticsearch'
+  test_cluster_hash = { port: 9250, nodes: 1, command: path }
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
+    unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250, command: path)
+      Elasticsearch::Model.client = Elasticsearch::Client.new(host: 'localhost:9250')
+      Elasticsearch::Extensions::Test::Cluster.start(test_cluster_hash)
+    end
   end
 
   config.before(:each) do
@@ -77,15 +84,9 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.before :all, elasticsearch: true do
-    unless Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
-      Elasticsearch::Extensions::Test::Cluster.start(port: 9250, nodes: 1, timeout: 120)
-    end
-  end
-
-  config.after :suite do
-    if Elasticsearch::Extensions::Test::Cluster.running?(on: 9250)
-      Elasticsearch::Extensions::Test::Cluster.stop(port: 9250, nodes: 1)
+  config.after(:suite) do
+    if Elasticsearch::Extensions::Test::Cluster.running?(on: 9250, command: path)
+      Elasticsearch::Extensions::Test::Cluster.stop(test_cluster_hash)
     end
   end
 

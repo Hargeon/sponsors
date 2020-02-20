@@ -69,14 +69,21 @@
 .content {
   margin-top: 3rem;
 }
- .carousel {
-  margin-top: 3rem;
+
+.carousel {
+  //margin-top: 3rem;
   margin-bottom: 3rem;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   bottom: 3rem;
   z-index: 10;
+}
+
+.flash-div {
+  //margin-top: 4rem;
+  padding: 1rem;
+  background-color: rgba(12, 10, 10, 0.5);
 }
 
 /* Declare heights because of positioning of img element */
