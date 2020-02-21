@@ -28,7 +28,10 @@ Rails.application.routes.draw do
     root 'ideas#index'
   end
 
-  mount Sidekiq::Web => '/sidekiq'
+  authenticate :admin_user do
+    mount Sidekiq::Web => '/admin/sidekiq'
+  end
+
   namespace 'api' do
     namespace 'v1' do
       resources :likes, only: [:create, :destroy]
