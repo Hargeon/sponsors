@@ -5,6 +5,10 @@ ActiveAdmin.register_page 'Dashboard' do
     link_to t(:lang_switch), admin_dashboard_lang_path, method: :patch
   end
 
+  action_item :sidekiq, only: [:index] do
+    link_to 'Sidekiq', sidekiq_web_path
+  end
+
   page_action :lang, method: :patch do
     if current_admin_user.locale == 'ru'
       current_admin_user.update(locale: 'en')
