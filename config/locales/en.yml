@@ -234,3 +234,6 @@ en:
               too_long: 'is too long (maximum is %{count} characters)'
         interest:
           count_words: 'need has at least %{size} words'
+          attributes:
+            message:
+              too_long: 'is too long (maximum is %{count} characters)'
