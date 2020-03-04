@@ -3,6 +3,8 @@ en:
     create: 'Create'
     update: 'Update'
   facebook: "Your facebook account don't have email. Create email and repeate registration"
+  msg_new_idea: 'New Idea'
+  msg_old_idea: '%{name} will soon become inactive'
   stars: 'All stars must be clicked'
   page: 'My page'
   edit_password: 'Edit password'
@@ -188,6 +190,8 @@ en:
           attributes:
             amount:
               greater_than_or_equal_to: "must be greater than or equal to %{count}"
+              not_a_number: 'is not a number'
+              not_an_integer: 'must be an integer'
         user:
           attributes:
             email:
